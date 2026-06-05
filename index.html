@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prémium Autókereskedés & Eladás</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #111a22;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e74c3c;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(17, 26, 34, 0.7), rgba(17, 26, 34, 0.7)), url('https://unsplash.com') no-repeat center center/cover;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #bdc3c7;
+        }
+
+        /* Kereső sáv */
+        .search-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: -40px auto 40px auto;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .search-box select, .search-box button {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Autó rács (Grid) */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .car-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .car-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .car-info {
+            padding: 20px;
+        }
+
+        .car-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .car-price {
+            font-size: 22px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .car-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        /* Kapcsolat */
+        .contact {
+            background-color: #111a22;
+            color: white;
+            padding: 60px 0;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #1f2d3d;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .btn-submit {
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        footer {
+            background-color: #0b1116;
+            color: #7f8c8d;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 10px; }
+            .hero h1 { font-size: 28px; }
+            .search-box { margin: 20px auto; }
+        }
+    </style>
+</head>
+<script>
+function mostrarMenuTelefono(event) {
+    event.preventDefault(); // Evita que la página salte hacia arriba
+    var caja = document.getElementById("caja-telefono");
+    
+    if (caja.style.display === "none" || caja.style.display === "") {
+        caja.style.display = "block";
+    } else {
+        caja.style.display = "none";
+    }
+}
+</script>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">AUTO<span>MARKET</span></div>
+            <nav>
+                <a href="#kinalat">Kínálatunk</a>
+                <a href="#eladas">Autóeladás</a>
+               <div style="position: relative; display: inline-block;">
+    <a href="#" onclick="mostrarMenuTelefono(event)">Kapcsolat</a>
+    <div id="caja-telefono" style="display: none; position: absolute; top: 100%; left: 0; background: #ffffff; color: #333333; padding: 10px; border: 1px solid #ccc; box-shadow: 0px 4px 8px rgba(0,0,0,0.1); border-radius: 4px; white-space: nowrap; margin-top: 5px; z-index: 9999;">
+        📞 Tel: +36 123 456 78
+    </div>
+</div>
+ 
+
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Találja meg álmai autóját</h1>
+            <p>Minőségi, ellenőrzött használt autók garanciával, azonnal elvihető állapotban.</p>
+        </div>
+    </section>
+
+    <!-- Kereső funkció (látványelem) -->
+    <div class="container">
+        <div class="search-box">
+            <select>
+                <option value="">Márka (Mindegy)</option>
+                <option>BMW</option>
+                <option>Audi</option>
+                <option>Volkswagen</option>
+                <option>ford</option>
+            </select>
+            <select>
+                <option value="">Árkeret</option>
+                <option>3 millió Ft-ig</option>
+                <option>5 millió Ft-ig</option>
+                <option>5 millió Ft felett</option>
+            </select>
+            <button type="button">Keresés</button><fe>
+        </div>
+    </div>
+
+    <!-- Autó kínálat szekció -->
+    <section id="kinalat" class="container">
+        <h2 class="section-title">Kiemelt ajánlataink</h2>
+        <div class="car-grid">
+            
+            <!-- 1. Autó kártya -->
+            <div class="car-card">
+                <img src="auto.jpg.jpg" alt="BMW" class="car-img">
+                <div class="car-info">
+                    <h3 class="car-title">BMW 530d M Sport</h3>
+                    <div class="car-price">8 990 000 Ft</div>
+                    <div class="car-details">
+                        <span>📅 2019</span>
+                        <span>🛣️ 145 000 km</span>
+                        <span>⛽ Dízel</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Autó kártya -->
+            <div class="car-card">
+                <img src="auto.jpg.jpg" alt="Audi" class="car-img">
+                <div class="car-info">
+                    <h3 class="car-title">Audi A4 Avant S-line</h3>
+                    <div class="car-price">6 450 000 Ft</div>
+                    <div class="car-details">
+                        <span>📅 2018</span>
+                        <span>🛣️ 168 000 km</span>
+                        <span>⛽ Benzin</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Autó kártya -->
+            <div class="car-card">
+                <img src="auto.jpg.jpg" alt="Audi" class="car-img">
+                <div class="car-info">
+                    <h3 class="car-title">Volk</h3>
+                    <div class="car-price">5 200 000 Ft</div>
+                    <div class="car-details">
+                        <span>📅 2017</span>
+                        <span>🛣️ 120 000 km</span>
+                        <span>⚡ Hibrid</span>
+                    </div>
+                </div>
+            </div>
+ <!-- 4. Autó kártya -->
+            <div class="car-card">
+                <img src="https://unsplash.com" alt="ford" class="car-img">
+                <div class="car-info">
+                    <h3 class="car-title">ford fiests</h3>
+                    <div class="car-price">6 00 000 Ft</div>
+                    <div class="car-details">
+                        <span>📅 2018</span>
+                        <span>🛣️ 168 000 km</span>
+                        <span>⛽ Benzin</span>
+                    </div>
+                </div>
+            </div>
+ <!-- 5. Autó kártya -->
+            <div class="car-card">
+                <img src="https://unsplash.com" alt="Kia" class="car-img">
+                <div class="car-info">
+                    <h3 class="car-title">ford fiests</h3>
+                    <div class="car-price">6 450 000 Ft</div>
+                    <div class="car-details">
+                        <span>📅 2018</span>
+                        <span>🛣️ 168 000 km</span>
+                        <span>⛽ Benzin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kapcsolat / Autóbeszámítás -->
+    <section id="eladas" class="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Saját autót adna el?</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #bdc3c7;">Töltse ki az űrlapot, és munkatársunk hamarosan küldi a készpénzes ajánlatot!</p>
+            
+
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label>Az Ön neve:</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefonszáma:</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Autó márkája, típusa és évjárata:</label>
+
+
+                        <input type="text" placeholder="pl. Ford Focus 2015" required>
+
+
+<button type="submit" class="btn-submit">Küldés</button>
+
+                    </div>
