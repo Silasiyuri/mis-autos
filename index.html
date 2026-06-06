@@ -325,19 +325,19 @@ function mostrarMenuTelefono(event) {
     <header>
         <div class="container nav-container">
             <div class="logo"><spn style="color: red;">AUTO<span style="color: red;">MARKET<spn style="color: white;">&<spn style="color: red;">VÁSÁRLÁS</spn></div>
-           <nav>
+     <nav>
     <a href="#kinalat">Kínálatunk</a>
-    <!-- Enlace corregido para abrir las ventanas flotantes -->
+    <!-- Ez nyitja meg a 6 felugró ablakot -->
     <a href="#" onclick="mostrarSeisVentanas(event)">Autóeladás</a>
 </nav>
 
 <div style="position: relative; display: inline-block;">
-    <!-- Enlace de contacto que activa el menú desplegable -->
+    <!-- Ez nyitja meg a telefonszámot -->
     <a href="#" onclick="mostrarMenuTelefono(event)">Kapcsolat</a>
 
-    <!-- Caja flotante del teléfono -->
-    <div id="caja-telefono" style="display: none; position: absolute; background: #222; padding: 10px; border-radius: 5px; z-index: 1000;">
-        <a href="tel:+36203906539" style="text-decoration: none; color: white;">
+    <!-- Telefonszám doboz (Abszolút pozícióval, hogy ne tolja el a designt) -->
+    <div id="caja-telefono" style="display: none; position: absolute; top: 100%; right: 0; background: #222; padding: 15px; border-radius: 5px; z-index: 999; min-width: 180px; box-shadow: 0px 4px 10px rgba(0,0,0,0.5);">
+        <a href="tel:+36203906539" style="text-decoration: none; color: white; display: block; text-align: center;">
             📞 Tel: +36 20 390 9065 39
         </a>
     </div>
