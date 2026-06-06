@@ -325,12 +325,36 @@ function mostrarMenuTelefono(event) {
     <header>
         <div class="container nav-container">
             <div class="logo"><spn style="color: red;">AUTO<span style="color: red;">MARKET<spn style="color: white;">&<spn style="color: red;">VÁSÁRLÁS</spn></div>
+<!-- Contenedor del menú principal -->
 <nav style="display: flex; align-items: center; gap: 20px; position: relative;">
     
     <a href="#kinalat" style="color: white; text-decoration: none;">Kínálatunk</a>
     
-    <a href="#" onclick="mostrarSeisVentanas(event)" style="color: white; text-decoration: none;">Autóeladás</a>
+    <!-- 🚗 BLOQUE DE AUTÓELADÁS CORREGIDO -->
+    <div style="position: relative; display: inline-block;">
+        <a href="#" onclick="mostrarSeisVentanas(event)" style="color: white; text-decoration: none;">Autóeladás</a>
+        
+        <!-- El contenedor ahora se despliega exactamente debajo de la palabra -->
+        <div id="contenedor-flotantes" style="display: none; position: absolute; top: 140%; left: 0; background: #111; border: 2px solid red; padding: 15px; border-radius: 10px; width: 650px; z-index: 10000; box-shadow: 0px 5px 20px rgba(0,0,0,0.8);">
+            
+            <!-- Botón para cerrar compacto -->
+            <button onclick="cerrarVentanas()" style="position: absolute; top: 8px; right: 10px; background: red; color: white; border: none; padding: 2px 7px; cursor: pointer; font-weight: bold; border-radius: 3px; font-size: 12px;">X</button>
+            
+            <h3 style="text-align: center; margin-bottom: 15px; color: red; font-size: 16px; margin-top: 5px;">Autóeladás Opciók</h3>
+            
+            <!-- Rejilla compacta de las 6 opciones -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                <div style="background: #222; padding: 10px; border-radius: 5px; border: 1px solid #444; color: white;"><h4 style="margin: 0 0 5px 0; font-size: 14px;">1. Opció</h4><p style="margin: 0; font-size: 12px; color: #ccc;">Részletek...</p></div>
+                <div style="background: #222; padding: 10px; border-radius: 5px; border: 1px solid #444; color: white;"><h4 style="margin: 0 0 5px 0; font-size: 14px;">2. Opció</h4><p style="margin: 0; font-size: 12px; color: #ccc;">Részletek...</p></div>
+                <div style="background: #222; padding: 10px; border-radius: 5px; border: 1px solid #444; color: white;"><h4 style="margin: 0 0 5px 0; font-size: 14px;">3. Opció</h4><p style="margin: 0; font-size: 12px; color: #ccc;">Részletek...</p></div>
+                <div style="background: #222; padding: 10px; border-radius: 5px; border: 1px solid #444; color: white;"><h4 style="margin: 0 0 5px 0; font-size: 14px;">4. Opció</h4><p style="margin: 0; font-size: 12px; color: #ccc;">Részletek...</p></div>
+                <div style="background: #222; padding: 10px; border-radius: 5px; border: 1px solid #444; color: white;"><h4 style="margin: 0 0 5px 0; font-size: 14px;">5. Opció</h4><p style="margin: 0; font-size: 12px; color: #ccc;">Részletek...</p></div>
+                <div style="background: #222; padding: 10px; border-radius: 5px; border: 1px solid #444; color: white;"><h4 style="margin: 0 0 5px 0; font-size: 14px;">6. Opció</h4><p style="margin: 0; font-size: 12px; color: #ccc;">Részletek...</p></div>
+            </div>
+        </div>
+    </div>
     
+    <!-- 📞 BLOQUE DE KAPCSOLAT -->
     <div style="position: relative; display: inline-block;">
         <a href="#" onclick="mostrarMenuTelefono(event)" style="color: white; text-decoration: none;">Kapcsolat</a>
         
@@ -342,6 +366,8 @@ function mostrarMenuTelefono(event) {
     </div>
 
 </nav>
+Escribir mensaje
+
         </div>
     </header>
 
