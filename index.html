@@ -240,6 +240,41 @@
             cursor: pointer;
             width: 100%;
         }
+        /* Contenedor principal en la barra negra */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* El menú flotante que aparece abajo */
+.dropdown-menu {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    top: 100%; /* Se coloca exactamente debajo del botón */
+    left: 0;
+    background-color: #111; /* Color negro de fondo igual a tu barra */
+    min-width: 120px;
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+    z-index: 1000; /* Asegura que flote por encima de las fotos de coches */
+}
+
+/* Espaciado de las opciones verticales */
+.dropdown-menu li a {
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+/* Cambio de color opcional cuando pasas el ratón por encima de una opción */
+.dropdown-menu li a:hover {
+    background-color: #333;
+}
         </style>
 <!-- Barra de menú adaptativa (Responsive) -->
 <nav style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; width: 100%; padding: 15px 5%; background: #111; z-index: 99999; box-sizing: border-box; gap: 15px;">
@@ -255,16 +290,15 @@
         <a href="#kinalat" style="color: white; text-decoration: none; font-weight: bold; font-size: clamp(14px, 4vw, 16px); white-space: nowrap;">Kínálatunk</a>
         
 <!-- MÓDULO AUTÓELADÁS -->
-<div style="position: relative; display: inline-block;">
-    <!-- Al tocar "Autóeladás" se abre o cierra el menú -->
-    <a href="#" id="boton-autoeladas" onclick="alternarMenu(event)">Autóeladás</a>
+<div class="dropdown-container">
+    <a href="#" id="boton-autoeladas" class="dropdown-trigger">Autóeladás</a>
 
-    <!-- El menú con las opciones -->
-    <div id="menu-desplegable" style="display: inline-block;">
-        <a href="#" id="opcion-1" style="margin-left: 15px; color: #fff;">1. Opció</a>
-        <a href="#" style="margin-left: 15px; color: #fff;">2. Opció</a>
-        <a href="#" style="margin-left: 15px; color: #fff;">3. Opció</a>
-    </div>
+    <!-- El menú ahora se abrirá justo debajo -->
+    <ul id="menu-desplegable" class="dropdown-menu">
+        <li><a href="#" id="opcion-1">1. Opció</a></li>
+        <li><a href="#">2. Opció</a></li>
+        <li><a href="#">3. Opció</a></li>
+    </ul>
 </div>
         
         <!-- MÓDULO KAPCSOLAT -->
@@ -625,30 +659,31 @@ opcionUno.addEventListener('click', function(event) {
 </body>
 </html>
 <script>
-    // Función para abrir y cerrar (plegar/desplegar) el menú al tocar "Autóeladás"
-    function alternarMenu(event) {
-        event.preventDefault();
-        const menu = document.getElementById('menu-desplegable');
-        if (menu) {
-            // Si está oculto lo muestra, si está visible lo oculta
-            if (menu.style.display === 'none') {
-                menu.style.display = 'inline-block';
-            } else {
-                menu.style.display = 'none';
-            }
-        }
-    }
-
     document.addEventListener("DOMContentLoaded", function() {
+        const botonAutoeladas = document.getElementById('boton-autoeladas');
+        const menuDesplegable = document.getElementById('menu-desplegable');
         const opcionUno = document.getElementById('opcion-1');
         const parteInferior = document.getElementById('pie-pagina');
-        const menuDesplegable = document.getElementById('menu-desplegable');
 
+        // 1. Mostrar/Ocultar el menú debajo al hacer clic en Autóeladás
+        if (botonAutoeladas && menuDesplegable) {
+            botonAutoeladas.addEventListener('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                if (menuDesplegable.style.display === 'block') {
+                    menuDesplegable.style.display = 'none';
+                } else {
+                    menuDesplegable.style.display = 'block';
+                }
+            });
+        }
+
+        // 2. Acción al tocar la Opción 1
         if (opcionUno) {
             opcionUno.addEventListener('click', function(event) {
-                event.preventDefault(); 
+                event.preventDefault();
                 
-                // 1. Te lleva al final de la página
+                // Baja al final de la página
                 if (parteInferior) {
                     parteInferior.scrollIntoView({ 
                         behavior: 'smooth', 
@@ -656,12 +691,19 @@ opcionUno.addEventListener('click', function(event) {
                     });
                 }
 
-                // 2. Pliega el menú temporalmente para limpiar la vista al bajar
+                // Cierra (pliega) el menú vertical
                 if (menuDesplegable) {
                     menuDesplegable.style.display = 'none';
                 }
             });
         }
+
+        // Cierra el menú automáticamente si el usuario hace clic fuera de él
+        document.addEventListener('click', function() {
+            if (menuDesplegable) {
+                menuDesplegable.style.display = 'none';
+            }
+        });
     });
 </script>
 
