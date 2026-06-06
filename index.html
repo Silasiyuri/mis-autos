@@ -524,4 +524,47 @@ function cerrarVentanas() {
     document.getElementById('contenedor-flotantes').style.display = 'none';
 }
 </script>
+            <!-- A 6 felugró ablak konténere (Alapértelmezetten rejtve van: display: none) -->
+<div id="contenedor-flotantes" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; padding: 20px;">
+    <div style="background: #111; border: 2px solid red; padding: 25px; border-radius: 10px; max-width: 900px; width: 100%; position: relative; color: white; max-height: 90vh; overflow-y: auto;">
+        <!-- Bezárás gomb -->
+        <button onclick="cerrarVentanas()" style="position: absolute; top: 15px; right: 15px; background: red; color: white; border: none; padding: 8px 14px; cursor: pointer; font-weight: bold; border-radius: 5px;">X</button>
+        
+        <h3 style="text-align: center; margin-bottom: 25px; color: red; font-size: 24px;">Autóeladás Opciók</h3>
+        
+        <!-- A 6 doboz rácsszerkezete -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>1. Opció</h4><p>Részletek...</p></div>
+            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>2. Opció</h4><p>Részletek...</p></div>
+            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>3. Opció</h4><p>Részletek...</p></div>
+            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>4. Opció</h4><p>Részletek...</p></div>
+            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>5. Opció</h4><p>Részletek...</p></div>
+            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>6. Opció</h4><p>Részletek...</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- A két funkciót vezérlő JavaScript kód -->
+<script>
+// 1. Funkció: Autóeladás ablakok megjelenítése
+function mostrarSeisVentanas(event) {
+    event.preventDefault();
+    document.getElementById('contenedor-flotantes').style.display = 'flex';
+}
+
+function cerrarVentanas() {
+    document.getElementById('contenedor-flotantes').style.display = 'none';
+}
+
+// 2. Funkció: Kapcsolat lenyíló menü (nem keveredik az autóeladással!)
+function mostrarMenuTelefono(event) {
+    event.preventDefault();
+    var x = document.getElementById("caja-telefono");
+    if (x.style.display === "none" || x.style.display === "") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
                     </div>
