@@ -589,4 +589,37 @@ opcionUno.addEventListener('click', function(event) {
             });
         }
     });
+    <!-- ... Todo tu contenido anterior ... -->
+
+    <!-- Añade esta línea exacta justo aquí abajo -->
+    <div id="pie-pagina" style="height: 1px; width: 100%;"></div>
+
+    <!-- Tu script que ya pusiste antes -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const opcionUno = document.getElementById('opcion-1');
+            const parteInferior = document.getElementById('pie-pagina');
+            const menuContenedor = document.getElementById('menu-desplegable');
+
+            if (opcionUno) {
+                opcionUno.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    
+                    if (parteInferior) {
+                        parteInferior.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'end' 
+                        });
+                    }
+
+                    if (menuContenedor) {
+                        menuContenedor.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
 </script>
