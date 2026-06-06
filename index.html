@@ -432,5 +432,32 @@ function mostrarMenuTelefono(event) {
 
 </form>
 
-
+<script>
+  var form = document.getElementById("my-form");
+  
+  async function handleSubmit(event) {
+    event.preventDefault(); // Evita que la página se recargue
+    var data = new FormData(event.target);
+    
+    // Envía los datos de forma asíncrona
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+          'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        alert("¡Mensaje enviado con éxito!"); // Mensaje de confirmación
+        form.reset();                      // 🔥 ESTA LÍNEA BORRA LOS DATOS DEL FORMULARIO
+      } else {
+        alert("Ocurrió un error al enviar el formulario.");
+      }
+    }).catch(error => {
+      alert("Hubo un problema de conexión.");
+    });
+  }
+  
+  form.addEventListener("submit", handleSubmit)
+</script>
                     </div>
