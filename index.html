@@ -256,8 +256,10 @@
         
 <!-- MÓDULO AUTÓELADÁS -->
 <div style="position: relative; display: inline-block;">
-    <a href="#" id="boton-autoeladas">Autóeladás</a>
+    <!-- Al tocar "Autóeladás" se abre o cierra el menú -->
+    <a href="#" id="boton-autoeladas" onclick="alternarMenu(event)">Autóeladás</a>
 
+    <!-- El menú con las opciones -->
     <div id="menu-desplegable" style="display: inline-block;">
         <a href="#" id="opcion-1" style="margin-left: 15px; color: #fff;">1. Opció</a>
         <a href="#" style="margin-left: 15px; color: #fff;">2. Opció</a>
@@ -622,7 +624,21 @@ opcionUno.addEventListener('click', function(event) {
     </script>
 </body>
 </html>
-            <script>
+<script>
+    // Función para abrir y cerrar (plegar/desplegar) el menú al tocar "Autóeladás"
+    function alternarMenu(event) {
+        event.preventDefault();
+        const menu = document.getElementById('menu-desplegable');
+        if (menu) {
+            // Si está oculto lo muestra, si está visible lo oculta
+            if (menu.style.display === 'none') {
+                menu.style.display = 'inline-block';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         const opcionUno = document.getElementById('opcion-1');
         const parteInferior = document.getElementById('pie-pagina');
@@ -630,9 +646,9 @@ opcionUno.addEventListener('click', function(event) {
 
         if (opcionUno) {
             opcionUno.addEventListener('click', function(event) {
-                event.preventDefault(); // Evita que la página recargue
+                event.preventDefault(); 
                 
-                // 1. Desplaza la página hacia abajo
+                // 1. Te lleva al final de la página
                 if (parteInferior) {
                     parteInferior.scrollIntoView({ 
                         behavior: 'smooth', 
@@ -640,7 +656,7 @@ opcionUno.addEventListener('click', function(event) {
                     });
                 }
 
-                // 2. Pliega / oculta las opciones del menú
+                // 2. Pliega el menú temporalmente para limpiar la vista al bajar
                 if (menuDesplegable) {
                     menuDesplegable.style.display = 'none';
                 }
