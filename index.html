@@ -529,4 +529,25 @@ function mostrarMenuTelefono(event) {
 <footer id="pie-pagina">
     <!-- El contenido de tu pie de página aquí -->
 </footer>
+        <!-- ... Todo el contenido de tu página ... -->
+    
+    <footer id="pie-pagina">
+        <p>Fin de la página</p>
+    </footer>
+
+    <!-- AQUÍ PONES EL CÓDIGO JAVASCRIPT -->
+    <script>
+        const opcionUno = document.getElementById('opcion-1');
+        const parteInferior = document.getElementById('pie-pagina');
+
+        opcionUno.addEventListener('click', function(event) {
+            event.preventDefault();
+            parteInferior.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'end' 
+            });
+        });
+    </script>
+</body>
+</html>
 </script>
