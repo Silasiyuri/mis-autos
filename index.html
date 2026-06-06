@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autóvásárlás & Eladás</title>
+    
     <style>
         * {
             margin: 0;
@@ -11,40 +12,11 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-<script>
-  var form = document.getElementById("my-form");
-  
-  async function handleSubmit(event) {
-    event.preventDefault(); // Evita que la página se recargue
-    var data = new FormData(event.target);
-    
-    // Envía los datos de forma asíncrona
-    fetch(event.target.action, {
-      method: form.method,
-      body: data,
-      headers: {
-          'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        alert("¡Mensaje enviado con éxito!"); // Mensaje de confirmación
-        form.reset();                      // 🔥 ESTA LÍNEA BORRA LOS DATOS DEL FORMULARIO
-      } else {
-        alert("Ocurrió un error al enviar el formulario.");
-      }
-    }).catch(error => {
-      alert("Hubo un problema de conexión.");
-    });
-  }
-  
-  form.addEventListener("submit", handleSubmit)
-</script>
         body {
             background-color: #f8f9fa;
             color: #2c3e50;
             line-height: 1.6;
         }
-
         header {
             background-color: #111a22;
             color: white;
@@ -54,29 +26,24 @@
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .logo {
             font-size: 24px;
             font-weight: bold;
             color: #e74c3c;
         }
-
         .logo span {
             color: white;
         }
-
         nav a {
             color: white;
             text-decoration: none;
@@ -84,29 +51,24 @@
             font-weight: 600;
             transition: color 0.3s;
         }
-
         nav a:hover {
             color: #e74c3c;
         }
-
         .hero {
             background: linear-gradient(rgba(17, 26, 34, 0.7), rgba(17, 26, 34, 0.7)), url('https://unsplash.com') no-repeat center center/cover;
             color: white;
             padding: 80px 0;
             text-align: center;
         }
-
         .hero h1 {
             font-size: 40px;
             margin-bottom: 15px;
         }
-
         .hero p {
             font-size: 18px;
             margin-bottom: 25px;
             color: #bdc3c7;
         }
-
         /* Kereső sáv */
         .search-box {
             background-color: white;
@@ -119,7 +81,6 @@
             gap: 15px;
             flex-wrap: wrap;
         }
-
         .search-box select, .search-box button {
             flex: 1;
             min-width: 150px;
@@ -128,7 +89,6 @@
             border-radius: 5px;
             font-size: 16px;
         }
-
         .search-box button {
             background-color: #e74c3c;
             color: white;
@@ -137,25 +97,21 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-
         .search-box button:hover {
             background-color: #c0392b;
         }
-
         /* Autó rács (Grid) */
         .section-title {
             text-align: center;
             margin-bottom: 40px;
             font-size: 28px;
         }
-
         .car-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
-
         .car-card {
             background-color: white;
             border-radius: 8px;
@@ -163,33 +119,27 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             transition: transform 0.3s;
         }
-
         .car-card:hover {
             transform: translateY(-5px);
         }
-
         .car-img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-
         .car-info {
             padding: 20px;
         }
-
         .car-title {
             font-size: 20px;
             margin-bottom: 10px;
         }
-
         .car-price {
             font-size: 22px;
             color: #e74c3c;
             font-weight: bold;
             margin-bottom: 15px;
         }
-
         .car-details {
             display: flex;
             justify-content: space-between;
@@ -198,14 +148,12 @@
             border-top: 1px solid #eee;
             padding-top: 15px;
         }
-
         /* Kapcsolat */
         .contact {
             background-color: #111a22;
             color: white;
             padding: 60px 0;
         }
-
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
@@ -213,23 +161,19 @@
             padding: 30px;
             border-radius: 8px;
         }
-
         .form-group {
             margin-bottom: 20px;
         }
-
         .form-group label {
             display: block;
             margin-bottom: 5px;
         }
-
         .form-group input, .form-group textarea {
             width: 100%;
             padding: 10px;
             border: none;
             border-radius: 4px;
         }
-
         .btn-submit {
             background-color: #e74c3c;
             color: white;
@@ -240,307 +184,99 @@
             cursor: pointer;
             width: 100%;
         }
-<!-- Contenedor del menú principal -->
-<nav style="display: flex; align-items: center; gap: 20px; position: relative;">
-    
-    <a href="#kinalat" style="color: white; text-decoration: none;">Kínálatunk</a>
-    
-    <!-- 🚗 BLOQUE DE AUTÓELADÁS EN MODO MENÚ DESPLEGABLE -->
-    <div style="position: relative; display: inline-block;">
-        <a href="#" onclick="mostrarSeisVentanas(event)" style="color: white; text-decoration: none;">Autóeladás</a>
-        
-        <!-- Una sola caja sólida que contiene todo el menú -->
-        <div id="contenedor-flotantes" style="display: none; position: absolute; top: 140%; left: 0; background: #1a1a1a; border: 1px solid #333; border-top: 3px solid red; border-radius: 4px; z-index: 10000; box-sizing: border-box; min-width: 160px; box-shadow: 0px 5px 15px rgba(0,0,0,0.5); flex-direction: column;">
-            
-            <!-- Opción 1 -->
-            <a href="#opcion1" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">1. Opció</span>
-            </a>
+    </style>
+</head>
+<body>
 
-            <!-- Opción 2 -->
-            <a href="#opcion2" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">2. Opció</span>
-            </a>
+    <!-- Contenedor del menú principal -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Autó<span>Adás</span></div>
+            <nav style="display: flex; align-items: center; gap: 20px; position: relative;">
+                <a href="#kinalat">Kínálatunk</a>
+                
+                <!-- 🚗 BLOQUE DE AUTÓELADÁS EN MODO MENÚ DESPLEGABLE -->
+                <div style="position: relative; display: inline-block;">
+                    <a href="#" onclick="mostrarSeisVentanas(event)">Autóeladás</a>
+                    
+                    <!-- Una sola caja sólida que contiene todo el menú -->
+                    <div id="contenedor-flotantes" style="display: none; position: absolute; top: 140%; left: 0; background: #1a1a1a; border: 1px solid #333; border-top: 3px solid red; border-radius: 4px; z-index: 10000; box-sizing: border-box; min-width: 160px; box-shadow: 0px 5px 15px rgba(0,0,0,0.5); flex-direction: column;">
+                        
+                        <!-- Opción 1 -->
+                        <a href="#opcion1" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
+                            <span style="font-weight: bold; display: block;">1. Opció</span>
+                        </a>
 
-            <!-- Opción 3 -->
-            <a href="#opcion3" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">3. Opció</span>
-            </a>
+                        <!-- Opción 2 -->
+                        <a href="#opcion2" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
+                            <span style="font-weight: bold; display: block;">2. Opció</span>
+                        </a>
 
-            <!-- Opción 4 -->
-            <a href="#opcion4" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">4. Opció</span>
-            </a>
+                        <!-- Opción 3 -->
+                        <a href="#opcion3" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
+                            <span style="font-weight: bold; display: block;">3. Opció</span>
+                        </a>
 
-            <!-- Opción 5 -->
-            <a href="#opcion5" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">5. Opció</span>
-            </a>
+                        <!-- Opción 4 -->
+                        <a href="#opcion4" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
+                            <span style="font-weight: bold; display: block;">4. Opció</span>
+                        </a>
 
-            <!-- Opción 6 -->
-            <a href="#opcion6" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">6. Opció</span>
-            </a>
-
-        </div>
-    </div>
-    
-    <!-- 📞 BLOQUE DE KAPCSOLAT -->
-    <div style="position: relative; display: inline-block;">
-        <a href="#" onclick="mostrarMenuTelefono(event)" style="color: white; text-decoration: none;">Kapcsolat</a>
-        
-        <div id="caja-telefono" style="display: none; position: absolute; top: 140%; left: 50%; transform: translateX(-50%); background: #222; padding: 12px; border-radius: 8px; z-index: 9999; min-width: 200px; box-shadow: 0px 4px 15px rgba(0,0,0,0.5); border: 1px solid #444; text-align: center;">
-            <a href="tel:+36203906539" style="text-decoration: none; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: bold;">
-                📞 <span style="white-space: nowrap;">Tel: +36 20 390 9065 39</span>
-            </a>
-        </div>
-    </div>
-
-</nav>
-
-
+                        <!-- Opción 5 -->
+                        <a href="#opcion5" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
+                            <span style="font-weight: bold; display: block;">5. Opció</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Találja meg álmai autóját</h1>
-            <p>Minőségi, ellenőrzött használt autók garanciával, azonnal elvihető állapotban.</p>
-        </div>
-    </section>
+    <!-- AQUÍ DEBERÍAS PONER EL RESTO DE TU CONTENIDO EN EL BODY (Hero, Car Grid, Formulario, etc.) -->
 
-    <!-- Kereső funkció (látványelem) -->
-    <div class="container">
-        <div class="search-box">
-            <select>
-                <option value="">Márka (Mindegy)</option>
-                <option>BMW</option>
-                <option>Audi</option>
-                <option>Volkswagen</option>
-                <option>ford</option>
-            </select>
-            <select>
-                <option value="">Árkeret</option>
-                <option>3 millió Ft-ig</option>
-                <option>5 millió Ft-ig</option>
-                <option>5 millió Ft felett</option>
-            </select>
-            <button type="button">Keresés</button><fe>
-        </div>
-    </div>
-
-    <!-- Autó kínálat szekció -->
-    <section id="kinalat" class="container">
-        <h2 class="section-title">Kiemelt ajánlataink</h2>
-        <div class="car-grid">
-            
-            <!-- 1. Autó kártya -->
-            <div class="car-card">
-                <img src="auto.jpg.jpg" alt="BMW" class="car-img">
-                <div class="car-info">
-                    <h3 class="car-title">BMW 530d M Sport</h3>
-                    <div class="car-price">8 990 000 Ft</div>
-                    <div class="car-details">
-                        <span>📅 2019</span>
-                        <span>🛣️ 145 000 km</span>
-                        <span>⛽ Dízel</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. Autó kártya -->
-            <div class="car-card">
-                <img src="auto.jpg.jpg" alt="Audi" class="car-img">
-                <div class="car-info">
-                    <h3 class="car-title">Audi A4 Avant S-line</h3>
-                    <div class="car-price">6 450 000 Ft</div>
-                    <div class="car-details">
-                        <span>📅 2018</span>
-                        <span>🛣️ 168 000 km</span>
-                        <span>⛽ Benzin</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Autó kártya -->
-            <div class="car-card">
-                <img src="auto.jpg.jpg" alt="Audi" class="car-img">
-                <div class="car-info">
-                    <h3 class="car-title">Volk</h3>
-                    <div class="car-price">5 200 000 Ft</div>
-                    <div class="car-details">
-                        <span>📅 2017</span>
-                        <span>🛣️ 120 000 km</span>
-                        <span>⚡ Hibrid</span>
-                    </div>
-                </div>
-            </div>
- <!-- 4. Autó kártya -->
-            <div class="car-card">
-                <img src="https://unsplash.com" alt="ford" class="car-img">
-                <div class="car-info">
-                    <h3 class="car-title">ford fiests</h3>
-                    <div class="car-price">6 00 000 Ft</div>
-                    <div class="car-details">
-                        <span>📅 2018</span>
-                        <span>🛣️ 168 000 km</span>
-                        <span>⛽ Benzin</span>
-                    </div>
-                </div>
-            </div>
- <!-- 5. Autó kártya -->
-            <div class="car-card">
-                <img src="https://unsplash.com" alt="Kia" class="car-img">
-                <div class="car-info">
-                    <h3 class="car-title">ford fiests</h3>
-                    <div class="car-price">6 450 000 Ft</div>
-                    <div class="car-details">
-                        <span>📅 2018</span>
-                        <span>🛣️ 168 000 km</span>
-                        <span>⛽ Benzin</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kapcsolat / Autóbeszámítás -->
-    <section id="eladas" class="contact">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Saját autót adna el?</h2>
-            <p style="text-align: center; margin-bottom: 30px; color: #bdc3c7;">Töltse ki az űrlapot, és munkatársunk hamarosan küldi a készpénzes ajánlatot!</p>
-            
-
-     <form id="my-form" action="https://formspree.io/f/mreveage" method="POST">
-    
-    <div class="form-group">
-        <label>Az Ön neve:</label>
-        <!-- Se añade tipo y un 'name' descriptivo -->
-        <input type="text" name="nombre" required> 
-    </div>
-
-    <div class="form-group">
-        <label>Telefonszáma:</label>
-        <input type="tel" name="telefono" required>
-    </div>
-
-    <!-- RECOMENDACIÓN: Campo para el email del cliente -->
-    <div class="form-group">
-        <label>Az Ön email címe:</label>
-        <input type="email" name="email" required>
-    </div >
-
-    <div class="form-group">
-        <label>Autó márkája, típusa és évjárata:</label>
-        <!-- Se cambia 'text' por un nombre único para evitar conflictos -->
-        <input type="text" name="vehiculo" placeholder="pl. Ford Focus 2015" required>
-    </div>
-
-    <button type="submit" class="btn-submit">Küldés</button>
-
-</form>
-
-<script>
-  var form = document.getElementById("my-form");
-  
-  async function handleSubmit(event) {
-    event.preventDefault(); // Evita que la página se recargue
-    var data = new FormData(event.target);
-    
-    // Envía los datos de forma asíncrona
-    fetch(event.target.action, {
-      method: form.method,
-      body: data,
-      headers: {
-          'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        alert("¡Sikerült küldeni!"); // Mensaje de confirmación
-        form.reset();                      // 🔥 ESTA LÍNEA BORRA LOS DATOS DEL FORMULARIO
-      } else {
-        alert("Ocurrió un error al enviar el formulario.");
-      }
-    }).catch(error => {
-      alert("Hubo un problema de conexión.");
-    });
-  }
-  
-  form.addEventListener("submit", handleSubmit)
-</script>
-            <script>
-function mostrarSeisVentanas(event) {
-    event.preventDefault(); // Evita que la página salte
-    document.getElementById('contenedor-flotantes').style.display = 'flex';
-}
-
-function cerrarVentanas() {
-    document.getElementById('contenedor-flotantes').style.display = 'none';
-}
-</script>
-            <!-- A 6 felugró ablak konténere (Alapértelmezetten rejtve van: display: none) -->
-<div id="contenedor-flotantes" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; padding: 20px;">
-    <div style="background: #111; border: 2px solid red; padding: 25px; border-radius: 10px; max-width: 900px; width: 100%; position: relative; color: white; max-height: 90vh; overflow-y: auto;">
-        <!-- Bezárás gomb -->
-        <button onclick="cerrarVentanas()" style="position: absolute; top: 15px; right: 15px; background: red; color: white; border: none; padding: 8px 14px; cursor: pointer; font-weight: bold; border-radius: 5px;">X</button>
-        
-        <h3 style="text-align: center; margin-bottom: 25px; color: red; font-size: 24px;">Autóeladás Opciók</h3>
-        
-        <!-- A 6 doboz rácsszerkezete -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
-            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>1. Opció</h4><p>Részletek...</p></div>
-            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>2. Opció</h4><p>Részletek...</p></div>
-            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>3. Opció</h4><p>Részletek...</p></div>
-            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>4. Opció</h4><p>Részletek...</p></div>
-            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>5. Opció</h4><p>Részletek...</p></div>
-            <div style="background: #222; padding: 15px; border-radius: 5px; border: 1px solid #444;"><h4>6. Opció</h4><p>Részletek...</p></div>
-        </div>
-    </div>
-</div>
-
-<!-- A két funkciót vezérlő JavaScript kód -->
-<script>
-// 1. Funkció: Autóeladás ablakok megjelenítése
-function mostrarSeisVentanas(event) {
-    event.preventDefault();
-    document.getElementById('contenedor-flotantes').style.display = 'flex';
-}
-
-function cerrarVentanas() {
-    document.getElementById('contenedor-flotantes').style.display = 'none';
-}
-
-// 2. Funkció: Kapcsolat lenyíló menü (nem keveredik az autóeladással!)
-function mostrarMenuTelefono(event) {
-    event.preventDefault();
-    var x = document.getElementById("caja-telefono");
-    if (x.style.display === "none" || x.style.display === "") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-</script>
+    <!-- CÓDIGO JAVASCRIPT AL FINAL DEL BODY -->
     <script>
-function mostrarSeisVentanas(event) {
-    event.preventDefault();
-    var panel = document.getElementById('contenedor-flotantes');
-    if (panel.style.display === "none" || panel.style.display === "") {
-        panel.style.display = 'flex'; 
-    } else {
-        panel.style.display = 'none';
-    }
-}
+      var form = document.getElementById("my-form");
+      
+      async function handleSubmit(event) {
+        event.preventDefault(); 
+        var data = new FormData(event.target);
+        
+        fetch(event.target.action, {
+          method: form.method,
+          body: data,
+          headers: {
+              'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            alert("¡Mensaje enviado con éxito!"); 
+            form.reset();                      
+          } else {
+            alert("Ocurrió un error al enviar el formulario.");
+          }
+        }).catch(error => {
+          alert("Hubo un problema de conexión.");
+        });
+      }
+      
+      // Asegúrate de que este listener solo se añada si el formulario realmente existe en el HTML
+      if(form) {
+        form.addEventListener("submit", handleSubmit);
+      }
 
-function mostrarMenuTelefono(event) {
-    event.preventDefault();
-    var x = document.getElementById("caja-telefono");
-    if (x.style.display === "none" || x.style.display === "") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-</script>
+      // Función para mostrar el menú flotante
+      function mostrarSeisVentanas(event) {
+          event.preventDefault();
+          var menu = document.getElementById("contenedor-flotantes");
+          if (menu.style.display === "none" || menu.style.display === "") {
+              menu.style.display = "flex";
+          } else {
+              menu.style.display = "none";
+          }
+      }
+    </script>
+</body>
+</html>
 
                     </div>
