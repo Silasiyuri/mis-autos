@@ -246,25 +246,43 @@
     
     <a href="#kinalat" style="color: white; text-decoration: none;">Kínálatunk</a>
     
-    <!-- 🚗 BLOQUE DE AUTÓELADÁS EN PESTAÑAS HORIZONTALES COMPACTAS -->
+    <!-- 🚗 BLOQUE DE AUTÓELADÁS EN MODO MENÚ DESPLEGABLE -->
     <div style="position: relative; display: inline-block;">
         <a href="#" onclick="mostrarSeisVentanas(event)" style="color: white; text-decoration: none;">Autóeladás</a>
         
-        <!-- Contenedor compacto y centrado debajo de la palabra -->
-        <div id="contenedor-flotantes" style="display: none; position: absolute; top: 140%; left: 50%; transform: translateX(-50%); background: #111; border: 2px solid red; padding: 12px; border-radius: 8px; width: 600px; z-index: 10000; box-shadow: 0px 5px 20px rgba(0,0,0,0.8); box-sizing: border-box;">
+        <!-- Una sola caja sólida que contiene todo el menú -->
+        <div id="contenedor-flotantes" style="display: none; position: absolute; top: 140%; left: 0; background: #1a1a1a; border: 1px solid #333; border-top: 3px solid red; border-radius: 4px; z-index: 10000; box-sizing: border-box; min-width: 160px; box-shadow: 0px 5px 15px rgba(0,0,0,0.5); flex-direction: column;">
             
-            <!-- Botón de cierre compacto -->
-            <button onclick="cerrarVentanas()" style="position: absolute; top: -10px; right: -10px; background: red; color: white; border: none; padding: 4px 8px; cursor: pointer; font-weight: bold; border-radius: 50%; font-size: 11px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.5);">X</button>
-            
-            <!-- Las 6 pestañas en una sola fila horizontal sin ocupar toda la pantalla -->
-            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; width: 100%;">
-                <div style="background: #222; padding: 8px 4px; border-radius: 4px; border: 1px solid #444; color: white; text-align: center; cursor: pointer;"><h4 style="margin: 0 0 2px 0; font-size: 11px; white-space: nowrap;">1. Opció</h4><p style="margin: 0; font-size: 9px; color: #ccc;">Részletek</p></div>
-                <div style="background: #222; padding: 8px 4px; border-radius: 4px; border: 1px solid #444; color: white; text-align: center; cursor: pointer;"><h4 style="margin: 0 0 2px 0; font-size: 11px; white-space: nowrap;">2. Opció</h4><p style="margin: 0; font-size: 9px; color: #ccc;">Részletek</p></div>
-                <div style="background: #222; padding: 8px 4px; border-radius: 4px; border: 1px solid #444; color: white; text-align: center; cursor: pointer;"><h4 style="margin: 0 0 2px 0; font-size: 11px; white-space: nowrap;">3. Opció</h4><p style="margin: 0; font-size: 9px; color: #ccc;">Részletek</p></div>
-                <div style="background: #222; padding: 8px 4px; border-radius: 4px; border: 1px solid #444; color: white; text-align: center; cursor: pointer;"><h4 style="margin: 0 0 2px 0; font-size: 11px; white-space: nowrap;">4. Opció</h4><p style="margin: 0; font-size: 9px; color: #ccc;">Részletek</p></div>
-                <div style="background: #222; padding: 8px 4px; border-radius: 4px; border: 1px solid #444; color: white; text-align: center; cursor: pointer;"><h4 style="margin: 0 0 2px 0; font-size: 11px; white-space: nowrap;">5. Opció</h4><p style="margin: 0; font-size: 9px; color: #ccc;">Részletek</p></div>
-                <div style="background: #222; padding: 8px 4px; border-radius: 4px; border: 1px solid #444; color: white; text-align: center; cursor: pointer;"><h4 style="margin: 0 0 2px 0; font-size: 11px; white-space: nowrap;">6. Opció</h4><p style="margin: 0; font-size: 9px; color: #ccc;">Részletek</p></div>
-            </div>
+            <!-- Opción 1 -->
+            <a href="#opcion1" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
+                <span style="font-weight: bold; display: block;">1. Opció</span>
+            </a>
+
+            <!-- Opción 2 -->
+            <a href="#opcion2" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
+                <span style="font-weight: bold; display: block;">2. Opció</span>
+            </a>
+
+            <!-- Opción 3 -->
+            <a href="#opcion3" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
+                <span style="font-weight: bold; display: block;">3. Opció</span>
+            </a>
+
+            <!-- Opción 4 -->
+            <a href="#opcion4" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
+                <span style="font-weight: bold; display: block;">4. Opció</span>
+            </a>
+
+            <!-- Opción 5 -->
+            <a href="#opcion5" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
+                <span style="font-weight: bold; display: block;">5. Opció</span>
+            </a>
+
+            <!-- Opción 6 -->
+            <a href="#opcion6" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; transition: background 0.2s;">
+                <span style="font-weight: bold; display: block;">6. Opció</span>
+            </a>
+
         </div>
     </div>
     
