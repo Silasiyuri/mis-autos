@@ -448,7 +448,7 @@ function mostrarMenuTelefono(event) {
       }
     }).then(response => {
       if (response.ok) {
-        alert("¡Mensaje enviado con éxito!"); // Mensaje de confirmación
+        alert("¡Sikerült küldeni!"); // Mensaje de confirmación
         form.reset();                      // 🔥 ESTA LÍNEA BORRA LOS DATOS DEL FORMULARIO
       } else {
         alert("Ocurrió un error al enviar el formulario.");
