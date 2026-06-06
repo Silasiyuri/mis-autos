@@ -535,19 +535,32 @@ function mostrarMenuTelefono(event) {
         <p>Fin de la página</p>
     </footer>
 
-    <!-- AQUÍ PONES EL CÓDIGO JAVASCRIPT -->
-    <script>
-        const opcionUno = document.getElementById('opcion-1');
-        const parteInferior = document.getElementById('pie-pagina');
+    // 1. Seleccionamos los elementos de la página
+const opcionUno = document.getElementById('opcion-1');
+const parteInferior = document.getElementById('pie-pagina');
+const menuContenedor = document.getElementById('menu-desplegable'); // El bloque negro
 
-        opcionUno.addEventListener('click', function(event) {
-            event.preventDefault();
-            parteInferior.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'end' 
-            });
+// 2. Ejecutamos la acción al hacer clic
+opcionUno.addEventListener('click', function(event) {
+    event.preventDefault(); // Evita saltos bruscos
+    
+    // ACCIÓN 1: Bajar al final de la página
+    if (parteInferior) {
+        parteInferior.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'end' 
         });
-    </script>
-</body>
-</html>
+    }
+
+    // ACCIÓN 2: Cerrar el menú desplegable
+    if (menuContenedor) {
+        // Opción A: Si usas CSS para ocultarlo cambiando el display
+        menuContenedor.style.display = 'none';
+        
+        // Opción B: Si usas una clase de CSS para abrirlo/cerrarlo (ej. 'show' o 'active')
+        // menuContenedor.classList.remove('show'); 
+    }
+});
+Escribir mensaje
+Escribe a Szilasi Yuri
 </script>
