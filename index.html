@@ -388,8 +388,7 @@ function mostrarMenuTelefono(event) {
     </div>
 
 </nav>
-Escribir mensaje
-Escribe a Szilasi Yuri
+
 
         </div>
     </header>
@@ -613,4 +612,15 @@ function mostrarMenuTelefono(event) {
     }
 }
 </script>
+            function mostrarSeisVentanas(event) {
+    event.preventDefault();
+    var panel = document.getElementById('contenedor-flotantes');
+    if (panel.style.display === "none" || panel.style.display === "") {
+        panel.style.display = 'flex'; // Activa la lista vertical
+    } else {
+        panel.style.display = 'none';
+    }
+}
+Escribir mensaje
+
                     </div>
