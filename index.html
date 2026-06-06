@@ -254,20 +254,16 @@
         
         <a href="#kinalat" style="color: white; text-decoration: none; font-weight: bold; font-size: clamp(14px, 4vw, 16px); white-space: nowrap;">Kínálatunk</a>
         
-        <!-- MÓDULO AUTÓELADÁS -->
-        <div style="position: relative; display: inline-block;">
-            <a href="#" onclick="mostrarSeisVentanas(event)" style="color: white; text-decoration: none; font-weight: bold; font-size: clamp(14px, 4vw, 16px); white-space: nowrap;">Autóeladás</a>
-            
-            <!-- Menú desplegable elegante -->
-           <!-- El contenedor negro de las opciones debe tener una clase o ID para identificarlo -->
-<div id="menu-desplegable" class="dropdown-content">
-    <!-- Añade id="opcion-1" aquí -->
-    <a href="#" id="opcion-1">1. Opció</a>
-    <a href="#">2. Opció</a>
-    <a href="#">3. Opció</a>
-    <!-- ... resto de opciones ... -->
+<!-- MÓDULO AUTÓELADÁS -->
+<div style="position: relative; display: inline-block;">
+    <a href="#" onclick="mostrarSeisVentanas(event)">Autóeladás</a>
+
+    <div id="menu-desplegable" class="dropdown-content">
+        <a href="#" id="opcion-1">1. Opció</a>
+        <a href="#">2. Opció</a>
+        <a href="#">3. Opció</a>
+    </div>
 </div>
-        </div>
         
         <!-- MÓDULO KAPCSOLAT -->
         <div style="position: relative; display: inline-block;">
@@ -563,5 +559,34 @@ opcionUno.addEventListener('click', function(event) {
 });
 
 </script>
-            <footer id="pie-pagina">
-                </footer>
+           <footer id="pie-pagina">
+    <!-- El contenido actual de tu pie de página -->
+</footer>
+<script>
+    // Esperamos a que la página se cargue por completo
+    document.addEventListener("DOMContentLoaded", function() {
+        const opcionUno = document.getElementById('opcion-1');
+        const parteInferior = document.getElementById('pie-pagina');
+        const menuContenedor = document.getElementById('menu-desplegable');
+
+        if (opcionUno) {
+            opcionUno.addEventListener('click', function(event) {
+                event.preventDefault(); // Detiene cualquier comportamiento por defecto
+                event.stopPropagation(); // Evita conflictos con la función mostrarSeisVentanas
+                
+                // 1. Desplaza la pantalla suavemente hacia abajo
+                if (parteInferior) {
+                    parteInferior.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'end' 
+                    });
+                }
+
+                // 2. Cierra automáticamente el menú ocultándolo
+                if (menuContenedor) {
+                    menuContenedor.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
