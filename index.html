@@ -241,56 +241,31 @@
             width: 100%;
         }
         </style>
-<!-- Contenedor del menú principal -->
-<nav style="display: flex; align-items: center; gap: 20px; position: relative;">
+<!-- Barra de menú corregida con altura y fondo para que sea visible -->
+<nav style="display: flex; align-items: center; justify-content: center; gap: 30px; position: relative; width: 100%; padding: 15px 0; background: #111; z-index: 99999;">
     
-    <a href="#kinalat" style="color: white; text-decoration: none;">Kínálatunk</a>
+    <a href="#kinalat" style="color: white; text-decoration: none; font-weight: bold; font-size: 16px;">Kínálatunk</a>
     
-    <!-- 🚗 BLOQUE DE AUTÓELADÁS EN MODO MENÚ DESPLEGABLE -->
+    <!-- MÓDULO AUTÓELADÁS -->
     <div style="position: relative; display: inline-block;">
-        <a href="#" onclick="mostrarSeisVentanas(event)" style="color: white; text-decoration: none;">Autóeladás</a>
+        <a href="#" onclick="mostrarSeisVentanas(event)" style="color: white; text-decoration: none; font-weight: bold; font-size: 16px;">Autóeladás</a>
         
-        <!-- Una sola caja sólida que contiene todo el menú -->
-        <div id="contenedor-flotantes" style="display: none; position: absolute; top: 140%; left: 0; background: #1a1a1a; border: 1px solid #333; border-top: 3px solid red; border-radius: 4px; z-index: 10000; box-sizing: border-box; min-width: 160px; box-shadow: 0px 5px 15px rgba(0,0,0,0.5); flex-direction: column;">
-            
-            <!-- Opción 1 -->
-            <a href="#opcion1" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">1. Opció</span>
-            </a>
-
-            <!-- Opción 2 -->
-            <a href="#opcion2" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">2. Opció</span>
-            </a>
-
-            <!-- Opción 3 -->
-            <a href="#opcion3" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">3. Opció</span>
-            </a>
-
-            <!-- Opción 4 -->
-            <a href="#opcion4" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">4. Opció</span>
-            </a>
-
-            <!-- Opción 5 -->
-            <a href="#opcion5" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">5. Opció</span>
-            </a>
-
-            <!-- Opción 6 -->
-            <a href="#opcion6" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; transition: background 0.2s;">
-                <span style="font-weight: bold; display: block;">6. Opció</span>
-            </a>
-
+        <!-- Menú desplegable elegante -->
+        <div id="contenedor-flotantes" style="display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: #1a1a1a; border: 1px solid #333; border-top: 3px solid red; border-radius: 4px; z-index: 100000; min-width: 160px; box-shadow: 0px 5px 15px rgba(0,0,0,0.5); flex-direction: column; padding: 0; margin-top: 10px;">
+            <a href="#opcion1" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; font-weight: bold;">1. Opció</a>
+            <a href="#opcion2" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; font-weight: bold;">2. Opció</a>
+            <a href="#opcion3" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; font-weight: bold;">3. Opció</a>
+            <a href="#opcion4" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; font-weight: bold;">4. Opció</a>
+            <a href="#opcion5" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; border-bottom: 1px solid #2a2a2a; font-weight: bold;">5. Opció</a>
+            <a href="#opcion6" style="display: block; padding: 10px 15px; color: white; text-decoration: none; font-size: 13px; font-weight: bold;">6. Opció</a>
         </div>
     </div>
     
-    <!-- 📞 BLOQUE DE KAPCSOLAT -->
+    <!-- MÓDULO KAPCSOLAT -->
     <div style="position: relative; display: inline-block;">
-        <a href="#" onclick="mostrarMenuTelefono(event)" style="color: white; text-decoration: none;">Kapcsolat</a>
+        <a href="#" onclick="mostrarMenuTelefono(event)" style="color: white; text-decoration: none; font-weight: bold; font-size: 16px;">Kapcsolat</a>
         
-        <div id="caja-telefono" style="display: none; position: absolute; top: 140%; left: 50%; transform: translateX(-50%); background: #222; padding: 12px; border-radius: 8px; z-index: 9999; min-width: 200px; box-shadow: 0px 4px 15px rgba(0,0,0,0.5); border: 1px solid #444; text-align: center;">
+        <div id="caja-telefono" style="display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: #222; padding: 12px; border-radius: 8px; z-index: 100000; min-width: 200px; box-shadow: 0px 4px 15px rgba(0,0,0,0.5); border: 1px solid #444; text-align: center; margin-top: 10px;">
             <a href="tel:+36203906539" style="text-decoration: none; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: bold;">
                 📞 <span style="white-space: nowrap;">Tel: +36 20 390 9065 39</span>
             </a>
@@ -298,6 +273,7 @@
     </div>
 
 </nav>
+
 
 
         </div>
