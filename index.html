@@ -622,5 +622,32 @@ opcionUno.addEventListener('click', function(event) {
     </script>
 </body>
 </html>
+            <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const opcionUno = document.getElementById('opcion-1');
+        const parteInferior = document.getElementById('pie-pagina');
+        const menuDesplegable = document.getElementById('menu-desplegable');
+
+        if (opcionUno) {
+            opcionUno.addEventListener('click', function(event) {
+                event.preventDefault(); // Evita que la página recargue
+                
+                // 1. Desplaza la página hacia abajo
+                if (parteInferior) {
+                    parteInferior.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'end' 
+                    });
+                }
+
+                // 2. Pliega / oculta las opciones del menú
+                if (menuDesplegable) {
+                    menuDesplegable.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
+
             <div id="pie-pagina" style="height: 1px; width: 100%;"></div>
 </script>
