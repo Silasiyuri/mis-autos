@@ -329,22 +329,26 @@ function mostrarMenuTelefono(event) {
     <a href="#kinalat">Kínálatunk</a>
     <!-- Ez nyitja meg a 6 felugró ablakot -->
     <a href="#" onclick="mostrarSeisVentanas(event)">Autóeladás</a>
-</nav>
-
-<div style="position: relative; display: inline-block;">
-    <!-- 🌟 ENLACE CORREGIDO: Añadido color blanco y quitado el subrayado -->
-    <a href="#" onclick="mostrarMenuTelefono(event)" style="color: white; text-decoration: none;">Kapcsolat</a>
-
-    <!-- Tu caja del teléfono (esta déjala como está porque ya funciona bien) -->
-    <div id="caja-telefono" style="display: none; position: absolute; top: 120%; left: 50%; transform: translateX(-50%); background: #222; padding: 12px; border-radius: 8px; z-index: 9999; min-width: 200px; box-shadow: 0px 4px 15px rgba(0,0,0,0.5); border: 1px solid #444; text-align: center;">
-        <a href="tel:+36203906539" style="text-decoration: none; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: bold;">
-            📞 <span style="white-space: nowrap;">Tel: +36 20 390 9065 39</span>
-        </a>
+<!-- Contenedor del menú con distribución perfecta -->
+<nav style="display: flex; align-items: center; gap: 20px; position: relative;">
+    
+    <a href="#kinalat" style="color: white; text-decoration: none;">Kínálatunk</a>
+    
+    <a href="#" onclick="mostrarSeisVentanas(event)" style="color: white; text-decoration: none;">Autóeladás</a>
+    
+    <!-- Contenedor de Kapcsolat alineado perfectamente en la misma fila -->
+    <div style="position: relative; display: inline-block;">
+        <a href="#" onclick="mostrarMenuTelefono(event)" style="color: white; text-decoration: none;">Kapcsolat</a>
+        
+        <!-- Caja flotante del teléfono corregida debajo de la palabra -->
+        <div id="caja-telefono" style="display: none; position: absolute; top: 140%; left: 50%; transform: translateX(-50%); background: #222; padding: 12px; border-radius: 8px; z-index: 9999; min-width: 200px; box-shadow: 0px 4px 15px rgba(0,0,0,0.5); border: 1px solid #444; text-align: center;">
+            <a href="tel:+36203906539" style="text-decoration: none; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: bold;">
+                📞 <span style="white-space: nowrap;">Tel: +36 20 390 9065 39</span>
+            </a>
+        </div>
     </div>
-</div>
 
-
-            </nav>
+</nav>
         </div>
     </header>
 
