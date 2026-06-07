@@ -300,8 +300,8 @@
 
 <!-- En el menú de opcion2.html -->
 <ul id="menu-desplegable" class="dropdown-menu">
-    <!-- Al hacer clic, salta a la página principal y baja directo a este formulario negro -->
-    <li><a href="index.html#formulario-inscripcion" id="opcion-1">Autó Felvásárlás Készpénzért</a></li>
+    <!-- Al tocarlo, ejecutará el viaje seguro a la página principal -->
+    <li><a href="#" id="opcion-1" onclick="viajarAlFormulario(event)">Autó Felvásárlás Készpénzért</a></li>
     
     <li><a href="opcion2.html">2. Opció</a></li>
     <li><a href="#">3. Opció</a></li>
@@ -625,5 +625,26 @@ opcionUno.addEventListener('click', function(event) {
 </script>
 
             <div id="pie-pagina" style="height: 1px; width: 100%;"></div>
+</script>
+            <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Revisa si existe la señal de viaje desde la página 2
+    if (localStorage.getItem('irAlFormulario') === 'true') {
+        // Borra la señal para que no se repita siempre
+        localStorage.removeItem('irAlFormulario');
+        
+        // Busca en toda la página el contenedor que tiene el título de tu formulario
+        setTimeout(function() {
+            const elementos = document.getElementsByTagName('*');
+            for (let i = 0; i < elementos.length; i++) {
+                if (elementos[i].textContent.includes('Saját autót adna el?')) {
+                    // Encuentra el bloque negro y desplaza la pantalla suavemente
+                    elementos[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    break;
+                }
+            }
+        }, 500); // Pequeña pausa para asegurar que la página cargó bien
+    }
+});
 </script>
                     </div>
