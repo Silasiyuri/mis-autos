@@ -89,19 +89,33 @@
             color: #e74c3c;
         }
 
-       .hero {
-    /* 1. Cambia el fondo gris por tu imagen (asumiendo que se llama fondo-autos.jpg) */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/fondo-vas.jpg.jpg');
+.hero {
+    /* 1. Recupera el tamaño vertical de la sección */
+    padding: 100px 0; 
+    text-align: center;
     
-    /* 2. Ajustes para que la imagen se adapte perfectamente sin deformarse */
+    /* 2. CORREGIDO: Usamos tu nombre exacto 'Vas.jpg.jpg' */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./images/Vas.jpg.jpg');
+    
+    /* 3. Ajustes para que la foto se adapte bien */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     
-    /* 3. Cambia el texto a blanco para que resalte sobre la foto */
-    color: #ffffff;
+    /* 4. Forzamos los textos a color blanco */
+    color: #ffffff !important;
 }
 
+/* Forzamos el título a color blanco */
+.hero h1 {
+    color: #ffffff !important;
+    margin-bottom: 15px;
+}
+
+/* Forzamos el texto de abajo a color blanco suave */
+.hero p {
+    color: #eeeeee !important;
+}
         /* Kereső sáv */
         .search-box {
             background-color: white;
