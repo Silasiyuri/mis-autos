@@ -1006,5 +1006,25 @@ btnFotoOrigen.addEventListener('click', function() {
       lightbox.style.display = 'none';
     }
   });
+            <script>
+  // Escucha los clics en todas las fotos pequeñas con la clase "miniatura"
+  document.querySelectorAll('.miniatura').forEach(miniatura => {
+    miniatura.addEventListener('click', function() {
+      // Busca la tarjeta del carro actual
+      const tarjeta = this.parentElement.parentElement;
+      // Encuentra la foto grande que está dentro de esa misma tarjeta
+      const fotoGrande = tarjeta.querySelector('.foto-principal');
+      
+      if (fotoGrande) {
+        // Intercambia la imagen grande por la pequeña que tocaste
+        fotoGrande.src = this.src;
+      }
+
+      // Cambia el borde azul para marcar cuál está seleccionada
+      tarjeta.querySelectorAll('.miniatura').forEach(m => m.style.border = '2px solid transparent');
+      this.style.border = '2px solid #007bff';
+    });
+  });
+</script>
 </script>
 </script>
