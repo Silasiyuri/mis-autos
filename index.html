@@ -813,9 +813,35 @@ btnFotoOrigen.addEventListener('click', function() {
   fotoPrincipal.src = rutaOriginal;         // Regresa la vista al auto principal
   contenedorRetorno.style.display = 'none'; // Se vuelve a ocultar el botón-foto
 });
-            <div class="miniaturas" style="display: flex; gap: 10px;">
-      <img id="m1" class="miniatura-dinamica" src="bmw.jpg" alt="Vista 1" style="order: 1;">
-      <img id="m2" class="miniatura-dinamica" src="auto.jpg" alt="Vista 2" style="order: 2;">
-      <img id="m3" class="miniatura-dinamica" src="bmw-trasera.jpg" alt="Vista 3" style="order: 3;">
-    </div>
+            <script>
+  // Seleccionamos la foto grande y el grupo de imágenes pequeñas
+  const fotoPrincipal = document.getElementById('foto-principal-bmw');
+  const miniaturas = document.querySelectorAll('.miniatura-dinamica');
+
+  miniaturas.forEach(miniatura => {
+    miniatura.addEventListener('click', function() {
+      // 1. Cargamos la imagen de la miniatura seleccionada en la pantalla grande
+      fotoPrincipal.src = this.src;
+
+      // 2. Reseteamos el orden físico de todas las miniaturas a su lugar original
+      document.getElementById('m1').style.order = "1";
+      document.getElementById('m2').style.order = "2";
+      document.getElementById('m3').style.order = "3";
+
+      // 3. Lógica de intercambio de posiciones:
+      // Si el usuario toca la tercera miniatura (m3)...
+      if (this.id === 'm3') {
+        this.style.order = "1";                 // La 3 se mueve al primer puesto de la fila
+        document.getElementById('m1').style.order = "2"; // La 1 pasa al segundo puesto
+        document.getElementById('m2').style.order = "3"; // La 2 regresa obligatoriamente al tercer puesto
+      } 
+      // Si el usuario toca la segunda miniatura (m2)...
+      else if (this.id === 'm2') {
+        this.style.order = "1";                 // La 2 se mueve al inicio
+        document.getElementById('m1').style.order = "2"; // La 1 pasa al medio
+        document.getElementById('m3').style.order = "3"; // La 3 se queda al final
+      }
+    });
+  });
+</script>
 </script>
