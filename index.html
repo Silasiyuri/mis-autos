@@ -1025,6 +1025,29 @@ btnFotoOrigen.addEventListener('click', function() {
       this.style.border = '2px solid #007bff';
     });
   });
+            <script>
+  // Control interactivo para cambiar la foto principal al tocar una miniatura
+  document.querySelectorAll('.miniatura').forEach(miniatura => {
+    miniatura.addEventListener('click', function() {
+      // Encuentra la tarjeta contenedora de este auto en particular
+      const tarjeta = this.parentElement.parentElement;
+      // Localiza la foto grande principal dentro de esta misma tarjeta
+      const fotoGrande = tarjeta.querySelector('.foto-principal');
+      
+      if (fotoGrande) {
+        // Reemplaza la ruta de la foto grande por la de la miniatura clickeada
+        fotoGrande.src = this.src;
+      }
+
+      // Quita el borde azul de selección a las otras miniaturas de esta tarjeta
+      tarjeta.querySelectorAll('.miniatura').forEach(m => {
+        m.style.border = '2px solid transparent';
+      });
+      // Le pone el borde azul de selección a la foto que acabas de tocar
+      this.style.border = '2px solid #007bff';
+    });
+  });
+</script>
 </script>
 </script>
 </script>
