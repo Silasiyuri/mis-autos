@@ -382,56 +382,26 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
-<!-- TARJETA DEL BMW CON EFECTO DE EXPANSIÓN EN MINIATURAS -->
-<div class="tarjeta-auto" style="display: flex; flex-direction: column; align-items: center; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); max-width: 350px; margin: 10px;">
+<!-- TARJETA DEL BMW SERIE 3 -->
+<div style="border: 1px solid #e0e0e0; padding: 15px; border-radius: 12px; text-align: center; background: white; max-width: 320px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
   
-  <!-- 1. Visor de la Foto Grande Principal -->
-  <div class="visor-principal" style="width: 100%;">
-    <img id="foto-principal-bmw" src="bmw.jpg" alt="BMW Serie 1" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover;">
+  <!-- RECUADRO GRANDE PRINCIPAL -->
+  <div style="width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f9f9f9; border-radius: 8px; margin-bottom: 12px;">
+    <!-- IMPORTANTE: Cambia 'bmw1.jpg' por el nombre real de tu primera foto -->
+    <img id="bmw-foto-grande" src="bmw1.jpg" alt="BMW Serie 3" style="max-width: 100%; max-height: 100%; object-fit: contain;">
   </div>
 
-  <!-- 2. Contenedor de Miniaturas (Estilos base y transiciones) -->
-  <style>
-    .miniaturas-contenedor {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-top: 15px;
-      width: 100%;
-      height: 70px; /* Altura fija para que el contenedor no brinque */
-    }
-    .miniatura-dinamica {
-      width: 65px;
-      height: 45px;
-      object-fit: cover;
-      border-radius: 6px;
-      cursor: pointer;
-      border: 1px solid #ddd;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Hace que se abra de forma suave */
-    }
-    /* Esta clase hace que la imagen se abra y crezca al darle clic */
-    .miniatura-dinamica.activa {
-      width: 95px;  /* Se hace más ancha */
-      height: 60px; /* Se hace más alta */
-      border: 2px solid #007bff;
-      box-shadow: 0 4px 8px rgba(0,123,255,0.3);
-    }
-  </style>
-
-  <div class="miniaturas-contenedor">
-    <!-- Empezamos con la primera miniatura marcada como 'activa' de fábrica -->
-    <img id="m1" class="miniatura-dinamica activa" src="bmw.jpg" alt="Vista 1" style="order: 1;">
-    <img id="m2" class="miniatura-dinamica" src="bmw-interior.jpg" alt="Vista 1" style="order: 2;">
-    <img id="m3" class="miniatura-dinamica" src="bmw-trasera.jpg" alt="Vista 3" style="order: 3;">
+  <!-- RECUADRO DE IMÁGENES PEQUEÑAS -->
+  <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 12px;">
+    <!-- Pon en cada 'src' el nombre exacto de tus fotos subidas a GitHub (Ojo con las mayúsculas/minúsculas) -->
+    <img class="bmw-miniatura" src="bmw1.jpg" style="width: 60px; height: 45px; object-fit: cover; cursor: pointer; border: 2px solid #007bff; border-radius: 4px; transition: 0.2s;">
+    <img class="bmw-miniatura" src="bmw2.jpg" style="width: 60px; height: 45px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px; opacity: 0.6; transition: 0.2s;">
+    <img class="bmw-miniatura" src="bmw3.jpg" style="width: 60px; height: 45px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px; opacity: 0.6; transition: 0.2s;">
   </div>
 
-  <!-- 3. Información del vehículo abajo del todo -->
-  <div class="info-auto" style="text-align: center; margin-top: 15px;">
-    <h3 style="margin: 5px 0; font-size: 18px; color: #333;">BMW Serie 3</h3>
-    <p class="precio" style="margin: 0; font-weight: bold; color: #d9534f; font-size: 16px;">6 000 000 Ft</p>
-  </div>
-
+  <!-- TEXTOS Y PRECIO -->
+  <h3 style="margin: 5px 0; font-size: 16px; font-family: sans-serif; color: #333;">BMW Serie 3</h3>
+  <p style="color: #d9534f; font-weight: bold; margin: 5px 0; font-size: 18px; font-family: sans-serif;">6 000 000 Ft</p>
 </div>
 
 <!-- 4. Lógica Inteligente en JavaScript -->
