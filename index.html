@@ -915,5 +915,27 @@ btnFotoOrigen.addEventListener('click', function() {
       }
     });
   });
+            <script>
+  // Seleccionamos el recuadro grande y las miniaturas del BMW
+  const recuadroGrande = document.getElementById('bmw-foto-grande');
+  const listaMiniaturas = document.querySelectorAll('.bmw-miniatura');
+
+  listaMiniaturas.forEach(mini => {
+    mini.addEventListener('click', function() {
+      // 1. Ponemos la foto de la miniatura en el recuadro grande
+      recuadroGrande.src = this.src;
+
+      // 2. Quitamos el borde azul y opacidad a todas las fotos pequeñas
+      listaMiniaturas.forEach(m => {
+        m.style.border = '2px solid transparent';
+        m.style.opacity = '0.6';
+      });
+
+      // 3. Le ponemos el borde azul y brillo completo solo a la que tocamos
+      this.style.border = '2px solid #007bff';
+      this.style.opacity = '1';
+    });
+  });
+</script>
 </script>
 </script>
