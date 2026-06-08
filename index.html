@@ -337,23 +337,27 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
-<!-- 1. Imagen Auto1 Principal -->
-<div class="visor-principal">
-  <img id="foto-principal" src="Audi2.jpg" alt="Auto Principal">
-</div>
+<!-- Ejemplo para la tarjeta del BMW -->
+<div class="tarjeta-auto">
+  
+  <!-- 1. Imagen Grande Principal -->
+  <div class="visor-principal">
+    <img id="foto-principal-bmw" src="bmw-principal.jpg" alt="BMW" class="foto-grande">
+  </div>
 
-<!-- 2. Botón de retorno (Escondido al principio) -->
-<!-- Se coloca abajo de la principal como solicitaste -->
-<div id="contenedor-retorno" style="display: none; text-align: center; margin: 15px 0;">
-  <p style="font-size: 14px; color: #666; margin-bottom: 5px;">Tocá la foto para volver al inicio:</p>
-  <img id="btn-foto-origen" src="auto-azul-original.jpg" alt="Volver al origen" style="width: 80px; border: 2px solid #ff0000; border-radius: 5px; cursor: pointer;">
-</div>
+  <!-- 2. Contenedor de imágenes pequeñas (DEBAJO de la principal) -->
+  <div class="miniaturas">
+    <img class="miniatura" src="bmw-principal.jpg" alt="Vista 1">
+    <img class="miniatura" src="bmw-interior.jpg" alt="Vista 2">
+    <img class="miniatura" src="bmw-trasera.jpg" alt="Vista 3">
+  </div>
 
-<!-- 3. Galería de Miniaturas Normales -->
-<div class="miniaturas">
-  <img class="miniatura" src="bmw.jpg">
-  <img class="miniatura" src="auto-interior.jpg">
-  <img class="miniatura" src="auto-trasera.jpg">
+  <!-- 3. Información del auto (Precios, títulos, etc.) -->
+  <div class="info-auto">
+    <h3>BMW Serie 3</h3>
+    <p class="precio">6 000 000 Ft</p>
+  </div>
+
 </div>
             <!-- 2. Autó kártya -->
             <div class="car-card">
