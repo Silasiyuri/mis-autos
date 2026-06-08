@@ -392,10 +392,10 @@
 
   <!-- 2. Contenedor de imágenes pequeñas (DEBAJO de la principal) -->
   <div class="miniaturas">
-    <img class="miniatura" src="Audi2.jpg" alt="Vista 1">
-    <img class="miniatura" src="auto.jpg.jpg" alt="Vista 2">
-    <img class="miniatura" src="bmw-trasera.jpg" alt="Vista 3">
-  </div>
+      <img class="miniatura" src="Audi2.jpg" alt="Vista 1" onclick="document.getElementById('foto-principal-bmw').src=this.src">
+      <img class="miniatura" src="auto.jpg" alt="Vista 2" onclick="document.getElementById('foto-principal-bmw').src=this.src">
+      <img class="miniatura" src="bmw-trasera.jpg" alt="Vista 3" onclick="document.getElementById('foto-principal-bmw').src=this.src">
+    </div>
 
   <!-- 3. Información del auto (Precios, títulos, etc.) -->
   <div class="info-auto">
