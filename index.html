@@ -735,8 +735,7 @@ opcionUno.addEventListener('click', function(event) {
       this.style.opacity = '1';
     });
   });
-</script>
-        // Seleccionamos los elementos necesarios
+<script>
 const fotoPrincipal = document.getElementById('foto-principal');
 const contenedorRetorno = document.getElementById('contenedor-retorno');
 const btnFotoOrigen = document.getElementById('btn-foto-origen');
@@ -752,7 +751,6 @@ miniaturas.forEach(miniatura => {
     fotoPrincipal.src = this.src;
 
     // 2. Comparamos si la foto actual es la misma del inicio
-    // Usamos .endsWith() por seguridad con las rutas de GitHub Pages
     if (!this.src.endsWith('auto-azul-original.jpg')) {
       contenedorRetorno.style.display = 'block'; // Muestra la foto de origen abajo
     } else {
