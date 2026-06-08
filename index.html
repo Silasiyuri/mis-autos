@@ -6,6 +6,51 @@
     <title>Autóvásárlás & Eladás | Használt Autók Kínálata Felvásárlás</title>
     <meta name="google-site-verification" content="JbQb_43p3hBTcK_bIe7E3wntSatdmVW8DaB4tw8s0UM" />
     <style>
+         /* Contenedor general de la sección */
+  .contenedor-autos-galeria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  /* Tarjeta individual (Se ordena de arriba a abajo) */
+  .tarjeta-auto {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    width: 100%;
+    max-width: 340px;       
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
+
+  .foto-grande {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  /* Fuerza a las imágenes pequeñas a ir abajo en fila horizontal */
+  .miniaturas {
+    display: flex;
+    justify-content: center; 
+    gap: 8px;               
+    margin: 12px 0;        
+    width: 100%;
+  }
+
+  .miniatura {
+    width: 65px;             
+    height: 45px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+  }
         * {
             margin: 0;
             padding: 0;
