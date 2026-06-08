@@ -382,8 +382,7 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
-<!-- Ejemplo para la tarjeta del BMW -->
-<!-- REEMPLAZA LA TARJETA DEL BMW CON ESTO -->
+<!-- TARJETA DEL BMW CON EFECTO DE EXPANSIÓN EN MINIATURAS -->
 <div class="tarjeta-auto" style="display: flex; flex-direction: column; align-items: center; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); max-width: 350px; margin: 10px;">
   
   <!-- 1. Visor de la Foto Grande Principal -->
@@ -391,16 +390,40 @@
     <img id="foto-principal-bmw" src="bmw.jpg" alt="BMW Serie 3" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover;">
   </div>
 
-  <!-- 2. Contenedor de Miniaturas ordenadas abajo en fila -->
-  <div class="miniaturas-contenedor" style="display: flex; justify-content: center; gap: 10px; margin-top: 15px; width: 100%;">
-    <!-- Miniatura 1 (Igual a la principal para poder regresar) -->
-    <img id="m1" class="miniatura-dinamica" src="Audi2.jpg" alt="Vista 1" style="width: 70px; height: 50px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid #007bff; order: 1;">
-    
-    <!-- Miniatura 2 (Cambia bmw-interior.jpg por el nombre real de tu foto si sale rota) -->
-    <img id="m2" class="miniatura-dinamica" src="bmw.jpg" alt="Vista 2" style="width: 70px; height: 50px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 1px solid #ddd; order: 2;">
-    
-    <!-- Miniatura 3 (Cambia bmw-trasera.jpg por el nombre real de tu foto si sale rota) -->
-    <img id="m3" class="miniatura-dinamica" src="auto.jpg.jpg" alt="Vista 3" style="width: 70px; height: 50px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 1px solid #ddd; order: 3;">
+  <!-- 2. Contenedor de Miniaturas (Estilos base y transiciones) -->
+  <style>
+    .miniaturas-contenedor {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+      width: 100%;
+      height: 70px; /* Altura fija para que el contenedor no brinque */
+    }
+    .miniatura-dinamica {
+      width: 65px;
+      height: 45px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Hace que se abra de forma suave */
+    }
+    /* Esta clase hace que la imagen se abra y crezca al darle clic */
+    .miniatura-dinamica.activa {
+      width: 95px;  /* Se hace más ancha */
+      height: 60px; /* Se hace más alta */
+      border: 2px solid #007bff;
+      box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    }
+  </style>
+
+  <div class="miniaturas-contenedor">
+    <!-- Empezamos con la primera miniatura marcada como 'activa' de fábrica -->
+    <img id="m1" class="miniatura-dinamica activa" src="bmw.jpg" alt="Vista 1" style="order: 1;">
+    <img id="m2" class="miniatura-dinamica" src="bmw-interior.jpg" alt="Vista 2" style="order: 2;">
+    <img id="m3" class="miniatura-dinamica" src="bmw-trasera.jpg" alt="Vista 3" style="order: 3;">
   </div>
 
   <!-- 3. Información del vehículo abajo del todo -->
@@ -411,6 +434,42 @@
 
 </div>
 
+<!-- 4. Lógica Inteligente en JavaScript -->
+<script>
+  const fotoPrincipal = document.getElementById('foto-principal-bmw');
+  const miniaturas = document.querySelectorAll('.miniatura-dinamica');
+
+  miniaturas.forEach(miniatura => {
+    miniatura.addEventListener('click', function() {
+      // 1. Cambia la foto grande de arriba
+      fotoPrincipal.src = this.src;
+
+      // 2. Quitamos la clase 'activa' a TODAS las miniaturas.
+      // Esto hace que la que estaba abierta se encoja y regrese a su tamaño original automáticamente.
+      miniaturas.forEach(m => m.classList.remove('activa'));
+
+      // 3. Le ponemos la clase 'activa' solo a la que tocaste para que se abra
+      this.classList.add('activa');
+
+      // 4. Reset del orden de posiciones por defecto
+      document.getElementById('m1').style.order = "1";
+      document.getElementById('m2').style.order = "2";
+      document.getElementById('m3').style.order = "3";
+
+      // 5. Intercambio físico en la fila:
+      if (this.id === 'm3') {
+        this.style.order = "1";                          // La 3 se mueve a la izquierda y se abre
+        document.getElementById('m1').style.order = "2"; // La 1 pasa al centro
+        document.getElementById('m2').style.order = "3"; // La 2 regresa obligatoriamente a su origen (derecha)
+      } 
+      else if (this.id === 'm2') {
+        this.style.order = "1";                          // La 2 se mueve a la izquierda y se abre
+        document.getElementById('m1').style.order = "2"; // La 1 pasa al centro
+        document.getElementById('m3').style.order = "3"; // La 3 regresa obligatoriamente a su origen (derecha)
+      }
+    });
+  });
+</script>
 <!-- 4. Lógica en JavaScript para cargar e intercambiar las posiciones -->
 <script>
   const fotoPrincipal = document.getElementById('foto-principal-bmw');
