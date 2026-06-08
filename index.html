@@ -1028,25 +1028,26 @@ btnFotoOrigen.addEventListener('click', function() {
       this.style.border = '2px solid #007bff';
     });
   });
-            <script>
-  // Control interactivo para cambiar la foto principal al tocar una miniatura
-  document.querySelectorAll('.miniatura').forEach(miniatura => {
+  <script>
+  // Buscamos todas las imágenes pequeñas de la página
+  document.querySelectorAll('div style*="display: flex" img, .miniatura, .bmw-miniatura').forEach(miniatura => {
+    miniatura.style.cursor = 'pointer';
+    
     miniatura.addEventListener('click', function() {
-      // Encuentra la tarjeta contenedora de este auto en particular
+      // Subimos dos niveles en el código para encontrar la tarjeta completa de este auto
       const tarjeta = this.parentElement.parentElement;
-      // Localiza la foto grande principal dentro de esta misma tarjeta
-      const fotoGrande = tarjeta.querySelector('.foto-principal');
+      
+      // Buscamos la primera imagen grande que está dentro de esa tarjeta
+      const fotoGrande = tarjeta.querySelector('img:not(div style*="display: flex" img)');
       
       if (fotoGrande) {
-        // Reemplaza la ruta de la foto grande por la de la miniatura clickeada
+        // Intercambiamos la imagen grande por la pequeña que tocaste
         fotoGrande.src = this.src;
       }
-
-      // Quita el borde azul de selección a las otras miniaturas de esta tarjeta
-      tarjeta.querySelectorAll('.miniatura').forEach(m => {
-        m.style.border = '2px solid transparent';
-      });
-      // Le pone el borde azul de selección a la foto que acabas de tocar
+      
+      // Opcional: quitamos el borde a las demás fotos pequeñas de esta tarjeta y se lo ponemos a la activa
+      const todasLasPequeñas = this.parentElement.querySelectorAll('img');
+      todasLasPequeñas.forEach(img => img.style.border = '2px solid transparent');
       this.style.border = '2px solid #007bff';
     });
   });
