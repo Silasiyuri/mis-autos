@@ -413,30 +413,7 @@
     });
   });
 </script>
-      // Esto hace que la que estaba abierta se encoja y regrese a su tamaño original automáticamente.
-      miniaturas.forEach(m => m.classList.remove('activa'));
-
-      // 3. Le ponemos la clase 'activa' solo a la que tocaste para que se abra
-      this.classList.add('activa');
-
-      // 4. Reset del orden de posiciones por defecto
-      document.getElementById('m1').style.order = "1";
-      document.getElementById('m2').style.order = "2";
-      document.getElementById('m3').style.order = "3";
-
-      // 5. Intercambio físico en la fila:
-      if (this.id === 'm3') {
-        this.style.order = "1";                          // La 3 se mueve a la izquierda y se abre
-        document.getElementById('m1').style.order = "2"; // La 1 pasa al centro
-        document.getElementById('m2').style.order = "3"; // La 2 regresa obligatoriamente a su origen (derecha)
-      } 
-      else if (this.id === 'm2') {
-        this.style.order = "1";                          // La 2 se mueve a la izquierda y se abre
-        document.getElementById('m1').style.order = "2"; // La 1 pasa al centro
-        document.getElementById('m3').style.order = "3"; // La 3 regresa obligatoriamente a su origen (derecha)
-      }
-    });
-  });
+      
 </script>
 <!-- 4. Lógica en JavaScript para cargar e intercambiar las posiciones -->
 <script>
