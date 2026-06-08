@@ -951,55 +951,7 @@ btnFotoOrigen.addEventListener('click', function() {
   </div>
 </dialog>
 
-<script>
-  // 1. CONTROL UNIVERSAL DE MINIATURAS (Para todas las tarjetas de autos)
-  document.querySelectorAll('.miniatura').forEach(miniatura => {
-    miniatura.style.cursor = 'pointer';
-    miniatura.addEventListener('click', function() {
-      // Busca la tarjeta contenedora de este auto específico
-      const tarjeta = this.closest('.tarjeta-auto') || this.parentElement.parentElement;
-      // Encuentra la foto principal grande dentro de esa misma tarjeta
-      const fotoGrande = tarjeta.querySelector('.foto-principal');
-      
-      if (fotoGrande) {
-        fotoGrande.src = this.src;
-      }
 
-      // Gestiona los bordes activos solo de las miniaturas de esta tarjeta
-      const hermanas = tarjeta.querySelectorAll('.miniatura');
-      hermanas.forEach(m => {
-        m.style.border = '2px solid transparent';
-        m.style.opacity = '0.6';
-      });
-      this.style.border = '2px solid #007bff';
-      this.style.opacity = '1';
-    });
-  });
-
-  // 2. CONTROL DE PANTALLA COMPLETA
-  const lightbox = document.getElementById('lightbox-pantalla');
-  const fotoGigante = document.getElementById('foto-gigante');
-  const botonCerrar = document.getElementById('cerrar-lightbox');
-
-  document.querySelectorAll('.foto-principal').forEach(foto => {
-    foto.style.cursor = 'pointer';
-    foto.addEventListener('click', function() {
-      fotoGigante.src = this.src;
-      lightbox.style.display = 'flex';
-      lightbox.showModal();
-    });
-  });
-
-  // Funciones de cierre del lightbox
-  botonCerrar.addEventListener('click', () => {
-    lightbox.close();
-    lightbox.style.display = 'none';
-  });
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      lightbox.close();
-      lightbox.style.display = 'none';
     }
   });
 </script>
