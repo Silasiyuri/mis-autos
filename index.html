@@ -382,23 +382,22 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
-<!-- TARJETA DEL BMW SERIE 3 -->
-<div style="border: 1px solid #e0e0e0; padding: 15px; border-radius: 12px; text-align: center; background: white; max-width: 320px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+<!-- Ejemplo para el BMW (Haz lo mismo para el Ford y el Audi cambiando los src) -->
+<div class="tarjeta-auto">
   
-  <!-- RECUADRO GRANDE PRINCIPAL -->
-  <div style="width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f9f9f9; border-radius: 8px; margin-bottom: 12px;">
-    <!-- IMPORTANTE: Cambia 'bmw1.jpg' por el nombre real de tu primera foto -->
-    <img id="bmw-foto-grande" src="bmw.jpg" alt="BMW Serie 3" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+  <!-- Recuadro Grande -->
+  <div class="contenedor-grande">
+    <img class="foto-principal" src="bmw.jpg" alt="BMW Serie 3">
   </div>
 
-  <!-- RECUADRO DE IMÁGENES PEQUEÑAS -->
-  <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 12px;">
-    <!-- Pon en cada 'src' el nombre exacto de tus fotos subidas a GitHub (Ojo con las mayúsculas/minúsculas) -->
-    <img class="bmw-miniatura" src="Audi2.jpg" style="width: 60px; height: 45px; object-fit: cover; cursor: pointer; border: 2px solid #007bff; border-radius: 4px; transition: 0.2s;">
-    <img class="bmw-miniatura" src="auto.jpg.jpg" style="width: 60px; height: 45px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px; opacity: 0.6; transition: 0.2s;">
-    <img class="bmw-miniatura" src="bmw.jpg" style="width: 60px; height: 45px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px; opacity: 0.6; transition: 0.2s;">
+  <!-- Imágenes Pequeñas -->
+  <div class="contenedor-miniaturas">
+    <img class="miniatura" src="bmw.jpg">
+    <img class="miniatura" src="Audi2.jpg">
+    <img class="miniatura" src="bmw2.jpg">
   </div>
 
+</div>
   <!-- TEXTOS Y PRECIO -->
   <h3 style="margin: 5px 0; font-size: 16px; font-family: sans-serif; color: #333;">BMW Serie 3</h3>
   <p style="color: #d9534f; font-weight: bold; margin: 5px 0; font-size: 18px; font-family: sans-serif;">6 000 000 Ft</p>
@@ -944,18 +943,31 @@ btnFotoOrigen.addEventListener('click', function() {
   </div>
 </dialog>
 
+<!-- VENTANA FLOTANTE (Mantenla tal como estaba) -->
+<dialog id="lightbox-pantalla" style="border:none; background:rgba(0,0,0,0.9); padding:0; width:100vw; height:100vh; max-width:100%; max-height:100%; justify-content:center; align-items:center; display:none; position:fixed; top:0; left:0; z-index:9999;">
+  <div style="position:relative; max-width:90vw; max-height:90vh; display:flex; justify-content:center; align-items:center;">
+    <img id="foto-gigante" src="" style="max-width:100%; max-height:85vh; border-radius:8px; box-shadow: 0 4px 20px rgba(0,0,0,0.8);">
+    <button id="cerrar-lightbox" style="position:absolute; top:-40px; right:0; background:none; color:white; border:none; cursor:pointer; font-size:30px; font-weight:bold;">✕</button>
+  </div>
+</dialog>
+
 <script>
-  // 1. CAMBIO DE FOTO EN EL RECUADRO DE LA TARJETA
-  const fotoGrandeTarjeta = document.getElementById('bmw-foto-grande');
-  const miniaturas = document.querySelectorAll('.bmw-miniatura');
-
-  miniaturas.forEach(miniatura => {
+  // 1. CONTROL UNIVERSAL DE MINIATURAS (Para todas las tarjetas de autos)
+  document.querySelectorAll('.miniatura').forEach(miniatura => {
+    miniatura.style.cursor = 'pointer';
     miniatura.addEventListener('click', function() {
-      // Reemplaza la foto grande por la miniatura seleccionada
-      fotoGrandeTarjeta.src = this.src;
+      // Busca la tarjeta contenedora de este auto específico
+      const tarjeta = this.closest('.tarjeta-auto') || this.parentElement.parentElement;
+      // Encuentra la foto principal grande dentro de esa misma tarjeta
+      const fotoGrande = tarjeta.querySelector('.foto-principal');
+      
+      if (fotoGrande) {
+        fotoGrande.src = this.src;
+      }
 
-      // Actualiza visualmente los bordes seleccionados
-      miniaturas.forEach(m => {
+      // Gestiona los bordes activos solo de las miniaturas de esta tarjeta
+      const hermanas = tarjeta.querySelectorAll('.miniatura');
+      hermanas.forEach(m => {
         m.style.border = '2px solid transparent';
         m.style.opacity = '0.6';
       });
@@ -964,19 +976,21 @@ btnFotoOrigen.addEventListener('click', function() {
     });
   });
 
-  // 2. ABRIR FOTO EN TAMAÑO GIGANTE (PANTALLA COMPLETA)
+  // 2. CONTROL DE PANTALLA COMPLETA
   const lightbox = document.getElementById('lightbox-pantalla');
   const fotoGigante = document.getElementById('foto-gigante');
   const botonCerrar = document.getElementById('cerrar-lightbox');
 
-  fotoGrandeTarjeta.style.cursor = 'pointer';
-  fotoGrandeTarjeta.addEventListener('click', function() {
-    fotoGigante.src = this.src; // Carga la imagen activa en grande
-    lightbox.style.display = 'flex';
-    lightbox.showModal();
+  document.querySelectorAll('.foto-principal').forEach(foto => {
+    foto.style.cursor = 'pointer';
+    foto.addEventListener('click', function() {
+      fotoGigante.src = this.src;
+      lightbox.style.display = 'flex';
+      lightbox.showModal();
+    });
   });
 
-  // Funciones de cierre
+  // Funciones de cierre del lightbox
   botonCerrar.addEventListener('click', () => {
     lightbox.close();
     lightbox.style.display = 'none';
@@ -988,7 +1002,4 @@ btnFotoOrigen.addEventListener('click', function() {
       lightbox.style.display = 'none';
     }
   });
-</script>
-</script>
-</script>
 </script>
