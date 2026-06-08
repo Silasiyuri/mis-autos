@@ -337,23 +337,24 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
-            <!-- Bloque de galería para un auto -->
-<div class="galeria-auto" style="max-width: 500px; margin: 20px auto; text-align: center;">
-  
-  <!-- FOTO PRINCIPAL (La que se ve grande) -->
-  <div class="foto-principal-contenedor">
-    <img id="foto-principal" src="images/bmw2.jpg" alt="Foto principal del auto" style="width: 100%; height: auto; border-radius: 8px; cursor: pointer; transition: 0.3s;">
-  </div>
-
-  <!-- IMÁGENES PEQUEÑAS (Miniaturas abajo) -->
-  <div class="miniaturas" style="display: flex; gap: 10px; margin-top: 10px; justify-content: center;">
-    <img class="miniatura" src="images/Audi.jpg" alt="Vista frontal" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid #007bff; opacity: 1;">
-    <img class="miniatura" src="images/bmw-trasera.jpg" alt="Vista trasera" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid transparent; opacity: 0.6;">
-    <img class="miniatura" src="images/bmw-interior.jpg" alt="Vista interior" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid transparent; opacity: 0.6;">
-  </div>
-
+<!-- 1. Imagen Auto1 Principal -->
+<div class="visor-principal">
+  <img id="foto-principal" src="auto-azul-original.jpg" alt="Auto Principal">
 </div>
 
+<!-- 2. Botón de retorno (Escondido al principio) -->
+<!-- Se coloca abajo de la principal como solicitaste -->
+<div id="contenedor-retorno" style="display: none; text-align: center; margin: 15px 0;">
+  <p style="font-size: 14px; color: #666; margin-bottom: 5px;">Tocá la foto para volver al inicio:</p>
+  <img id="btn-foto-origen" src="auto-azul-original.jpg" alt="Volver al origen" style="width: 80px; border: 2px solid #ff0000; border-radius: 5px; cursor: pointer;">
+</div>
+
+<!-- 3. Galería de Miniaturas Normales -->
+<div class="miniaturas">
+  <img class="miniatura" src="auto-azul-original.jpg">
+  <img class="miniatura" src="auto-interior.jpg">
+  <img class="miniatura" src="auto-trasera.jpg">
+</div>
             <!-- 2. Autó kártya -->
             <div class="car-card">
                 <img src="Audi2.jpg" alt="Audi" class="car-img">
@@ -735,4 +736,34 @@ opcionUno.addEventListener('click', function(event) {
     });
   });
 </script>
+        // Seleccionamos los elementos necesarios
+const fotoPrincipal = document.getElementById('foto-principal');
+const contenedorRetorno = document.getElementById('contenedor-retorno');
+const btnFotoOrigen = document.getElementById('btn-foto-origen');
+const miniaturas = document.querySelectorAll('.miniaturas .miniatura');
+
+// Guardamos de forma automática cuál es la ruta de la imagen azul del principio
+const rutaOriginal = fotoPrincipal.src;
+
+// Asignamos la acción a las miniaturas de la galería
+miniaturas.forEach(miniatura => {
+  miniatura.addEventListener('click', function() {
+    // 1. Cambia la foto principal por la que tocaste
+    fotoPrincipal.src = this.src;
+
+    // 2. Comparamos si la foto actual es la misma del inicio
+    // Usamos .endsWith() por seguridad con las rutas de GitHub Pages
+    if (!this.src.endsWith('auto-azul-original.jpg')) {
+      contenedorRetorno.style.display = 'block'; // Muestra la foto de origen abajo
+    } else {
+      contenedorRetorno.style.display = 'none';  // La oculta si volviste manualmente
+    }
+  });
+});
+
+// Acción cuando el usuario toca la foto de retorno de abajo
+btnFotoOrigen.addEventListener('click', function() {
+  fotoPrincipal.src = rutaOriginal;         // Regresa la vista al auto principal
+  contenedorRetorno.style.display = 'none'; // Se vuelve a ocultar el botón-foto
+});
 </script>
