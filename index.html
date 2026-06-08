@@ -401,17 +401,18 @@
   <h3 style="margin: 5px 0; font-size: 16px; font-family: sans-serif; color: #333;">BMW Serie 3</h3>
   <p style="color: #d9534f; font-weight: bold; margin: 5px 0; font-size: 18px; font-family: sans-serif;">6 000 000 Ft</p>
 </div>
-<!-- 4. Lógica Inteligente en JavaScript -->
 <script>
-  const fotoPrincipal = document.getElementById('foto-principal-bmw');
-  const miniaturas = document.querySelectorAll('.miniatura-dinamica');
+  // Seleccionamos las miniaturas del BMW
+  const todasLasFotos = document.querySelectorAll('.miniatura');
+  const imagenGrande = document.querySelector('.foto-principal');
 
-  miniaturas.forEach(miniatura => {
-    miniatura.addEventListener('click', function() {
-      // 1. Cambia la foto grande de arriba
-      fotoPrincipal.src = this.src;
-
-      // 2. Quitamos la clase 'activa' a TODAS las miniaturas.
+  todasLasFotos.forEach(foto => {
+    foto.addEventListener('click', function() {
+      // Cambia la foto grande por la pequeña que tocaste
+      imagenGrande.src = this.src;
+    });
+  });
+</script>
       // Esto hace que la que estaba abierta se encoja y regrese a su tamaño original automáticamente.
       miniaturas.forEach(m => m.classList.remove('activa'));
 
