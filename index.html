@@ -455,20 +455,79 @@
     });
   });
 </script>
-            <!-- 2. Autó kártya -->
-            <div class="car-card">
-                <img src="Audi2.jpg" alt="Audi" class="car-img">
-                <div class="car-info">
-                    <h3 class="car-title">Audi A4 Avant S-line</h3>
-                    <div class="car-price">6 450 000 Ft</div>
-                    <div class="car-details">
-                        <span>📅 2018</span>
-                        <span>🛣️ 168 000 km</span>
-                        <span>⛽ Benzin</span>
-                    </div>
-                </div>
-            </div>
+           <!-- TARJETA DEL BMW SERIE 3 -->
+<div class="tarjeta-auto" style="border: 1px solid #e0e0e0; padding: 15px; border-radius: 12px; text-align: center; background: white; max-width: 380px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin: 15px auto;">
+  
+    <!-- RECUADRO GRANDE -->
+  <div style="width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f9f9f9; border-radius: 8px; margin-bottom: 12px;">
+    <img class="foto-principal" src="bmw.jpg" alt="BMW Serie 3" style="max-width: 100%; max-height: 100%; object-fit: cover;">
+  </div>
 
+  <!-- RECUADRO DE IMÁGENES PEQUEÑAS -->
+  <div style="display: flex; gap: 6px; justify-content: center; margin-bottom: 8px;">
+    <img class="miniatura" src="bmw.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid #007bff; border-radius: 4px;">
+    <img class="miniatura" src="Audi2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
+    <img class="miniatura" src="bmw2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
+  <img class="miniatura" src="Audi2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
+    <img class="miniatura" src="Audi2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
+    <img class="miniatura" src="bmw2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
+  
+  </div>
+
+  <!-- TEXTOS Y PRECIO -->
+  <h3 style="margin: 5px 0; font-size: 16px; font-family: sans-serif; color: #333;">BMW Serie 3</h3>
+  <p style="color: #d9534f; font-weight: bold; margin: 5px 0; font-size: 18px; font-family: sans-serif;">6 000 000 Ft</p>
+</div>
+<script>
+  // Seleccionamos las miniaturas del BMW
+  const todasLasFotos = document.querySelectorAll('.miniatura');
+  const imagenGrande = document.querySelector('.foto-principal');
+
+  todasLasFotos.forEach(foto => {
+    foto.addEventListener('click', function() {
+      // Cambia la foto grande por la pequeña que tocaste
+      imagenGrande.src = this.src;
+    });
+  });
+</script>
+      
+</script>
+<!-- 4. Lógica en JavaScript para cargar e intercambiar las posiciones -->
+<script>
+  const fotoPrincipal = document.getElementById('foto-principal-bmw');
+  const miniaturas = document.querySelectorAll('.miniatura-dinamica');
+
+  miniaturas.forEach(miniatura => {
+    miniatura.addEventListener('click', function() {
+      // Al dar clic, se carga la imagen en la vista grande
+      fotoPrincipal.src = this.src;
+
+      // Reseteamos el orden físico y los bordes de todas
+      miniaturas.forEach(m => {
+        m.style.border = '1px solid #ddd';
+      });
+      document.getElementById('m1').style.order = "1";
+      document.getElementById('m2').style.order = "2";
+      document.getElementById('m3').style.order = "3";
+
+      // Destacamos la miniatura activa con un borde azul
+      this.style.border = '2px solid #007bff';
+
+      // Si haces clic en la tercera (m3), la segunda (m2) regresa estrictamente a su lugar al final
+      if (this.id === 'm3') {
+        this.style.order = "1"; 
+        document.getElementById('m1').style.order = "2";
+        document.getElementById('m2').style.order = "3"; // Regresa a su lugar original
+      } 
+      // Si haces clic en la segunda (m2), se pone al inicio y la tercera va al final
+      else if (this.id === 'm2') {
+        this.style.order = "1";
+        document.getElementById('m1').style.order = "2";
+        document.getElementById('m3').style.order = "3";
+      }
+    });
+  });
+</script>
             <!-- 3. Autó kártya -->
             <div class="car-card">
                 <img src="Audi2.jpg" alt="Audi" class="car-img">
