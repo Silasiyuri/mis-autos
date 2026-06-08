@@ -337,19 +337,22 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
-            <!-- 1. Autó kártya -->
-            <div class="car-card">
-                <img src="images/bmw3.jpg" alt="BMW" class="car-img">
-                <div class="car-info">
-                    <h3 class="car-title">BMW 530d M Sport</h3>
-                    <div class="car-price">8 990 000 Ft</div>
-                    <div class="car-details">
-                        <span>📅 2019</span>
-                        <span>🛣️ 145 000 km</span>
-                        <span>⛽ Dízel</span>
-                    </div>
-                </div>
-            </div>
+            <!-- Bloque de galería para un auto -->
+<div class="galeria-auto" style="max-width: 500px; margin: 20px auto; text-align: center;">
+  
+  <!-- FOTO PRINCIPAL (La que se ve grande) -->
+  <div class="foto-principal-contenedor">
+    <img id="foto-principal" src="images/bmw.jpg" alt="Foto principal del auto" style="width: 100%; height: auto; border-radius: 8px; cursor: pointer; transition: 0.3s;">
+  </div>
+
+  <!-- IMÁGENES PEQUEÑAS (Miniaturas abajo) -->
+  <div class="miniaturas" style="display: flex; gap: 10px; margin-top: 10px; justify-content: center;">
+    <img class="miniatura" src="images/bmw-frontal.jpg" alt="Vista frontal" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid #007bff; opacity: 1;">
+    <img class="miniatura" src="images/bmw-trasera.jpg" alt="Vista trasera" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid transparent; opacity: 0.6;">
+    <img class="miniatura" src="images/bmw-interior.jpg" alt="Vista interior" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid transparent; opacity: 0.6;">
+  </div>
+
+</div>
 
             <!-- 2. Autó kártya -->
             <div class="car-card">
@@ -710,4 +713,26 @@ opcionUno.addEventListener('click', function(event) {
 </script>
 
             <div id="pie-pagina" style="height: 1px; width: 100%;"></div>
+        <script>
+  // Seleccionamos la foto grande y todas las miniaturas
+  const fotoPrincipal = document.getElementById('foto-principal');
+  const miniaturas = document.querySelectorAll('.miniatura');
+
+  miniaturas.forEach(miniatura => {
+    miniatura.addEventListener('click', function() {
+      // 1. Cambia la ruta de la foto principal por la de la miniatura clickeada
+      fotoPrincipal.src = this.src;
+
+      // 2. Quita el borde azul y la opacidad a todas las miniaturas
+      miniaturas.forEach(m => {
+        m.style.border = '2px solid transparent';
+        m.style.opacity = '0.6';
+      });
+
+      // 3. Dale el borde azul y opacidad completa solo a la miniatura activa
+      this.style.border = '2px solid #007bff';
+      this.style.opacity = '1';
+    });
+  });
+</script>
 </script>
