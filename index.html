@@ -391,13 +391,10 @@
   </div>
 
   <!-- 2. Contenedor de imágenes pequeñas (DEBAJO de la principal) -->
-  <div class="miniaturas">
-      <!-- 1. Esta miniatura es igual a la principal y sirve para regresar al origen -->
-      <img class="miniatura" src="bmw.jpg" alt="BMW Original" onclick="document.getElementById('foto-principal-bmw').src=this.src">
-      
-      <!-- 2. Las demás fotos secundarias (interior, trasera, etc.) -->
-      <img class="miniatura" src="auto.jpg" alt="Vista 2" onclick="document.getElementById('foto-principal-bmw').src=this.src">
-      <img class="miniatura" src="bmw-trasera.jpg" alt="Vista 3" onclick="document.getElementById('foto-principal-bmw').src=this.src">
+  <div class="miniaturas" style="display: flex; gap: 10px;">
+      <img id="m1" class="miniatura-dinamica" src="bmw.jpg" alt="Vista 1" style="order: 1;">
+      <img id="m2" class="miniatura-dinamica" src="auto.jpg" alt="Vista 2" style="order: 2;">
+      <img id="m3" class="miniatura-dinamica" src="bmw-trasera.jpg" alt="Vista 3" style="order: 3;">
     </div>
 
   <!-- 3. Información del auto (Precios, títulos, etc.) -->
@@ -816,4 +813,9 @@ btnFotoOrigen.addEventListener('click', function() {
   fotoPrincipal.src = rutaOriginal;         // Regresa la vista al auto principal
   contenedorRetorno.style.display = 'none'; // Se vuelve a ocultar el botón-foto
 });
+            <div class="miniaturas" style="display: flex; gap: 10px;">
+      <img id="m1" class="miniatura-dinamica" src="bmw.jpg" alt="Vista 1" style="order: 1;">
+      <img id="m2" class="miniatura-dinamica" src="auto.jpg" alt="Vista 2" style="order: 2;">
+      <img id="m3" class="miniatura-dinamica" src="bmw-trasera.jpg" alt="Vista 3" style="order: 3;">
+    </div>
 </script>
