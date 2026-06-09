@@ -6,7 +6,42 @@
     <title>Autóvásárlás & Eladás | Használt Autók Kínálata Felvásárlás</title>
     <meta name="google-site-verification" content="JbQb_43p3hBTcK_bIe7E3wntSatdmVW8DaB4tw8s0UM" />
     <style>
+}
+        /* Contenedor principal en la barra negra */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
 
+/* El menú flotante que aparece abajo */
+.dropdown-menu {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    top: 100%; /* Se coloca exactamente debajo del botón */
+    left: 0;
+    background-color: #111; /* Color negro de fondo igual a tu barra */
+    min-width: 120px;
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+    z-index: 1000; /* Asegura que flote por encima de las fotos de coches */
+}
+
+/* Espaciado de las opciones verticales */
+.dropdown-menu li a {
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+/* Cambio de color opcional cuando pasas el ratón por encima de una opción */
+.dropdown-menu li a:hover {
+    background-color: #333;
+}
 
         /* Estilos básicos de la barra de navegación */
 .navbar ul {
