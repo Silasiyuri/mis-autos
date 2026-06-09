@@ -1082,5 +1082,21 @@ function mostrarMenuTelefono(event) {
         x.style.display = "none";
     }
 }
+
+    <script>
+  const btnAutonavegacion = document.getElementById('btn-autonavegacion');
+  const menuDesplegableCaja = document.getElementById('menu-desplegable-caja');
+
+  // Detecta el toque o clic en la palabra "Autóeladás ▾"
+  btnAutonavegacion.addEventListener('click', function(evento) {
+    evento.stopPropagation(); // Evita que el menú se cierre inmediatamente al tocarlo
+    menuDesplegableCaja.classList.toggle('mostrar-menu'); // Si está cerrado lo abre, si está abierto lo cierra
+  });
+
+  // Si el usuario toca cualquier otra parte de la pantalla del celular, el menú se pliega solo
+  document.addEventListener('click', function() {
+    menuDesplegableCaja.classList.remove('mostrar-menu');
+  });
+</script>
 </script>
     <script>
