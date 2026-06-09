@@ -1214,7 +1214,32 @@ header ul li a, nav ul li a {
   font-weight: bold;
   font-size: 16px;
 }
-      
+     /* 1. Fuerza al contenedor de la lista a no romper la fila bajo ninguna circunstancia */
+header ul, nav ul, .menu-links {
+  display: flex !important;
+  flex-direction: row !important;  /* Los obliga a ponerse en fila */
+  flex-wrap: nowrap !important;    /* PROHIBIDÓ bajarse a otra línea */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 15px;                       /* Espacio horizontal entre palabras */
+  width: auto !important;          /* Deja que ocupe el espacio que necesite */
+}
+
+/* 2. Asegura que el contenedor del menú tenga suficiente espacio al lado del logo */
+nav, header .nav-container {
+  display: flex !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
+/* 3. Asegura que el encabezado completo se alinee en fila (Logo a la izquierda, menú a la derecha) */
+header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 10px 20px;
+} 
     });
   });
 </script>
