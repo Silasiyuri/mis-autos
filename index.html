@@ -479,6 +479,18 @@
 .dropdown-menu li a:hover {
     background-color: #333;
 }
+        /* Esconde de forma estricta el texto duplicado que flota arriba del nav */
+nav ~ span, 
+div[style*="font-family: monospace"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Alinea el menú correctamente en su barra */
+.menu-links {
+  margin-top: 0 !important;
+}
         </style>
 <!-- Barra de menú adaptativa (Responsive) -->
 <nav style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; width: 100%; padding: 15px 5%; background: #111; z-index: 99999; box-sizing: border-box; gap: 15px;">
