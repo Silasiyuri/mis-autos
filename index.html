@@ -1188,7 +1188,32 @@ btnFotoOrigen.addEventListener('click', function() {
         // Pone la imagen pequeña en el lugar de la grande
         fotoGrande.src = this.src;
       }
+/* 1. Contenedor principal del encabezado (Logo + Menú) */
+header, .nav-container {
+  display: flex;
+  justify-content: space-between; /* Separa el logo a la izquierda y el menú a la derecha */
+  align-items: center;            /* Centra verticalmente el logo y las letras */
+  padding: 10px 20px;
+  background-color: #111;         /* Mantiene el fondo oscuro de tu diseño */
+}
 
+/* 2. Fuerza a que la lista de enlaces se ponga en una sola fila horizontal */
+header ul, nav ul, .menu-links {
+  display: flex;
+  flex-direction: row;            /* Obliga a las letras a ponerse una al lado de la otra */
+  list-style: none;               /* Quita los puntitos de la lista si los tiene */
+  margin: 0;
+  padding: 0;
+  gap: 20px;                      /* Añade separación horizontal entre cada palabra */
+}
+
+/* 3. Estilo opcional para que los enlaces se vean limpios y legibles */
+header ul li a, nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
       
     });
   });
