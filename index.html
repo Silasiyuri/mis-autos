@@ -7,6 +7,35 @@
     <meta name="google-site-verification" content="JbQb_43p3hBTcK_bIe7E3wntSatdmVW8DaB4tw8s0UM" />
     <style>
 
+
+
+
+        /* 1. Contenedor principal: Logo a la izquierda, menú a la derecha */
+    header, .header-container, nav {
+      display: flex !important;
+      flex-direction: row !important;      /* Alineación en fila */
+      justify-content: space-between !important; /* Separa el logo a un extremo y el menú al otro */
+      align-items: center !important;         /* Los centra perfectamente de forma vertical */
+      flex-wrap: nowrap !important;        /* Prohíbe que el menú se baje */
+      width: 100% !important;
+      box-sizing: border-box;
+    }
+
+    /* 2. Lista de enlaces: en fila y con espacio entre ellos */
+    header ul, nav ul, .menu-links {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      gap: 20px; /* Espacio de separación entre Kezdőlap, Autóeladás y Kapcsolat */
+      margin: 0 !important;
+      padding: 0 !important;
+      list-style: none !important;
+    }
+
+    /* 3. Evita que los elementos de la lista se encimen */
+    header li, nav li {
+      white-space: nowrap !important; /* Impide que las palabras largas se rompan en dos líneas */
+    }
          /* Contenedor general de la sección */
   .contenedor-autos-galeria {
     display: flex;
