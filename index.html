@@ -479,18 +479,6 @@
 .dropdown-menu li a:hover {
     background-color: #333;
 }
-        /* Esconde de forma estricta el texto duplicado que flota arriba del nav */
-nav ~ span, 
-div[style*="font-family: monospace"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
-
-/* Alinea el menú correctamente en su barra */
-.menu-links {
-  margin-top: 0 !important;
-}
         </style>
 <!-- Barra de menú adaptativa (Responsive) -->
 <nav style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; width: 100%; padding: 15px 5%; background: #111; z-index: 99999; box-sizing: border-box; gap: 15px;">
@@ -512,7 +500,20 @@ div[style*="font-family: monospace"] {
                     <!-- Pequeña línea de la ventanilla trasera -->
                     <path d="M 68,11 C 78,8 88,9 96,13" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
                     
-                    
+                    <!-- Líneas del chasis inferior (Debajo del texto) -->
+                    <path d="M 15,40 L 45,40 M 95,40 L 125,40" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                </svg>
+
+                <!-- TEXTO EN MEDIO QUE CORTA EL AUTO -->
+                <div style="background-color: #1a1a1a; padding: 0 8px; position: relative; z-index: 10; line-height: 1; text-align: center; margin-top: 10px;">
+                    <span style="font-family: 'Arial Black', Gadget, sans-serif; font-size: 22px; font-weight: 900; font-style: italic; text-transform: uppercase; color: #e50914; letter-spacing: -1px;">AUTO</span><span style="font-family: 'Arial Black', Gadget, sans-serif; font-size: 22px; font-weight: 900; font-style: italic; text-transform: uppercase; color: #ffffff; letter-spacing: -1px;">PIAC</span>
+                </div>
+
+                <!-- ESLOGAN INFERIOR -->
+                <span style="font-family: monospace; font-size: 6.5px; color: #888888; letter-spacing: 2.5px; text-transform: uppercase; margin-top: 4px; background-color: #1a1a1a; padding: 0 4px; position: relative; z-index: 10;">/// online market ///</span>
+                
+            </a>
+        </div>
 
     <!-- Contenedor de los enlaces (Se ajusta automáticamente en celulares) -->
     <div style="display: flex; align-items: center; gap: clamp(15px, 3vw, 30px); position: relative; flex-wrap: wrap;">
@@ -520,22 +521,22 @@ div[style*="font-family: monospace"] {
         <a href="index.html" style="color: white; text-decoration: none; font-weight: bold; font-size: clamp(14px, 4vw, 16px); white-space: nowrap;">Kezdőlap</a>
 <nav>
   <ul class="menu-links">
-    <!-- 1. Primer elemento -->
-    <li><a href="#kezdolap">Kezdőlap</a></li>
-    
-    <!-- 2. Segundo elemento: El desplegable en columna -->
-    <li class="dropdown">
-      <a href="#autoeladas">Autóeladás ▾</a>
-      <ul class="dropdown-menu">
-        <li><a href="#felvasarlas">Autó Felvásárlás Készpénzért</a></li>
-        <li><a href="#autovetel">Autóvétel</a></li>
-        <li><a href="#roncsauto">Roncsautó Felvásárlás</a></li>
-      </ul>
-    </li>
-    
-    <!-- 3. Tercer elemento -->
-    <li><a href="#kapcsolat">Kapcsolat</a></li>
-  </ul>
+  <!-- 1. Primer elemento: Solo uno -->
+  <li><a href="#kezdolap">Kezdőlap</a></li>
+  
+  <!-- 2. Segundo elemento: El desplegable con la columna adentro -->
+  <li class="dropdown">
+    <a href="#autoeladas">Autóeladás ▾</a>
+    <ul class="dropdown-menu">
+      <li><a href="#felvasarlas">Autó Felvásárlás Készpénzért</a></li>
+      <li><a href="#autovetel">Autóvétel Készpénzért</a></li>
+        <li><a href="#autovetel">Roncsautó Felvásárlás</a></li>
+    </ul>
+  </li>
+  
+  <!-- 3. Tercer elemento: Solo uno -->
+  <li><a href="#kapcsolat">Kapcsolat</a></li>
+</ul>
 </nav>
         
         <!-- MÓDULO KAPCSOLAT -->
@@ -956,454 +957,3 @@ function mostrarSeisVentanas(event) {
     if (panel.style.display === "none" || panel.style.display === "") {
         panel.style.display = 'flex'; 
     } else {
-        panel.style.display = 'none';
-    }
-}
-
-function mostrarMenuTelefono(event) {
-    event.preventDefault();
-    var x = document.getElementById("caja-telefono");
-    if (x.style.display === "none" || x.style.display === "") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
-}
-        <!-- En la parte inferior de tu página -->
-<footer id="pie-pagina">
-    <!-- El contenido de tu pie de página aquí -->
-</footer>
-        <!-- ... Todo el contenido de tu página ... -->
-    
-    <footer id="pie-pagina">
-        <p>Fin de la página</p>
-    </footer>
-
-    // 1. Seleccionamos los elementos de la página
-const opcionUno = document.getElementById('opcion-1');
-const parteInferior = document.getElementById('pie-pagina');
-const menuContenedor = document.getElementById('menu-desplegable'); // El bloque negro
-
-// 2. Ejecutamos la acción al hacer clic
-opcionUno.addEventListener('click', function(event) {
-    event.preventDefault(); // Evita saltos bruscos
-    
-    // ACCIÓN 1: Bajar al final de la página
-    if (parteInferior) {
-        parteInferior.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'end' 
-        });
-    }
-
-    // ACCIÓN 2: Cerrar el menú desplegable
-    if (menuContenedor) {
-        // Opción A: Si usas CSS para ocultarlo cambiando el display
-        menuContenedor.style.display = 'none';
-        
-        // Opción B: Si usas una clase de CSS para abrirlo/cerrarlo (ej. 'show' o 'active')
-        // menuContenedor.classList.remove('show'); 
-    }
-});
-
-</script>
-           <footer id="pie-pagina">
-    <!-- El contenido actual de tu pie de página -->
-</footer>
-<script>
-    // Esperamos a que la página se cargue por completo
-    document.addEventListener("DOMContentLoaded", function() {
-        const opcionUno = document.getElementById('opcion-1');
-        const parteInferior = document.getElementById('pie-pagina');
-        const menuContenedor = document.getElementById('menu-desplegable');
-
-        if (opcionUno) {
-            opcionUno.addEventListener('click', function(event) {
-                event.preventDefault(); // Detiene cualquier comportamiento por defecto
-                event.stopPropagation(); // Evita conflictos con la función mostrarSeisVentanas
-                
-                // 1. Desplaza la pantalla suavemente hacia abajo
-                if (parteInferior) {
-                    parteInferior.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'end' 
-                    });
-                }
-
-                // 2. Cierra automáticamente el menú ocultándolo
-                if (menuContenedor) {
-                    menuContenedor.style.display = 'none';
-                }
-            });
-        }
-    });
-    <!-- ... Todo tu contenido anterior ... -->
-
-    <!-- Añade esta línea exacta justo aquí abajo -->
-    <div id="pie-pagina" style="height: 1px; width: 100%;"></div>
-
-    <!-- Tu script que ya pusiste antes -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const opcionUno = document.getElementById('opcion-1');
-            const parteInferior = document.getElementById('pie-pagina');
-            const menuContenedor = document.getElementById('menu-desplegable');
-
-            if (opcionUno) {
-                opcionUno.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    
-                    if (parteInferior) {
-                        parteInferior.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'end' 
-                        });
-                    }
-
-                    if (menuContenedor) {
-                        menuContenedor.style.display = 'none';
-                    }
-                });
-            }
-        });
-    </script>
-</body>
-</html>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const botonAutoeladas = document.getElementById('boton-autoeladas');
-        const menuDesplegable = document.getElementById('menu-desplegable');
-        const opcionUno = document.getElementById('opcion-1');
-        const parteInferior = document.getElementById('pie-pagina');
-
-        // 1. Mostrar/Ocultar el menú debajo al hacer clic en Autóeladás
-        if (botonAutoeladas && menuDesplegable) {
-            botonAutoeladas.addEventListener('click', function(event) {
-                event.preventDefault();
-                event.stopPropagation();
-                if (menuDesplegable.style.display === 'block') {
-                    menuDesplegable.style.display = 'none';
-                } else {
-                    menuDesplegable.style.display = 'block';
-                }
-            });
-        }
-
-        // 2. Acción al tocar la Opción 1
-        if (opcionUno) {
-            opcionUno.addEventListener('click', function(event) {
-                event.preventDefault();
-                
-                // Baja al final de la página
-                if (parteInferior) {
-                    parteInferior.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'end' 
-                    });
-                }
-
-                // Cierra (pliega) el menú vertical
-                if (menuDesplegable) {
-                    menuDesplegable.style.display = 'none';
-                }
-            });
-        }
-
-        // Cierra el menú automáticamente si el usuario hace clic fuera de él
-        document.addEventListener('click', function() {
-            if (menuDesplegable) {
-                menuDesplegable.style.display = 'none';
-            }
-        });
-    });
-</script>
-
-            <div id="pie-pagina" style="height: 1px; width: 100%;"></div>
-        <script>
-  // Seleccionamos la foto grande y todas las miniaturas
-  const fotoPrincipal = document.getElementById('foto-principal');
-  const miniaturas = document.querySelectorAll('.miniatura');
-
-  miniaturas.forEach(miniatura => {
-    miniatura.addEventListener('click', function() {
-      // 1. Cambia la ruta de la foto principal por la de la miniatura clickeada
-      fotoPrincipal.src = this.src;
-
-      // 2. Quita el borde azul y la opacidad a todas las miniaturas
-      miniaturas.forEach(m => {
-        m.style.border = '2px solid transparent';
-        m.style.opacity = '0.6';
-      });
-
-      // 3. Dale el borde azul y opacidad completa solo a la miniatura activa
-      this.style.border = '2px solid #007bff';
-      this.style.opacity = '1';
-    });
-  });
-<script>
-const fotoPrincipal = document.getElementById('foto-principal');
-const contenedorRetorno = document.getElementById('contenedor-retorno');
-const btnFotoOrigen = document.getElementById('btn-foto-origen');
-const miniaturas = document.querySelectorAll('.miniaturas .miniatura');
-
-// Guardamos de forma automática cuál es la ruta de la imagen azul del principio
-const rutaOriginal = fotoPrincipal.src;
-
-// Asignamos la acción a las miniaturas de la galería
-miniaturas.forEach(miniatura => {
-  miniatura.addEventListener('click', function() {
-    // 1. Cambia la foto principal por la que tocaste
-    fotoPrincipal.src = this.src;
-
-    // 2. Comparamos si la foto actual es la misma del inicio
-    if (!this.src.endsWith('auto-azul-original.jpg')) {
-      contenedorRetorno.style.display = 'block'; // Muestra la foto de origen abajo
-    } else {
-      contenedorRetorno.style.display = 'none';  // La oculta si volviste manualmente
-    }
-  });
-});
-
-// Acción cuando el usuario toca la foto de retorno de abajo
-btnFotoOrigen.addEventListener('click', function() {
-  fotoPrincipal.src = rutaOriginal;         // Regresa la vista al auto principal
-  contenedorRetorno.style.display = 'none'; // Se vuelve a ocultar el botón-foto
-});
-            <script>
-  // Seleccionamos la foto grande y el grupo de imágenes pequeñas
-  const fotoPrincipal = document.getElementById('foto-principal-bmw');
-  const miniaturas = document.querySelectorAll('.miniatura-dinamica');
-
-  miniaturas.forEach(miniatura => {
-    miniatura.addEventListener('click', function() {
-      // 1. Cargamos la imagen de la miniatura seleccionada en la pantalla grande
-      fotoPrincipal.src = this.src;
-
-      // 2. Reseteamos el orden físico de todas las miniaturas a su lugar original
-      document.getElementById('m1').style.order = "1";
-      document.getElementById('m2').style.order = "2";
-      document.getElementById('m3').style.order = "3";
-
-      // 3. Lógica de intercambio de posiciones:
-      // Si el usuario toca la tercera miniatura (m3)...
-      if (this.id === 'm3') {
-        this.style.order = "1";                 // La 3 se mueve al primer puesto de la fila
-        document.getElementById('m1').style.order = "2"; // La 1 pasa al segundo puesto
-        document.getElementById('m2').style.order = "3"; // La 2 regresa obligatoriamente al tercer puesto
-      } 
-      // Si el usuario toca la segunda miniatura (m2)...
-      else if (this.id === 'm2') {
-        this.style.order = "1";                 // La 2 se mueve al inicio
-        document.getElementById('m1').style.order = "2"; // La 1 pasa al medio
-        document.getElementById('m3').style.order = "3"; // La 3 se queda al final
-      }
-    });
-  });
-            <script>
-  // Seleccionamos el recuadro grande y las miniaturas del BMW
-  const recuadroGrande = document.getElementById('bmw-foto-grande');
-  const listaMiniaturas = document.querySelectorAll('.bmw-miniatura');
-
-  listaMiniaturas.forEach(mini => {
-    mini.addEventListener('click', function() {
-      // 1. Ponemos la foto de la miniatura en el recuadro grande
-      recuadroGrande.src = this.src;
-
-      // 2. Quitamos el borde azul y opacidad a todas las fotos pequeñas
-      listaMiniaturas.forEach(m => {
-        m.style.border = '2px solid transparent';
-        m.style.opacity = '0.6';
-      });
-
-      // 3. Le ponemos el borde azul y brillo completo solo a la que tocamos
-      this.style.border = '2px solid #007bff';
-      this.style.opacity = '1';
-    });
-  });
-            <!-- VENTANA FLOTANTE PARA VER LA FOTO EN PANTALLA COMPLETA -->
-<dialog id="lightbox-pantalla" style="border:none; background:rgba(0,0,0,0.9); padding:0; width:100vw; height:100vh; max-width:100%; max-height:100%; justify-content:center; align-items:center; display:none; position:fixed; top:0; left:0; z-index:9999;">
-  <div style="position:relative; max-width:90vw; max-height:90vh; display:flex; justify-content:center; align-items:center;">
-    <img id="foto-gigante" src="" style="max-width:100%; max-height:85vh; border-radius:8px; box-shadow: 0 4px 20px rgba(0,0,0,0.8);">
-    <button id="cerrar-lightbox" style="position:absolute; top:-40px; right:0; background:none; color:white; border:none; cursor:pointer; font-size:30px; font-weight:bold;">✕</button>
-  </div>
-</dialog>
-
-<!-- VENTANA FLOTANTE (Mantenla tal como estaba) -->
-<dialog id="lightbox-pantalla" style="border:none; background:rgba(0,0,0,0.9); padding:0; width:100vw; height:100vh; max-width:100%; max-height:100%; justify-content:center; align-items:center; display:none; position:fixed; top:0; left:0; z-index:9999;">
-  <div style="position:relative; max-width:90vw; max-height:90vh; display:flex; justify-content:center; align-items:center;">
-    <img id="foto-gigante" src="" style="max-width:100%; max-height:85vh; border-radius:8px; box-shadow: 0 4px 20px rgba(0,0,0,0.8);">
-    <button id="cerrar-lightbox" style="position:absolute; top:-40px; right:0; background:none; color:white; border:none; cursor:pointer; font-size:30px; font-weight:bold;">✕</button>
-  </div>
-</dialog>
-
-
-    }
-  });
-            <!-- VENTANA FLOTANTE PARA VER LA FOTO EN PANTALLA COMPLETA -->
-<dialog id="lightbox-pantalla" style="border:none; background:rgba(0,0,0,0.9); padding:0; width:100vw; height:100vh; max-width:100%; max-height:100%; justify-content:center; align-items:center; display:none; position:fixed; top:0; left:0; z-index:9999;">
-  <div style="position:relative; max-width:90vw; max-height:90vh; display:flex; justify-content:center; align-items:center;">
-    <img id="foto-gigante" src="" style="max-width:100%; max-height:85vh; border-radius:8px; box-shadow: 0 4px 20px rgba(0,0,0,0.8);">
-    <button id="cerrar-lightbox" style="position:absolute; top:-40px; right:0; background:none; color:white; border:none; cursor:pointer; font-size:30px; font-weight:bold;">✕</button>
-  </div>
-</dialog>
-
-<script>
-  // 1. CAMBIO DE FOTO EN EL RECUADRO DE LA TARJETA
-  const fotoGrandeTarjeta = document.getElementById('bmw-foto-grande');
-  const miniaturas = document.querySelectorAll('.bmw-miniatura');
-
-  miniaturas.forEach(miniatura => {
-    miniatura.addEventListener('click', function() {
-      // Reemplaza la foto grande por la miniatura seleccionada
-      fotoGrandeTarjeta.src = this.src;
-
-      // Actualiza visualmente los bordes seleccionados
-      miniaturas.forEach(m => {
-        m.style.border = '2px solid transparent';
-        m.style.opacity = '0.6';
-      });
-      this.style.border = '2px solid #007bff';
-      this.style.opacity = '1';
-    });
-  });
-
-  // 2. ABRIR FOTO EN TAMAÑO GIGANTE (PANTALLA COMPLETA)
-  const lightbox = document.getElementById('lightbox-pantalla');
-  const fotoGigante = document.getElementById('foto-gigante');
-  const botonCerrar = document.getElementById('cerrar-lightbox');
-
-  fotoGrandeTarjeta.style.cursor = 'pointer';
-  fotoGrandeTarjeta.addEventListener('click', function() {
-    fotoGigante.src = this.src; // Carga la imagen activa en grande
-    lightbox.style.display = 'flex';
-    lightbox.showModal();
-  });
-
-  // Funciones de cierre
-  botonCerrar.addEventListener('click', () => {
-    lightbox.close();
-    lightbox.style.display = 'none';
-  });
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      lightbox.close();
-      lightbox.style.display = 'none';
-    }
-  });
-            <script>
-  // Escucha los clics en todas las fotos pequeñas con la clase "miniatura"
-  document.querySelectorAll('.miniatura').forEach(miniatura => {
-    miniatura.addEventListener('click', function() {
-      // Busca la tarjeta del carro actual
-      const tarjeta = this.parentElement.parentElement;
-      // Encuentra la foto grande que está dentro de esa misma tarjeta
-      const fotoGrande = tarjeta.querySelector('.foto-principal');
-      
-      if (fotoGrande) {
-        // Intercambia la imagen grande por la pequeña que tocaste
-        fotoGrande.src = this.src;
-      }
-
-      // Cambia el borde azul para marcar cuál está seleccionada
-      tarjeta.querySelectorAll('.miniatura').forEach(m => m.style.border = '2px solid transparent');
-      this.style.border = '2px solid #007bff';
-    });
-  });
-  <script>
-  // Buscamos todas las imágenes pequeñas de la página
-  document.querySelectorAll('div style*="display: flex" img, .miniatura, .bmw-miniatura').forEach(miniatura => {
-    miniatura.style.cursor = 'pointer';
-    
-    miniatura.addEventListener('click', function() {
-      // Subimos dos niveles en el código para encontrar la tarjeta completa de este auto
-      const tarjeta = this.parentElement.parentElement;
-      
-      // Buscamos la primera imagen grande que está dentro de esa tarjeta
-      const fotoGrande = tarjeta.querySelector('img:not(div style*="display: flex" img)');
-      
-      if (fotoGrande) {
-        // Intercambiamos la imagen grande por la pequeña que tocaste
-        fotoGrande.src = this.src;
-      }
-      
-      // Opcional: quitamos el borde a las demás fotos pequeñas de esta tarjeta y se lo ponemos a la activa
-      const todasLasPequeñas = this.parentElement.querySelectorAll('img');
-      todasLasPequeñas.forEach(img => img.style.border = '2px solid transparent');
-      this.style.border = '2px solid #007bff';
-    });
-  });
-            <script>
-  // Control interactivo para cambiar la foto al tocar una miniatura
-  document.querySelectorAll('.miniatura').forEach(miniatura => {
-    miniatura.style.cursor = 'pointer';
-    miniatura.addEventListener('click', function() {
-      // Busca la tarjeta completa de este coche específico
-      const tarjeta = this.closest('.tarjeta-auto');
-      // Encuentra el recuadro grande dentro de esa tarjeta
-      const fotoGrande = tarjeta.querySelector('.foto-principal');
-      
-      if (fotoGrande) {
-        // Pone la imagen pequeña en el lugar de la grande
-        fotoGrande.src = this.src;
-      }
-/* 1. Contenedor principal del encabezado (Logo + Menú) */
-header, .nav-container {
-  display: flex;
-  justify-content: space-between; /* Separa el logo a la izquierda y el menú a la derecha */
-  align-items: center;            /* Centra verticalmente el logo y las letras */
-  padding: 10px 20px;
-  background-color: #111;         /* Mantiene el fondo oscuro de tu diseño */
-}
-
-/* 2. Fuerza a que la lista de enlaces se ponga en una sola fila horizontal */
-header ul, nav ul, .menu-links {
-  display: flex;
-  flex-direction: row;            /* Obliga a las letras a ponerse una al lado de la otra */
-  list-style: none;               /* Quita los puntitos de la lista si los tiene */
-  margin: 0;
-  padding: 0;
-  gap: 20px;                      /* Añade separación horizontal entre cada palabra */
-}
-
-/* 3. Estilo opcional para que los enlaces se vean limpios y legibles */
-header ul li a, nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 16px;
-}
-     /* 1. Fuerza al contenedor de la lista a no romper la fila bajo ninguna circunstancia */
-header ul, nav ul, .menu-links {
-  display: flex !important;
-  flex-direction: row !important;  /* Los obliga a ponerse en fila */
-  flex-wrap: nowrap !important;    /* PROHIBIDÓ bajarse a otra línea */
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 15px;                       /* Espacio horizontal entre palabras */
-  width: auto !important;          /* Deja que ocupe el espacio que necesite */
-}
-
-/* 2. Asegura que el contenedor del menú tenga suficiente espacio al lado del logo */
-nav, header .nav-container {
-  display: flex !important;
-  width: auto !important;
-  max-width: none !important;
-}
-
-/* 3. Asegura que el encabezado completo se alinee en fila (Logo a la izquierda, menú a la derecha) */
-header {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  padding: 10px 20px;
-} 
-    });
-  });
-</script>
-</script>
-</script>
-</script>
-</section>
