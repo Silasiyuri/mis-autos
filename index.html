@@ -6,7 +6,61 @@
     <title>Autóvásárlás & Eladás | Használt Autók Kínálata Felvásárlás</title>
     <meta name="google-site-verification" content="JbQb_43p3hBTcK_bIe7E3wntSatdmVW8DaB4tw8s0UM" />
     <style>
+/* Alineación del menú principal en una sola fila horizontal */
+  .menu-links {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 25px;
+    align-items: center;
+  }
 
+  .menu-links li {
+    position: relative; /* Clave para posicionar el submenú abajo */
+    white-space: nowrap;
+  }
+
+  /* 1. Ocultamos el menú desplegable por defecto */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;       /* Se posiciona exactamente DEBAJO del texto padre */
+    left: 50%;       /* Lo centra respecto a Autóeladás */
+    transform: translateX(-50%);
+    background-color: #111; /* Color de fondo negro igual que tu barra */
+    padding: 10px 0;
+    list-style: none;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    z-index: 1000;   /* Asegura que flote por encima de las fotos */
+    min-width: 220px; /* Ancho suficiente para que quepa la frase larga */
+  }
+
+  .dropdown-menu li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  /* Efecto visual al pasar el mouse por las opciones internas */
+  .dropdown-menu li a:hover {
+    background-color: #ff0000; /* Fondo rojo al seleccionar, combina con tu línea roja */
+  }
+
+  /* 2. MÁGIA CSS: Cuando pasas el mouse por Autóeladás, se abre el menú abajo */
+  .dropdown:hover .dropdown-menu {
+    display: block !important;
+  }
 
 
 
