@@ -6,6 +6,59 @@
     <title>Autóvásárlás & Eladás | Használt Autók Kínálata Felvásárlás</title>
     <meta name="google-site-verification" content="JbQb_43p3hBTcK_bIe7E3wntSatdmVW8DaB4tw8s0UM" />
     <style>
+
+
+/* ==========================================
+   REPARACIÓN DE BARRA SUPERIOR EN UNA FILA
+   ========================================== */
+
+/* 1. Fuerza al encabezado a ser horizontal (Logo a la izquierda, menú a la derecha) */
+header, .header-container, nav {
+  display: flex !important;
+  flex-direction: row !important;        /* Forzar en fila horizontal */
+  justify-content: space-between !important; /* Logo en una esquina, menú en la otra */
+  align-items: center !important;           /* Centrado vertical perfecto */
+  flex-wrap: nowrap !important;          /* Prohibido bajarse o dividirse */
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box;
+}
+
+/* 2. Fuerza a Kezdőlap, Autóeladás y Kapcsolat a alinearse uno al lado del otro */
+.menu-links {
+  display: flex !important;
+  flex-direction: row !important;        /* Forzar fila horizontal */
+  flex-wrap: nowrap !important;          /* Evita que Kapcsolat se baje */
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 15px !important;                  /* Separación justa entre palabras en celular */
+}
+
+/* 3. Asegura que las palabras no se rompan ni se encimen */
+.menu-links li {
+  position: relative !important;
+  white-space: nowrap !important;        /* Evita que una palabra se divida en dos líneas */
+}
+
+/* 4. Corrige el submenú negro para que flote justo debajo de Autóeladás */
+.dropdown-menu, .dropdown-content {
+  position: absolute !important;
+  top: 100% !important;                  /* Justo abajo del texto */
+  left: 50% !important;                  /* Centrado con el botón */
+  transform: translateX(-50%) !important;
+  min-width: 250px !important;           /* Tamaño necesario para las frases largas */
+  display: none !important;
+  flex-direction: column !important;     /* El submenú SÍ va hacia abajo en columna */
+}
+
+/* Abre el submenú únicamente al pasar el cursor o interactuar */
+.dropdown:hover .dropdown-menu,
+.dropdown:hover .dropdown-content {
+  display: flex !important;
+}
+
+        
 }
         /* Contenedor principal en la barra negra */
 .dropdown-container {
