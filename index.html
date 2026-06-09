@@ -521,21 +521,21 @@
         <a href="index.html" style="color: white; text-decoration: none; font-weight: bold; font-size: clamp(14px, 4vw, 16px); white-space: nowrap;">Kezdőlap</a>
 <nav>
   <ul class="menu-links">
-    <li><a href="#kezdolap">Kezdőlap</a></li>
-    
-    <!-- La palabra "Autóeladás" ahora envuelve al submenú -->
-    <li class="dropdown">
-      <a href="#autoeladas" class="dropdown-toggle">Autóeladás ▾</a>
-      
-      <!-- Este es el submenú oculto que se abre en una columna vertical abajo -->
-      <ul class="dropdown-menu">
-        <li><a href="#felvasarlas">Autó Felvásárlás Készpénzért</a></li>
-        <li><a href="#autovetel">Autóvétel</a></li>
-      </ul>
-    </li>
-    
-    <li><a href="#kapcsolat">Kapcsolat</a></li>
-  </ul>
+  <!-- 1. Primer elemento: Solo uno -->
+  <li><a href="#kezdolap">Kezdőlap</a></li>
+  
+  <!-- 2. Segundo elemento: El desplegable con la columna adentro -->
+  <li class="dropdown">
+    <a href="#autoeladas">Autóeladás ▾</a>
+    <ul class="dropdown-menu">
+      <li><a href="#felvasarlas">Autó Felvásárlás Készpénzért</a></li>
+      <li><a href="#autovetel">Autóvétel</a></li>
+    </ul>
+  </li>
+  
+  <!-- 3. Tercer elemento: Solo uno -->
+  <li><a href="#kapcsolat">Kapcsolat</a></li>
+</ul>
 </nav>
         
         <!-- MÓDULO KAPCSOLAT -->
