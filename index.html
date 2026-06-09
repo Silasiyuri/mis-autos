@@ -331,9 +331,36 @@
 <nav style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; width: 100%; padding: 15px 5%; background: #111; z-index: 99999; box-sizing: border-box; gap: 15px;">
     
     <!-- LOGO O NOMBRE -->
-    <div style="color: red; font-weight: bold; font-size: clamp(24px, 5vw, 32px); font-family: sans-serif; white-space: nowrap;">
-         <div class="logo">Auto<span>Piac</span></div>
-    </div>
+    <!-- CABECERA CON LOGO INTEGRADO IDÉNTICO A LA REFERENCIA -->
+<header class="main-header" style="background-color: #1a1a1a; padding: 15px 0; border-bottom: 2px solid #e50914;">
+    <div class="container header-flex" style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        
+        <!-- BLOQUE DEL LOGO -->
+        <div class="logo">
+            <a href="#" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 160px;">
+                
+                <!-- SVG QUE CONTIENE LAS LÍNEAS SUPERIORES E INFERIORES DEL AUTO -->
+                <svg xmlns="http://w3.org" viewBox="0 0 140 45" style="width: 140px; height: auto; display: block; margin-bottom: -32px;">
+                    <!-- Línea fluida del techo y alerón (Superior) -->
+                    <path d="M 10,24 C 30,20 45,11 65,7 C 85,3 110,6 128,14 C 133,16 135,14 138,15 C 133,16 128,19 122,19 C 112,19 85,23 55,24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                    
+                    <!-- Pequeña línea de la ventanilla trasera -->
+                    <path d="M 68,11 C 78,8 88,9 96,13" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+                    
+                    <!-- Líneas del chasis inferior (Debajo del texto) -->
+                    <path d="M 15,40 L 45,40 M 95,40 L 125,40" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                </svg>
+
+                <!-- TEXTO EN MEDIO QUE CORTA EL AUTO -->
+                <div style="background-color: #1a1a1a; padding: 0 8px; position: relative; z-index: 10; line-height: 1; text-align: center; margin-top: 10px;">
+                    <span style="font-family: 'Arial Black', Gadget, sans-serif; font-size: 22px; font-weight: 900; font-style: italic; text-transform: uppercase; color: #e50914; letter-spacing: -1px;">AUTO</span><span style="font-family: 'Arial Black', Gadget, sans-serif; font-size: 22px; font-weight: 900; font-style: italic; text-transform: uppercase; color: #ffffff; letter-spacing: -1px;">PIAC</span>
+                </div>
+
+                <!-- ESLOGAN INFERIOR -->
+                <span style="font-family: monospace; font-size: 6.5px; color: #888888; letter-spacing: 2.5px; text-transform: uppercase; margin-top: 4px; background-color: #1a1a1a; padding: 0 4px; position: relative; z-index: 10;">/// online market ///</span>
+                
+            </a>
+        </div>
 
     <!-- Contenedor de los enlaces (Se ajusta automáticamente en celulares) -->
     <div style="display: flex; align-items: center; gap: clamp(15px, 3vw, 30px); position: relative; flex-wrap: wrap;">
