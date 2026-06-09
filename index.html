@@ -6,6 +6,28 @@
     <title>Autóvásárlás & Eladás | Használt Autók Kínálata Felvásárlás</title>
     <meta name="google-site-verification" content="JbQb_43p3hBTcK_bIe7E3wntSatdmVW8DaB4tw8s0UM" />
     <style>
+
+
+        /* 1. El menú oculto por defecto */
+.dropdown-menu {
+  display: none !important; /* Se mantiene escondido */
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  background-color: #111111 !important;
+  border-top: 2px solid #ff0000 !important;
+  list-style: none !important;
+  padding: 5px 0 !important;
+  z-index: 99999 !important;
+  min-width: 250px !important;
+  flex-direction: column !important;
+}
+
+/* 2. ESTA ES LA ÚNICA REGLA QUE DEBE MOSTRAR EL MENÚ */
+/* Se activa solo cuando el JavaScript añade la clase al hacer clic */
+.dropdown-menu.mostrar-menu {
+  display: flex !important;
+}
         /* Fuerza a las tres palabras principales a estar en una sola línea horizontal */
 .menu-links {
   display: flex !important;
@@ -1139,22 +1161,5 @@ function mostrarMenuTelefono(event) {
     }
 }
 
-    <script>
-  // 1. Buscamos el enlace de "Autóeladás" y la caja del submenú
-  const btnAutonavegacion = document.querySelector('.dropdown > a');
-  const menuDesplegableCaja = document.querySelector('.dropdown-menu');
-
-  if (btnAutonavegacion && menuDesplegableCaja) {
-    // 2. Al hacer clic en Autóeladás, abrimos o cerramos el menú
-    btnAutonavegacion.addEventListener('click', function(evento) {
-      evento.preventDefault();
-      evento.stopPropagation(); // Evita que el clic se propague al resto de la pantalla
-      menuDesplegableCaja.classList.toggle('mostrar-menu');
-    });
-
-    // 3. Al hacer clic en CUALQUIER otra parte de la pantalla, el menú se esconde
-    document.addEventListener('click', function() {
-      menuDesplegableCaja.classList.remove('mostrar-menu');
-    });
-  }
+   
 </script>
