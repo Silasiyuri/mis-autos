@@ -6,7 +6,55 @@
     <title>Autóvásárlás & Eladás | Használt Autók Kínálata Felvásárlás</title>
     <meta name="google-site-verification" content="JbQb_43p3hBTcK_bIe7E3wntSatdmVW8DaB4tw8s0UM" />
     <style>
+/* =======================================================
+   REPARACIÓN: MENÚ EN UNA SOLA LÍNEA DEBAJO DEL LOGO
+   ======================================================= */
 
+/* 1. Contenedor principal: Cambia a columna en móviles para bajar el menú */
+header, .header-container {
+  display: flex !important;
+  flex-direction: column !important; /* El logo va arriba y el menú baja */
+  align-items: center !important;    /* Centra el logo y el menú en el teléfono */
+  gap: 12px !important;              /* Espacio de separación entre el logo y las letras */
+  width: 100% !important;
+  padding: 15px 10px !important;
+  background-color: #111111;
+}
+
+/* 2. El navegador: Asegura que ocupe todo el ancho para centrar los enlaces */
+nav {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+/* 3. Las tres palabras principales: En una sola fila perfecta de lado a lado */
+.menu-links {
+  display: flex !important;
+  flex-direction: row !important;    /* Obliga a ir uno al lado del otro */
+  flex-wrap: nowrap !important;      /* Prohíbe terminantemente que Kapcsolat se baje */
+  justify-content: center !important;/* Centra las palabras debajo del logo */
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 20px !important;              /* Espacio de separación entre las tres palabras */
+}
+
+/* 4. Evita rupturas de texto */
+.menu-links li {
+  position: relative !important;
+  white-space: nowrap !important;    /* Impide que las palabras se corten a la mitad */
+}
+
+/* 5. Ajuste del submenú flotante desplegable */
+.dropdown-menu {
+  position: absolute !important;
+  top: 100% !important;              /* Se abre exactamente abajo de Autóeladás */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  min-width: 260px !important;       /* Espacio para los textos largos internos */
+  z-index: 99999 !important;
+}
 
         /* 1. El menú oculto por defecto */
 .dropdown-menu {
