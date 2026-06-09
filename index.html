@@ -6,6 +6,75 @@
     <title>Autóvásárlás & Eladás | Használt Autók Kínálata Felvásárlás</title>
     <meta name="google-site-verification" content="JbQb_43p3hBTcK_bIe7E3wntSatdmVW8DaB4tw8s0UM" />
     <style>
+
+        /* El menú principal se mantiene horizontal en la barra negra */
+.menu-links {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 25px;
+  align-items: center;
+}
+
+.menu-links li {
+  position: relative; /* Permite posicionar el submenú exactamente debajo */
+}
+
+/* =======================================================
+   ESTILOS PARA EL DESPLEGABLE EN COLUMNA VERTICAL 
+   ======================================================= */
+.dropdown-menu {
+  display: none;                     /* Se mantiene oculto al inicio */
+  position: absolute;
+  top: 100%;                         /* Se abre justo DEBAJO de Autóeladás */
+  left: 50%;                         /* Centra el menú flotante */
+  transform: translateX(-50%);
+  background-color: #111111;         /* Color negro igual a tu barra */
+  list-style: none !important;
+  padding: 10px 0 !important;
+  margin: 0 !important;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  z-index: 9999;                     /* Flota por encima del banner de la llave */
+  min-width: 240px;                  /* Da ancho para que no se rompan las frases */
+  
+  /* ESTO FUERZA A QUE LAS OPCIONES ESTÉN UNA DEBAJO DE LA OTRA */
+  display: flex !important;
+  flex-direction: column !important; /* Alineación estricta en una sola columna vertical */
+}
+
+/* Ocultamos el diseño flex vertical por defecto para que funcione el Hover */
+.menu-links .dropdown-menu {
+  display: none !important;
+}
+
+/* MÁGIA: Al pasar el mouse por encima de Autóeladás, se activa la columna vertical */
+.dropdown:hover .dropdown-menu {
+  display: flex !important;
+}
+
+/* Estilo de los enlaces internos del menú desplegable */
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap; /* Evita que el texto largo se rompa internamente */
+}
+
+/* Cambio de color a rojo al pasar el cursor (combina con tu línea roja) */
+.dropdown-menu li a:hover {
+  background-color: #ff0000; 
+}
 /* Alineación del menú principal en una sola fila horizontal */
   .menu-links {
     display: flex !important;
@@ -450,17 +519,24 @@
     <div style="display: flex; align-items: center; gap: clamp(15px, 3vw, 30px); position: relative; flex-wrap: wrap;">
         
         <a href="index.html" style="color: white; text-decoration: none; font-weight: bold; font-size: clamp(14px, 4vw, 16px); white-space: nowrap;">Kezdőlap</a>
-<!-- MÓDULO AUTÓELADÁS -->
-<div class="dropdown-container" style="position: relative;">
-    <a href="#" id="boton-autoeladas" class="dropdown-trigger">Autóeladás</a>
-
-<!-- Reemplaza la etiqueta de tu menú desplegable por esta -->
-<ul id="menu-desplegable" class="dropdown-menu" style="white-space: nowrap; position: absolute; top: 100%; left: -50px; right: auto; min-width: 260px; background-color: #111111; list-style: none; padding: 10px; z-index: 1000;">
-    <li><a href="index.html#eladas">Autó Felvásárlás Készpénzért</a></li>
-    <li><a href="pro6.html">Autóvétel Készpénzért</a></li>
-    <li><a href="index3.html">Roncsautó Felvásárlás</a></li>
-</ul>
-</div>
+<nav>
+  <ul class="menu-links">
+    <li><a href="#kezdolap">Kezdőlap</a></li>
+    
+    <!-- La palabra "Autóeladás" ahora envuelve al submenú -->
+    <li class="dropdown">
+      <a href="#autoeladas" class="dropdown-toggle">Autóeladás ▾</a>
+      
+      <!-- Este es el submenú oculto que se abre en una columna vertical abajo -->
+      <ul class="dropdown-menu">
+        <li><a href="#felvasarlas">Autó Felvásárlás Készpénzért</a></li>
+        <li><a href="#autovetel">Autóvétel</a></li>
+      </ul>
+    </li>
+    
+    <li><a href="#kapcsolat">Kapcsolat</a></li>
+  </ul>
+</nav>
         
         <!-- MÓDULO KAPCSOLAT -->
         <div style="position: relative; display: inline-block;">
