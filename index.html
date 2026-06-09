@@ -519,25 +519,16 @@
     <div style="display: flex; align-items: center; gap: clamp(15px, 3vw, 30px); position: relative; flex-wrap: wrap;">
         
         <a href="index.html" style="color: white; text-decoration: none; font-weight: bold; font-size: clamp(14px, 4vw, 16px); white-space: nowrap;">Kezdőlap</a>
-<nav>
-  <ul class="menu-links">
-  <!-- 1. Primer elemento: Solo uno -->
-  <li><a href="#kezdolap">Kezdőlap</a></li>
-  
-  <!-- 2. Segundo elemento: El desplegable con la columna adentro -->
-  <li class="dropdown">
-    <a href="#autoeladas">Autóeladás ▾</a>
-    <ul class="dropdown-menu">
-      <li><a href="#felvasarlas">Autó Felvásárlás Készpénzért</a></li>
-      <li><a href="#autovetel">Autóvétel Készpénzért</a></li>
-        <li><a href="#autovetel">Roncsautó Felvásárlás</a></li>
-    </ul>
-  </li>
-  
-  <!-- 3. Tercer elemento: Solo uno -->
-  <li><a href="#kapcsolat">Kapcsolat</a></li>
+<div class="dropdown-container" style="position: relative;">
+    <a href="#" id="boton-autoeladas" class="dropdown-trigger">Autóeladás</a>
+
+<!-- Reemplaza la etiqueta de tu menú desplegable por esta -->
+<ul id="menu-desplegable" class="dropdown-menu" style="white-space: nowrap; position: absolute; top: 100%; left: -50px; right: auto; min-width: 260px; background-color: #111111; list-style: none; padding: 10px; z-index: 1000;">
+    <li><a href="index.html#eladas">Autó Felvásárlás Készpénzért</a></li>
+    <li><a href="pro6.html">Autóvétel Készpénzért</a></li>
+    <li><a href="index3.html">Roncsautó Felvásárlás</a></li>
 </ul>
-</nav>
+</div>
         
         <!-- MÓDULO KAPCSOLAT -->
         <div style="position: relative; display: inline-block;">
