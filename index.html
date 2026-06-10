@@ -12,6 +12,37 @@
     position: relative;
     display: inline-block;
 }
+        .tiene-submenu {
+    position: relative; /* Base para el posicionamiento del hijo */
+}
+
+.submenu-flotante {
+    position: absolute;
+    top: 100%;             /* Se ubica exactamente debajo */
+    left: 0;
+    
+    display: none;         /* Oculto por defecto */
+    flex-direction: column;/* Fuerza la estructura de una sola columna */
+    
+    background-color: #111;/* Ajusta al color negro de tu barra */
+    min-width: 160px;
+    padding: 10px 0;
+    z-index: 999;          /* Flota por encima de las imágenes del catálogo */
+    list-style: none;
+}
+
+/* Esta clase se añadirá con JavaScript al hacer clic */
+.submenu-flotante.mostrar {
+    display: flex;         /* Se muestra en pantalla manteniendo la columna */
+}
+
+/* Estilo rápido para los enlaces internos del menú flotante */
+.submenu-flotante li a {
+    display: block;
+    padding: 8px 15px;
+    color: white;
+    text-decoration: none;
+}
 
 /* El menú flotante que aparece abajo */
 .dropdown-menu {
@@ -803,6 +834,22 @@ function mostrarMenuTelefono(event) {
         x.style.display = "none";
     }
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const btnAutoeladas = document.getElementById("btn-autoeladas");
+    const menuDesplegable = document.getElementById("menu-desplegable");
 
+    // Al hacer clic en Autóeladás, alterna la clase 'mostrar'
+    btnAutoeladas.addEventListener("click", (e) => {
+        e.preventDefault(); // Evita que la página salte al inicio por el '#'
+        menuDesplegable.classList.toggle("mostrar");
+    });
+
+    // Opcional: Cierra el menú si se hace clic fuera de él
+    document.addEventListener("click", (e) => {
+        if (!btnAutoeladas.contains(e.target) && !menuDesplegable.contains(e.target)) {
+            menuDesplegable.classList.remove("mostrar");
+        }
+    });
+});
    
 </script>
