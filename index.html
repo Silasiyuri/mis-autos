@@ -461,18 +461,17 @@
   
   <!-- RECUADRO GRANDE -->
   <div style="width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f9f9f9; border-radius: 8px; margin-bottom: 12px;">
-    <!-- CORREGIDO: Se eliminó la extensión duplicada .jpg.jpg -->
-    <img class="foto-principal" src="auto.jpg" alt="Auto" style="max-width: 100%; max-height: 100%; object-fit: cover;">
+    <img id="foto-principal" src="auto.jpg" alt="Auto" style="max-width: 100%; max-height: 100%; object-fit: cover;">
   </div>
 
   <!-- RECUADRO DE IMÁGENES PEQUEÑAS -->
   <div style="display: flex; gap: 6px; justify-content: center; margin-bottom: 8px;">
-    <img class="miniatura" src="bmw.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid #007bff; border-radius: 4px;">
-    <img class="miniatura" src="Audi2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
-    <img class="miniatura" src="bmw2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
-    <img class="miniatura" src="Audi2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
-    <img class="miniatura" src="Audi2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
-    <img class="miniatura" src="bmw2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
+    <img class="miniatura-auto" src="bmw.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid #007bff; border-radius: 4px;">
+    <img class="miniatura-auto" src="Audi2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
+    <img class="miniatura-auto" src="bmw2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
+    <img class="miniatura-auto" src="Audi2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
+    <img class="miniatura-auto" src="Audi2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
+    <img class="miniatura-auto" src="bmw2.jpg" style="width: 45px; height: 35px; object-fit: cover; cursor: pointer; border: 2px solid transparent; border-radius: 4px;">
   </div>
 
   <!-- TEXTOS Y PRECIO -->
@@ -480,24 +479,27 @@
   <p style="color: #d9534f; font-weight: bold; margin: 5px 0; font-size: 18px; font-family: sans-serif;">6 000 000 Ft</p>
 </div>
 
-<!-- Lógica en JavaScript corregida y limpia -->
 <script>
-  const todasLasFotos = document.querySelectorAll('.miniatura');
-  const imagenGrande = document.querySelector('.foto-principal');
+  // Este evento asegura que el código corra solo cuando el HTML esté listo
+  document.addEventListener("DOMContentLoaded", function() {
+    const miniaturas = document.querySelectorAll('.miniatura-auto');
+    const imagenGrande = document.getElementById('foto-principal');
 
-  todasLasFotos.forEach(foto => {
-    foto.addEventListener('click', function() {
-      // 1. Cambia la foto grande por la pequeña que tocaste
-      imagenGrande.src = this.src;
-
-      // 2. Quita el borde azul a todas las miniaturas
-      todasLasFotos.forEach(f => f.style.border = '2px solid transparent');
-
-      // 3. Pon el borde azul solo a la miniatura clickeada
-      this.style.border = '2px solid #007bff';
-    });
+    if (miniaturas.length > 0 && imagenGrande) {
+      miniaturas.forEach(foto => {
+        foto.addEventListener('click', function() {
+          imagenGrande.src = this.src;
+          
+          // Limpiar bordes
+          miniaturas.forEach(f => f.style.border = '2px solid transparent');
+          // Añadir borde a la activa
+          this.style.border = '2px solid #007bff';
+        });
+      });
+    }
   });
 </script>
+
 
              <!-- 1 TARJETA AUTO -->
 <div class="tarjeta-auto" style="border: 1px solid #e0e0e0; padding: 15px; border-radius: 12px; text-align: center; background: white; max-width: 380px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin: 15px auto;">
