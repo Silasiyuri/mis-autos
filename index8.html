@@ -643,17 +643,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-document.addEventListener('click', function(event) {
-  const elementoNumero = document.querySelector('Tel:+36 20 390 065 39
-                                            '); // Cambia por tu clase real
-  const botonMenu = document.querySelector('Kapcsolat'); // El botón que abre el número
-
-  // Si el clic NO fue dentro del número ni del botón que lo abre
-  if (!elementoNumero.contains(event.target) && !botonMenu.contains(event.target)) {
-    elementoNumero.style.display = 'none'; // Oculta el elemento
-    // O también puedes remover una clase activa: elementoNumero.classList.remove('show');
-  }
-});
 
                 
 </script>
