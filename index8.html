@@ -573,29 +573,44 @@ opcionUno.addEventListener('click', function(event) {
 
 
 
-// 1. Esta función abre el menú al hacer clic en "Kapcsolat"
+// 1. FUNCIÓN QUE ABRE EL MENÚ AL TOCAR "KAPCSOLAT"
 function mostrarMenuTelefono(event) {
+    // Evitamos que la página salte al hacer clic en el '#'
     event.preventDefault();
     
-    // Usamos setTimeout de 0 milisegundos para separar la apertura del cierre global
-    setTimeout(() => {
-        const caja = document.getElementById('caja-telefono');
-        if (caja) {
-            caja.style.display = 'block';
+    const caja = document.getElementById('caja-telefono');
+    if (caja) {
+        // Si está oculta, la muestra; si ya está visible, la quita
+        if (caja.style.display === 'block') {
+            caja.style.setProperty('display', 'none', 'important');
+        } else {
+            caja.style.setProperty('display', 'block', 'important');
         }
-    }, 0);
+    }
 }
 
-// 2. DETECTOR ABSOLUTO: Oculta el teléfono al tocar CUALQUIER PARTE de la pantalla
-document.addEventListener('click', function() {
-    const caja = document.getElementById('caja-telefono');
-    
-    // Si la caja está abierta, se oculta inmediatamente toques donde toques
-    if (caja && caja.style.display === 'block') {
-        caja.style.display = 'none';
-    }
-});
+// 2. DETECTOR ABSOLUTO (BLINDADO): Oculta el teléfono al tocar CUALQUIER PARTE de la pantalla
+// Usamos una función autoejecutable para que responda al instante
+(function() {
+    const ocultarAlTocarPantalla = function(event) {
+        const caja = document.getElementById('caja-telefono');
+        
+        // Si la caja existe y está visible en la pantalla
+        if (caja && caja.style.display === 'block') {
+            
+            // BUSCAMOS EL BOTÓN "KAPCSOLAT"
+            // Si el usuario tocó cualquier parte de la pantalla QUE NO SEA el botón de abrir...
+            if (event.target.getAttribute('onclick') !== 'mostrarMenuTelefono(event)') {
+                // Forzamos la desaparición absoluta del recuadro
+                caja.style.setProperty('display', 'none', 'important');
+            }
+        }
+    };
 
+    // 'true' obliga al navegador a ejecutar este cierre ANTES que cualquier otro script de tu página
+    window.addEventListener('click', ocultarAlTocarPantalla, true);
+    window.addEventListener('pointerdown', ocultarAlTocarPantalla, true); // Especial para pantallas táctiles de celulares
+})();
 
 
     
