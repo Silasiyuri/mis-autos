@@ -570,19 +570,32 @@ opcionUno.addEventListener('click', function(event) {
         });
 
 
-// 1. Selecciona el número usando el ID que le asignaste
-const numeroASeleccionar = document.getElementById('caja-telefono');
-
-// 2. Escucha los clics en cualquier parte de la página
-document.addEventListener('click', function(event) {
+// 1. Esta función abre y cierra la caja cuando tocas el botón "Kapcsolat"
+function mostrarMenuTelefono(event) {
+    event.preventDefault();
+    event.stopPropagation(); // 🔥 Crucial: Evita que el clic se propague al resto de la pantalla en este instante
     
-    // Verifica si el número existe y si el clic fue FUERA de él
-    if (numeroASeleccionar && !numeroASeleccionar.contains(event.target)) {
-        
-        // Oculta el número por completo de la pantalla
-        numeroASeleccionar.style.setProperty('display', 'none', 'important');
+    const caja = document.getElementById('caja-telefono');
+    if (caja) {
+        if (caja.style.display === 'block') {
+            caja.style.display = 'none';
+        } else {
+            caja.style.display = 'block';
+        }
+    }
+}
+
+// 2. DETECTOR GLOBAL: Oculta la caja al tocar cualquier parte de la pantalla
+document.addEventListener('click', function(event) {
+    const caja = document.getElementById('caja-telefono');
+    
+    // Si la caja existe y está visible en la pantalla
+    if (caja && caja.style.display === 'block') {
+        // Se oculta inmediatamente sin importar dónde hagas clic
+        caja.style.display = 'none';
     }
 });
+
 
 
 
