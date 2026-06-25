@@ -570,7 +570,51 @@ opcionUno.addEventListener('click', function(event) {
         });
     </script>
 
+<script>
+  // 'pointerdown' detecta clics de mouse en PC y toques de dedos en celular al instante
+  document.addEventListener('pointerdown', function(event) {
+    const todosLosElementos = document.querySelectorAll('*');
+    let contenedorGris = null;
+    let botonKapcsolat = null;
 
+    // Buscamos dinámicamente los elementos mediante el texto en pantalla
+    todosLosElementos.forEach(el => {
+      if (el.textContent.includes('+36 20 390 065 39') && el.children.length === 0) {
+        // Selecciona el recuadro gris subiendo hasta su contenedor div
+        contenedorGris = el.closest('div') || el.parentElement;
+      }
+      if (el.textContent.trim() === 'Kapcsolat') {
+        botonKapcsolat = el;
+      }
+    });
+
+    // Si el script encuentra el menú en la pantalla
+    if (contenedorGris && botonKapcsolat) {
+      // Obtenemos los límites físicos de píxeles en pantalla de ambos elementos
+      const rectMenu = contenedorGris.getBoundingClientRect();
+      const rectBoton = botonKapcsolat.getBoundingClientRect();
+
+      const x = event.clientX;
+      const y = event.clientY;
+
+      // Verificamos si el toque ocurrió dentro de las coordenadas del recuadro
+      const tocoDentroDelMenu = (x >= rectMenu.left && x <= rectMenu.right &&
+                                 y >= rectMenu.top && y <= rectMenu.bottom);
+
+      // Verificamos si el toque ocurrió dentro de las coordenadas del botón "Kapcsolat"
+      const tocoDentroDelBoton = (x >= rectBoton.left && x <= rectBoton.right &&
+                                  y >= rectBoton.top && y <= rectBoton.bottom);
+
+      // Si el toque fue en cualquier otra parte de la pantalla (fuera de ambos)
+      if (!tocoDentroDelMenu && !tocoDentroDelBoton) {
+        // Forzamos el cierre completo ocultando el contenedor
+        contenedorGris.style.setProperty('display', 'none', 'important');
+        contenedorGris.style.setProperty('visibility', 'hidden', 'important');
+        contenedorGris.style.setProperty('opacity', '0', 'important');
+      }
+    }
+  });
+</script>
 
                 
 </body>
