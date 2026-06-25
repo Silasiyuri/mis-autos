@@ -642,6 +642,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 500); // Pequeña pausa para asegurar que la página cargó bien
     }
 });
+
+document.addEventListener('click', function(event) {
+  const elementoNumero = document.querySelector('.tu-clase-del-numero'); // Cambia por tu clase real
+  const botonMenu = document.querySelector('.tu-clase-del-boton'); // El botón que abre el número
+
+  // Si el clic NO fue dentro del número ni del botón que lo abre
+  if (!elementoNumero.contains(event.target) && !botonMenu.contains(event.target)) {
+    elementoNumero.style.display = 'none'; // Oculta el elemento
+    // O también puedes remover una clase activa: elementoNumero.classList.remove('show');
+  }
+});
+
+                
 </script>
                     </div>
             <!-- Pie de página final con Copyright -->
