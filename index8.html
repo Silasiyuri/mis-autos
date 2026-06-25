@@ -431,26 +431,39 @@ function cerrarVentanas() {
 
 <!-- A két funkciót vezérlő JavaScript kód -->
 <script>
-// 1. Funkció: Autóeladás ablakok megjelenítése
-function mostrarSeisVentanas(event) {
-    event.preventDefault();
-    document.getElementById('contenedor-flotantes').style.display = 'flex';
-}
-
-function cerrarVentanas() {
-    document.getElementById('contenedor-flotantes').style.display = 'none';
-}
-
-// 2. Funkció: Kapcsolat lenyíló menü (nem keveredik az autóeladással!)
+// 1. ESTA FUNCIÓN SÓLO ABRE LA CAJA CUANDO TOCAS "KAPCSOLAT"
 function mostrarMenuTelefono(event) {
+    // Evita que la página salte hacia arriba
     event.preventDefault();
-    var x = document.getElementById("caja-telefono");
-    if (x.style.display === "none" || x.style.display === "") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
+    
+    // 🔥 ESTA LÍNEA ES LA CLAVE: Detiene el clic aquí para que la pantalla no intente cerrarlo al mismo tiempo
+    event.stopPropagation(); 
+    
+    const caja = document.getElementById('caja-telefono');
+    if (caja) {
+        // Si está oculta la muestra, si está abierta la cierra
+        if (caja.style.display === 'block') {
+            caja.style.display = 'none';
+        } else {
+            caja.style.display = 'block';
+        }
     }
 }
+
+// 2. DETECTOR DE PANTALLA: Oculta la caja al tocar CUALQUIER otra parte de la pantalla
+document.addEventListener('click', function(event) {
+    const caja = document.getElementById('caja-telefono');
+    
+    // Si la caja está abierta en la pantalla
+    if (caja && caja.style.display === 'block') {
+        // Se oculta inmediatamente al tocar cualquier lado
+        caja.style.display = 'none';
+    }
+});
+
+}
+
+    
 </script>
     <script>
 function mostrarSeisVentanas(event) {
