@@ -571,40 +571,51 @@ opcionUno.addEventListener('click', function(event) {
     </script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    
-    // 1. Buscamos el botón "Kapcsolat" y el menú buscando por su texto en la pantalla
+  document.addEventListener('click', function(event) {
+    // 1. Buscamos el recuadro gris que contiene el número de teléfono
+    const elementos = document.querySelectorAll('*');
+    let cuadroGris = null;
     let botonKapcsolat = null;
-    let menuNumero = null;
 
-    document.querySelectorAll('*').forEach(el => {
+    elementos.forEach(el => {
+      // Identifica el número de teléfono por su texto
+      if (el.textContent.includes('+36 20 390 065 39') && el.children.length === 0) {
+        // Selecciona el contenedor gris completo (subiendo al div más cercano)
+        cuadroGris = el.closest('div') || el.parentElement;
+      }
+      // Identifica el botón Kapcsolat por su texto
       if (el.textContent.trim() === 'Kapcsolat') {
         botonKapcsolat = el;
       }
-      if (el.textContent.includes('+36 20 390 065 39') && el.children.length === 0) {
-        // Buscamos el contenedor gris (subiendo un nivel)
-        menuNumero = el.closest('div') || el.parentElement;
-      }
     });
 
-    // 2. Escuchamos los clics en toda la pantalla
-    document.addEventListener('click', function(event) {
-      if (!menuNumero) return; // Si no encuentra el menú, no hace nada
+    // 2. Si ambos elementos existen en la pantalla
+    if (cuadroGris && botonKapcsolat) {
+      // Obtenemos la posición exacta en pantalla del cuadro gris y del botón
+      const posicionCuadro = cuadroGris.getBoundingClientRect();
+      const posicionBoton = botonKapcsolat.getBoundingClientRect();
 
-      // Verificamos si el clic fue DENTRO del botón o DENTRO del menú
-      const clicEnBoton = botonKapcsolat && botonKapcsolat.contains(event.target);
-      const clicEnMenu = menuNumero.contains(event.target);
+      // Coordenadas X e Y de donde el usuario hizo clic
+      const clickX = event.clientX;
+      const clickY = event.clientY;
 
-      // Si el clic fue en cualquier OTRA parte, forzamos su desaparición
-      if (!clicEnBoton && !clicEnMenu) {
-        menuNumero.style.setProperty('display', 'none', 'important');
+      // Verificamos si el clic cayó DENTRO del cuadro gris
+      const dentroDelCuadro = (clickX >= posicionCuadro.left && clickX <= posicionCuadro.right &&
+                               clickY >= posicionCuadro.top && clickY <= posicionCuadro.bottom);
+
+      // Verificamos si el clic cayó DENTRO del botón Kapcsolat
+      const dentroDelBoton = (clickX >= posicionBoton.left && clickX <= posicionBoton.right &&
+                              clickY >= posicionBoton.top && clickY <= posicionBoton.bottom);
+
+      // Si el usuario hizo clic FUERA de ambos, escondemos el cuadro gris por la fuerza
+      if (!dentroDelCuadro && !dentroDelBoton) {
+        cuadroGris.style.setProperty('display', 'none', 'important');
+        cuadroGris.style.setProperty('visibility', 'hidden', 'important');
+        cuadroGris.style.setProperty('opacity', '0', 'important');
       }
-    });
-
-  }); // <-- Esta es la llave y paréntesis que faltaban y rompedían tu código
+    }
+  });
 </script>
-
-
 
                 
 </body>
