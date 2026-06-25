@@ -568,6 +568,25 @@ opcionUno.addEventListener('click', function(event) {
                 });
             }
         });
+
+
+// 1. Selecciona el número usando el ID que le asignaste
+const numeroASeleccionar = document.getElementById('caja-telefono');
+
+// 2. Escucha los clics en cualquier parte de la página
+document.addEventListener('click', function(event) {
+    
+    // Verifica si el número existe y si el clic fue FUERA de él
+    if (numeroASeleccionar && !numeroASeleccionar.contains(event.target)) {
+        
+        // Oculta el número por completo de la pantalla
+        numeroASeleccionar.style.setProperty('display', 'none', 'important');
+    }
+});
+
+
+
+    
     </script>
 
 
