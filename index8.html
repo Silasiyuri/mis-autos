@@ -451,7 +451,15 @@ function mostrarMenuTelefono(event) {
         x.style.display = "none";
     }
 }
-   
+  // 3. DETECTOR GLOBAL: Oculta el número al tocar cualquier otra parte de la pantalla
+document.addEventListener('click', function(event) {
+    var x = document.getElementById("caja-telefono");
+    
+    // Si la caja está abierta, se ocultará al tocar cualquier parte de la pantalla
+    if (x && x.style.display === "block") {
+        x.style.display = "none";
+    }
+}); 
 </script>
     <script>
 function mostrarSeisVentanas(event) {
