@@ -573,45 +573,35 @@ opcionUno.addEventListener('click', function(event) {
 
 
 
-// 1. FUNCIÓN QUE ABRE EL MENÚ AL TOCAR "KAPCSOLAT"
+// 1. ESTA FUNCIÓN SÓLO ABRE LA CAJA CUANDO TOCAS "KAPCSOLAT"
 function mostrarMenuTelefono(event) {
-    // Evitamos que la página salte al hacer clic en el '#'
+    // Evita que la página salte hacia arriba
     event.preventDefault();
+    
+    // 🔥 ESTA LÍNEA ES LA CLAVE: Detiene el clic aquí para que la pantalla no intente cerrarlo al mismo tiempo
+    event.stopPropagation(); 
     
     const caja = document.getElementById('caja-telefono');
     if (caja) {
-        // Si está oculta, la muestra; si ya está visible, la quita
+        // Si está oculta la muestra, si está abierta la cierra
         if (caja.style.display === 'block') {
-            caja.style.setProperty('display', 'none', 'important');
+            caja.style.display = 'none';
         } else {
-            caja.style.setProperty('display', 'block', 'important');
+            caja.style.display = 'block';
         }
     }
 }
 
-// 2. DETECTOR ABSOLUTO (BLINDADO): Oculta el teléfono al tocar CUALQUIER PARTE de la pantalla
-// Usamos una función autoejecutable para que responda al instante
-(function() {
-    const ocultarAlTocarPantalla = function(event) {
-        const caja = document.getElementById('caja-telefono');
-        
-        // Si la caja existe y está visible en la pantalla
-        if (caja && caja.style.display === 'block') {
-            
-            // BUSCAMOS EL BOTÓN "KAPCSOLAT"
-            // Si el usuario tocó cualquier parte de la pantalla QUE NO SEA el botón de abrir...
-            if (event.target.getAttribute('onclick') !== 'mostrarMenuTelefono(event)') {
-                // Forzamos la desaparición absoluta del recuadro
-                caja.style.setProperty('display', 'none', 'important');
-            }
-        }
-    };
-
-    // 'true' obliga al navegador a ejecutar este cierre ANTES que cualquier otro script de tu página
-    window.addEventListener('click', ocultarAlTocarPantalla, true);
-    window.addEventListener('pointerdown', ocultarAlTocarPantalla, true); // Especial para pantallas táctiles de celulares
-})();
-
+// 2. DETECTOR DE PANTALLA: Oculta la caja al tocar CUALQUIER otra parte de la pantalla
+document.addEventListener('click', function(event) {
+    const caja = document.getElementById('caja-telefono');
+    
+    // Si la caja está abierta en la pantalla
+    if (caja && caja.style.display === 'block') {
+        // Se oculta inmediatamente al tocar cualquier lado
+        caja.style.display = 'none';
+    }
+});
 
     
     </script>
