@@ -579,7 +579,7 @@ opcionUno.addEventListener('click', function(event) {
 
     // Buscamos dinámicamente los elementos mediante el texto en pantalla
     todosLosElementos.forEach(el => {
-      if (el.textContent.includes('+36 20 390 065 39') && el.children.length === 0) {
+      if (el.textContent.includes('Tel:+36 20 390 065 39') && el.children.length === 0) {
         // Selecciona el recuadro gris subiendo hasta su contenedor div
         contenedorGris = el.closest('div') || el.parentElement;
       }
