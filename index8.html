@@ -572,28 +572,37 @@ opcionUno.addEventListener('click', function(event) {
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // 1. Seleccionamos el botón "Kapcsolat" y el recuadro del número
-    // (Asegúrate de cambiar estos selectores si tus clases son diferentes)
-    const botonKapcsolat = document.querySelector('.kapcsolat-btn') || document.evaluate("//text()[contains(., 'Kapcsolat')]", document, null, XPathResult.ANY_TYPE, null).iterateNext()?.parentElement;
-    const menuNumero = document.querySelector('.dropdown-tel') || document.querySelector('a[href^="tel:"]')?.parentElement;
+    
+    // 1. Buscamos el botón "Kapcsolat" y el menú buscando por su texto en la pantalla
+    let botonKapcsolat = null;
+    let menuNumero = null;
+
+    document.querySelectorAll('*').forEach(el => {
+      if (el.textContent.trim() === 'Kapcsolat') {
+        botonKapcsolat = el;
+      }
+      if (el.textContent.includes('+36 20 390 065 39') && el.children.length === 0) {
+        // Buscamos el contenedor gris (subiendo un nivel)
+        menuNumero = el.closest('div') || el.parentElement;
+      }
+    });
 
     // 2. Escuchamos los clics en toda la pantalla
     document.addEventListener('click', function(event) {
-      
-      // Si el menú está visible
-      if (menuNumero && menuNumero.style.display !== 'none') {
-        
-        // Verificamos si el clic fue FUERA del botón y FUERA del menú del número
-        const clicEnBoton = botonKapcsolat && botonKapcsolat.contains(event.target);
-        const clicEnMenu = menuNumero && menuNumero.contains(event.target);
+      if (!menuNumero) return; // Si no encuentra el menú, no hace nada
 
-        if (!clicEnBoton && !clicEnMenu) {
-          menuNumero.style.display = 'none'; // Oculta el recuadro gris del número
-        }
+      // Verificamos si el clic fue DENTRO del botón o DENTRO del menú
+      const clicEnBoton = botonKapcsolat && botonKapcsolat.contains(event.target);
+      const clicEnMenu = menuNumero.contains(event.target);
+
+      // Si el clic fue en cualquier OTRA parte, forzamos su desaparición
+      if (!clicEnBoton && !clicEnMenu) {
+        menuNumero.style.setProperty('display', 'none', 'important');
       }
     });
-  </script>
 
+  }); // <-- Esta es la llave y paréntesis que faltaban y rompedían tu código
+</script>
 
 
 
