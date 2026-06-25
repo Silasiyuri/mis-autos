@@ -573,6 +573,28 @@ opcionUno.addEventListener('click', function(event) {
 
 
 
+// 1. Esta función abre el menú al hacer clic en "Kapcsolat"
+function mostrarMenuTelefono(event) {
+    event.preventDefault();
+    
+    // Usamos setTimeout de 0 milisegundos para separar la apertura del cierre global
+    setTimeout(() => {
+        const caja = document.getElementById('caja-telefono');
+        if (caja) {
+            caja.style.display = 'block';
+        }
+    }, 0);
+}
+
+// 2. DETECTOR ABSOLUTO: Oculta el teléfono al tocar CUALQUIER PARTE de la pantalla
+document.addEventListener('click', function() {
+    const caja = document.getElementById('caja-telefono');
+    
+    // Si la caja está abierta, se oculta inmediatamente toques donde toques
+    if (caja && caja.style.display === 'block') {
+        caja.style.display = 'none';
+    }
+});
 
 
 
