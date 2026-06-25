@@ -569,6 +569,35 @@ opcionUno.addEventListener('click', function(event) {
             }
         });
     </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. Seleccionamos el botón "Kapcsolat" y el recuadro del número
+    // (Asegúrate de cambiar estos selectores si tus clases son diferentes)
+    const botonKapcsolat = document.querySelector('.kapcsolat-btn') || document.evaluate("//text()[contains(., 'Kapcsolat')]", document, null, XPathResult.ANY_TYPE, null).iterateNext()?.parentElement;
+    const menuNumero = document.querySelector('.dropdown-tel') || document.querySelector('a[href^="tel:"]')?.parentElement;
+
+    // 2. Escuchamos los clics en toda la pantalla
+    document.addEventListener('click', function(event) {
+      
+      // Si el menú está visible
+      if (menuNumero && menuNumero.style.display !== 'none') {
+        
+        // Verificamos si el clic fue FUERA del botón y FUERA del menú del número
+        const clicEnBoton = botonKapcsolat && botonKapcsolat.contains(event.target);
+        const clicEnMenu = menuNumero && menuNumero.contains(event.target);
+
+        if (!clicEnBoton && !clicEnMenu) {
+          menuNumero.style.display = 'none'; // Oculta el recuadro gris del número
+        }
+      }
+    });
+  </script>
+
+
+
+
+                
 </body>
 </html>
 <script>
