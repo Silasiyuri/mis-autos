@@ -600,27 +600,38 @@ function cerrarVentanas() {
 
 <!-- A két funkciót vezérlő JavaScript kód -->
 <script>
-// 1. Funkció: Autóeladás ablakok megjelenítése
-function mostrarSeisVentanas(event) {
-    event.preventDefault();
-    document.getElementById('contenedor-flotantes').style.display = 'flex';
-}
-
-function cerrarVentanas() {
-    document.getElementById('contenedor-flotantes').style.display = 'none';
-}
-
-// 2. Funkció: Kapcsolat lenyíló menü (nem keveredik az autóeladással!)
-function mostrarMenuTelefono(event) {
-    event.preventDefault();
-    var x = document.getElementById("caja-telefono");
-    if (x.style.display === "none" || x.style.display === "") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
+  // 1. Función que Abre y Cierra el menú al tocar el botón Kapcsolat
+  function mostrarMenuTelefono(event) {
+    event.preventDefault();    // Evita que la página salte hacia arriba
+    event.stopPropagation();   // DETIENE EL CLIC para que no active el cierre automático
+    
+    const caja = document.getElementById('caja-telefono');
+    if (caja) {
+      // Si está escondido lo muestra, si está visible lo esconde
+      if (caja.style.display === 'none' || caja.style.display === '') {
+        caja.style.display = 'block';
+      } else {
+        caja.style.display = 'none';
+      }
     }
-}
+  }
+
+  // 2. DETECTOR GLOBAL: Oculta el menú al tocar CUALQUIER otra parte de la pantalla
+  // Usamos 'pointerdown' porque reacciona al instante tanto en PC como en pantallas táctiles de celulares
+  document.addEventListener('pointerdown', function(event) {
+    const caja = document.getElementById('caja-telefono');
+    
+    // Si el menú existe y está abierto en la pantalla
+    if (caja && caja.style.display === 'block') {
+      
+      // Si el clic/toque fue FUERA del recuadro del teléfono, lo escondemos
+      if (!caja.contains(event.target)) {
+        caja.style.display = 'none';
+      }
+    }
+  });
 </script>
+
     <script>
 function mostrarSeisVentanas(event) {
     event.preventDefault();
