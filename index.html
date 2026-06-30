@@ -395,25 +395,27 @@
         <h2 class="section-title">Miért a legokosabb döntés nekünk eladni a használt autódat?</h2>
         <div class="car-grid">
             
-<!-- Estilos del Carrusel Infinito y Centrado -->
+<!-- Estilos dinámicos corregidos y probados para móviles -->
 <style>
   .slider-container {
-    max-width: 1000px; /* Más ancho para la separación extra */
+    max-width: 1000px;
     margin: 20px auto;
     overflow: hidden;
     background: #f0f2f5;
     border-radius: 8px;
-    padding: 40px 0; /* Mayor espacio arriba y abajo */
+    padding: 40px 0;
     font-family: sans-serif;
     box-sizing: border-box;
     position: relative;
+    width: 100%;
   }
   .slider-track {
     display: flex;
-    gap: 60px; /* SEPARACIÓN EXTREMA en computadoras */
+    gap: 60px; /* Separación extrema en PC */
+    width: 100%;
   }
   .slider-item {
-    flex: 0 0 calc(50% - 30px); /* Ajustado simétricamente para los 60px de gap */
+    flex: 0 0 calc(50% - 30px); /* Dos tarjetas perfectas en PC */
     box-sizing: border-box;
     background: #ffffff;
     padding: 25px;
@@ -470,25 +472,39 @@
     line-height: 1;
   }
 
-  /* 📱 AJUSTES MÁXIMOS PARA CELULARES */
+  /* 📱 SOLUCIÓN DE CENTRADO ABSOLUTO PARA CELULARES */
   @media (max-width: 768px) {
+    .slider-container {
+      overflow-x: auto; /* Permite scroll nativo si falla el script */
+      scroll-snap-type: x mandatory; /* Fuerza a que las tarjetas se claven en el centro */
+      -webkit-overflow-scrolling: touch;
+      padding: 30px 0;
+    }
     .slider-track {
-      gap: 40px; /* Separación gigante también en celulares */
+      gap: 40px; /* Separación limpia en móviles */
+      padding: 0 40px; /* Espacio de seguridad lateral */
+      width: max-content; /* Evita que los elementos colapsen */
     }
     .slider-item {
-      flex: 0 0 75%; /* Ligeramente más angosto para que se note más la separación lateral */
+      flex: 0 0 78vw; /* Ancho fijo basado en la pantalla del celular */
+      scroll-snap-align: center; /* ALINEACIÓN CENTRAL PERFECTA */
       padding: 20px;
+    }
+    /* Oculta la barra de scroll horizontal para estética */
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+    .slider-container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
     .slider-item h3 { font-size: 15px !important; }
     .slider-item p { font-size: 13px !important; }
-    .modal-content { padding: 20px; }
-    .modal-content h2 { font-size: 18px !important; padding-right: 20px; }
-    .modal-content p { font-size: 15px !important; }
   }
 </style>
 
 <!-- Contenedor Principal -->
-<div class="slider-container">
+<div class="slider-container" id="sliderContainer">
   <div class="slider-track" id="sliderTrack">
 
     <!-- TARJETA 1 -->
@@ -531,7 +547,7 @@
         A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért...
       </p>
       <div class="full-text" style="display:none;">
-        A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért. Ha a vevőnél két hét múlva elromlik valami, visszajöhet, és jogi úton követelheti a javítási költséget. Nálunk: Mi professzionális autófelvásárlók vagyunk. Úgy vesszük meg az autót, ahogy va. Az adásvételi aláírása után minden kockázat a miénk, téged később nem fog senki zaklatni telefonon.
+        A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért. Ha a vevőnél két hét múlva elromlik valami, visszajöhet, és jogi úton követelheti a javítási költséget. Nálunk: Mi professzionális autófelvásárlók vagyunk. Úgy vesszük meg az autót, ahogy van. Az adásvételi aláírása után minden kockázat a miénk, téged később nem fog senki zaklatni telefonon.
       </div>
     </div>
 
@@ -547,19 +563,19 @@
   </div>
 </div>
 
-<!-- Script del Bucle Infinito Continuo -->
+<!-- Script de Animación Fluida e Infinita Reparado -->
 <script>
+  const container = document.getElementById('sliderContainer');
   const track = document.getElementById('sliderTrack');
   const originalItems = document.querySelectorAll('.slider-item');
   const modal = document.getElementById('textModal');
   
-  // Clonación para bucle infinito limpio
+  // Duplicamos las tarjetas para crear la ilusión de bucle infinito continuo
   originalItems.forEach(item => {
     const clone = item.cloneNode(true);
     track.appendChild(clone);
   });
   
-  const allItems = track.children;
   let index = 0;
   let sliderInterval;
   const totalOriginals = originalItems.length;
@@ -567,21 +583,24 @@
   function updateSliderPosition(animate = true) {
     const isMobile = window.innerWidth <= 768;
     
+    // Si es móvil, delegamos el centrado al motor nativo (Evita el desfase de píxeles)
+    if (isMobile) {
+      track.style.transform = 'none';
+      const itemWidth = track.children[0].offsetWidth + 40; // Ancho + gap móvil
+      container.scrollTo({
+        left: index * itemWidth,
+        behavior: animate ? 'smooth' : 'auto'
+      });
+      return;
+    }
+
+    // Comportamiento preciso para computadoras
     if (animate) {
       track.style.transition = "transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
     } else {
       track.style.transition = "none";
     }
-
-    if (isMobile) {
-      // Ajuste de centrado en celular (compensación del ancho del 75%)
-      const offsetContainer = 12.5; 
-      const move = index * 75 + index * (40 / window.innerWidth * 100) - offsetContainer;
-      track.style.transform = `translateX(${-move}%)`;
-    } else {
-      // Ajuste en PC
-      track.style.transform = `translateX(calc(-${index * 50}% - ${index * 30}px))`;
-    }
+    track.style.transform = `translateX(calc(-${index * 50}% - ${index * 30}px))`;
   }
 
   function startSlider() {
@@ -589,12 +608,11 @@
       index++;
       updateSliderPosition(true);
 
-      // Si llega al inicio de los clones, salta al inicio real sin animación de fondo
       if (index >= totalOriginals) {
         setTimeout(() => {
           index = 0;
           updateSliderPosition(false);
-        }, 600); // Espera que termine la animación de deslizamiento
+        }, 600); // Salto invisible al inicio
       }
     }, 4000);
   }
@@ -619,7 +637,6 @@
     startSlider();
   }
 
-  // Delegación de eventos para que los clones también abran el modal
   track.addEventListener('click', (e) => {
     const item = e.target.closest('.slider-item');
     if (item) openModal(item);
@@ -632,7 +649,6 @@
     startSlider();
   });
 
-  // Inicialización
   updateSliderPosition(false);
   startSlider();
 </script>
