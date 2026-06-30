@@ -395,35 +395,85 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
- <!-- Estilos para la animación de deslizamiento -->
+ <!-- Estilos para el Slider y la Ventana Flotante (Modal) -->
 <style>
   .slider-container {
-    max-width: 850px;
+    max-width: 900px; /* Un poco más ancho para dar espacio */
     margin: 20px auto;
-    overflow: hidden; /* Esconde las tarjetas que están fuera de vista */
+    overflow: hidden;
     background: #f0f2f5;
     border-radius: 8px;
-    padding: 20px;
+    padding: 25px; /* Más relleno general */
     font-family: sans-serif;
   }
   .slider-track {
     display: flex;
-    transition: transform 0.6s ease-in-out; /* Controla la suavidad del movimiento */
-    gap: 20px;
+    transition: transform 0.6s ease-in-out;
+    gap: 35px; /* MÁS SEPARACIÓN entre tarjetas */
   }
   .slider-item {
-    flex: 0 0 calc(50% - 10px); /* Muestra exactamente 2 tarjetas por vista */
+    flex: 0 0 calc(50% - 17.5px); /* Ajustado para la nueva separación */
     box-sizing: border-box;
     background: #ffffff;
-    padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+    cursor: pointer; /* Muestra mano al pasar el mouse */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  /* Adaptación para celulares: se muestra solo una tarjeta */
+  .slider-item:hover {
+    transform: translateY(-3px); /* Pequeño efecto visual al pasar el mouse */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  /* ESTILOS DE LA VENTANA FLOTANTE (MODAL) */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-content {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 12px;
+    max-width: 650px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+    font-family: sans-serif;
+    animation: zoomIn 0.3s ease;
+  }
+  .modal-close {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 28px;
+    color: #888;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .modal-close:hover { color: #333; }
+
+  @keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  /* Adaptación para celulares */
   @media (max-width: 600px) {
-    .slider-item {
-      flex: 0 0 100%;
-    }
+    .slider-item { flex: 0 0 100%; }
+    .slider-track { gap: 20px; }
   }
 </style>
 
@@ -432,65 +482,114 @@
   <div class="slider-track" id="sliderTrack">
 
     <!-- TARJETA 1 -->
-    <div class="slider-item">
+    <div class="slider-item" onclick="openModal(this)">
       <h3 style="margin: 5px 0; font-size: 16px; color: #333;">⏱️ 1. Időt spórolsz: Azonnali készpénzfizetés</h3>
       <p style="color: #d9534f; font-weight: bold; margin: 10px 0; font-size: 15px; line-height: 1.4;">
-        A magánszemélyeknek való értékesítés átlagosan 4-6 hetet vesz igénybe. Ez idő alatt folyamatosan telefonokat kell fogadnod, idegenekkel kell egyeztetned, akik aztán vagy eljönnek a megbeszélt időpontra, vagy nem. Nálunk: Elhozod az autót, mi felmérjük az állapotát, és ha megegyezünk, azonnal, készpénzben vagy azonnali banki utalással kifizetjük a vételárat. Akár 1 óra alatt túl lehetsz az egészen!
+        A magánszemélyeknek való értékesítés átlagosan 4-6 hetet vesz igénybe. Ez idő alatt folyamatosan telefonokat kell fogadnod, idegenekkel kell egyeztetned...
       </p>
+      <!-- Texto oculto completo que se usará en la ventana grande -->
+      <div class="full-text" style="display:none;">
+        A magánszemélyeknek való értékesítés átlagosan 4-6 hetet vesz igénybe. Ez idő alatt folyamatosan telefonokat kell fogadnod, idegenekkel kell egyeztetned, akik aztán vagy eljönnek a megbeszélt időpontra, vagy nem. Nálunk: Elhozod az autót, mi felmérjük az állapotát, és ha megegyezünk, azonnal, készpénzben vagy azonnali banki utalással kifizetjük a vételárat. Akár 1 óra alatt túl lehetsz az egészen!
+      </div>
     </div>
 
     <!-- TARJETA 2 -->
-    <div class="slider-item">
+    <div class="slider-item" onclick="openModal(this)">
       <h3 style="margin: 5px 0; font-size: 16px; color: #333;">📑 2. Nincs adminisztrációs rémálom</h3>
       <p style="color: #d9534f; font-weight: bold; margin: 10px 0; font-size: 15px; line-height: 1.4;">
-        Az autóeladás rengeteg papírmunkával jár. Egy hibásan kitöltött adásvételi szerződés, vagy a hiányos lejelentés az okmányirodában komoly büntetéseket vagy adózási problémákat vonhat maga után. Nálunk: A teljes hivatalos ügyintézést, a szerződésírást és a papírmunkát mi intézzük helyetted. Neked csak aláírnod kell, a többi a mi dolgunk.
+        Az autóeladás rengeteg papírmunkával jár. Egy hibásan kitöltött adásvételi szerződés, vagy a hiányos lejelentés az okmányirodában...
       </p>
+      <div class="full-text" style="display:none;">
+        Az autóeladás rengeteg papírmunkával jár. Egy hibásan kitöltött adásvételi szerződés, vagy a hiányos lejelentés az okmányirodában komoly büntetéseket vagy adózási problémákat vonhat maga után. Nálunk: A teljes hivatalos ügyintézést, a szerződésírást és a papírmunkát mi intézzük helyetted. Neked csak aláírnod kell, a többi a mi dolgunk.
+      </div>
     </div>
 
     <!-- TARJETA 3 -->
-    <div class="slider-item">
+    <div class="slider-item" onclick="openModal(this)">
       <h3 style="margin: 5px 0; font-size: 16px; color: #333;">🛠️ 3. Állapottól függetlenül vásárolunk</h3>
       <p style="color: #d9534f; font-weight: bold; margin: 10px 0; font-size: 15px; line-height: 1.4;">
-        A magánvevők tökéletes, karcolásmentes autót keresnek olcsón. Ha a kocsidnak esztétikai hibája van, sokat futott, esetleg motorhibás vagy törött, magánszemélynek szinte lehetetlen eladni. Nálunk: Mi pontosan tudjuk, mekkora érték rejlik egy használt autóban. Bármilyen márkájú, korú vagy állapotú járművet szívesen felvásárolunk a reális piaci áron.
+        A magánvevők tökéletes, karcolásmentes autót keresnek olcsón. Ha a kocsidnak esztétikai hibája van, sokat futott...
       </p>
+      <div class="full-text" style="display:none;">
+        A magánvevők tökéletes, karcolásmentes autót keresnek olcsón. Ha a kocsidnak esztétikai hibája van, sokat futott, esetleg motorhibás vagy törött, magánszemélynek szinte lehetetlen eladni. Nálunk: Mi pontosan tudjuk, mekkora érték rejlik egy használt autóban. Bármilyen márkájú, korú vagy állapotú járművet szívesen felvásárolunk a reális piaci áron.
+      </div>
     </div>
 
     <!-- TARJETA 4 -->
-    <div class="slider-item">
+    <div class="slider-item" onclick="openModal(this)">
       <h3 style="margin: 5px 0; font-size: 16px; color: #333;">🛡️ 4. Nulla garanciális vita a jövőben</h3>
       <p style="color: #d9534f; font-weight: bold; margin: 10px 0; font-size: 15px; line-height: 1.4;">
-        A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért. Ha a vevőnél két hét múlva elromlik valami, visszajöhet, ogi úton követelheti a javítási költséget. Nálunk: Mi professzionális autófelvásárlók vagyunk. Úgy vesszük meg az autót, ahogy van. Az adásvételi aláírása után minden kockázat a miénk, téged később nem fog senki zaklatni telefonon.
+        A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért...
       </p>
+      <div class="full-text" style="display:none;">
+        A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért. Ha a vevőnél két hét múlva elromlik valami, visszajöhet, és jogi úton követelheti a javítási költséget. Nálunk: Mi professzionális autófelvásárlók vagyunk. Úgy vesszük meg az autót, ahogy van. Az adásvételi aláírása után minden kockázat a miénk, téged később nem fog senki zaklatni telefonon.
+      </div>
     </div>
 
   </div>
 </div>
 
-<!-- Script corregido para mover el bloque lateralmente -->
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const track = document.getElementById('sliderTrack');
-    const items = document.querySelectorAll('.slider-item');
-    let index = 0;
+<!-- Estructura de la Ventana Flotante (Oculta al inicio) -->
+<div class="modal-overlay" id="textModal" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <h2 id="modalTitle" style="margin-top: 0; font-size: 22px; color: #333;"></h2>
+    <p id="modalBody" style="color: #d9534f; font-weight: bold; font-size: 18px; line-height: 1.6; margin-bottom: 0;"></p>
+  </div>
+</div>
 
-    setInterval(() => {
+<!-- Lógica del Script -->
+<script>
+  const track = document.getElementById('sliderTrack');
+  const items = document.querySelectorAll('.slider-item');
+  const modal = document.getElementById('textModal');
+  let index = 0;
+  let sliderInterval;
+
+  // Función para iniciar el movimiento automático
+  function startSlider() {
+    sliderInterval = setInterval(() => {
       const isMobile = window.innerWidth <= 600;
-      // En PC hay 4 tarjetas pero avanzamos de 2 en 2, el índice máximo es 2 (para ver tarjetas 3 y 4)
       const maxIndex = isMobile ? items.length - 1 : 2;
 
       index++;
-      if (index > maxIndex) {
-        index = 0; // Regresa al principio
-      }
+      if (index > maxIndex) { index = 0; }
 
       if (isMobile) {
         track.style.transform = `translateX(-${index * 100}%)`;
       } else {
-        // En PC, cada paso se desplaza el equivalente al espacio que ocupan las tarjetas
-        track.style.transform = `translateX(calc(-${index * 50}% - ${index * 10}px))`;
+        // Calcula desplazamiento exacto sumando el ancho (50%) y la separación (35px)
+        track.style.transform = `translateX(calc(-${index * 50}% - ${index * 17.5}px))`;
       }
-    }, 4000); // Se mueve cada 2 segundos
-  });
+    }, 4000);
+  }
+
+  // Función para detener el movimiento automático
+  function stopSlider() {
+    clearInterval(sliderInterval);
+  }
+
+  // Abrir la ventana grande al hacer clic
+  function openModal(element) {
+    stopSlider(); // Frena el carrusel inmediatamente
+    
+    const title = element.querySelector('h3').innerText;
+    const body = element.querySelector('.full-text').innerText;
+    
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalBody').innerText = body;
+    
+    modal.classList.add('active');
+  }
+
+  // Cerrar la ventana grande
+  function closeModal() {
+    modal.classList.remove('active');
+    startSlider(); // Reanuda el carrusel
+  }
+
+  // Inicializa el slider al cargar la página
+  document.addEventListener("DOMContentLoaded", startSlider);
 </script>
 
 
