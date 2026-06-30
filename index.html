@@ -313,6 +313,24 @@
             cursor: pointer;
             width: 100%;
         }
+
+    /* Estilo del texto */
+.telefono-parpadeante {
+  color: #ffffff; /* Color blanco para resaltar en el fondo negro */
+  font-weight: bold;
+  font-size: 16px;
+  margin-left: 20px; /* Ajusta la separación con los otros menús */
+  
+  /* Aplicar la animación */
+  animation: parpadeo 1.5s infinite;
+}
+
+/* Reglas de la animación de intermitencia */
+@keyframes parpadeo {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
         /* Contenedor principal en la barra negra */
 .dropdown-container {
     position: relative;
@@ -362,7 +380,7 @@
 
     <!-- Contenedor de los enlaces (Se ajusta automáticamente en celulares) -->
     <div style="display: flex; align-items: center; gap: clamp(15px, 3vw, 30px); position: relative; flex-wrap: wrap;">
-        
+        <span class="telefono-parpadeante">📞 +36 20 123 4567</span>
         <a href="index.html" style="color: white; text-decoration: none; font-weight: bold; font-size: clamp(14px, 4vw, 16px); white-space: nowrap;">Kezdőlap</a>
 <!-- MÓDULO AUTÓELADÁS -->
 <div class="dropdown-container" style="position: relative;">
