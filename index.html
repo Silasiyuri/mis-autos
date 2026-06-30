@@ -395,62 +395,104 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
-  <!-- Contenedor principal del carrusel -->
-<div id="text-carousel" style="max-width: 600px; margin: 20px auto; padding: 20px; background: #f0f2f5; border-radius: 8px; font-family: sans-serif; min-height: 250px;">
+  <!-- Estilos para la animación de deslizamiento -->
+<style>
+  .slider-container {
+    max-width: 850px;
+    margin: 20px auto;
+    overflow: hidden; /* Esconde las tarjetas que están fuera de vista */
+    background: #f0f2f5;
+    border-radius: 8px;
+    padding: 20px;
+    font-family: sans-serif;
+  }
+  .slider-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out; /* Controla la suavidad del movimiento */
+    gap: 20px;
+  }
+  .slider-item {
+    flex: 0 0 calc(50% - 10px); /* Muestra exactamente 2 tarjetas por vista */
+    box-sizing: border-box;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  /* Adaptación para celulares: se muestra solo una tarjeta para que no se amontone el texto */
+  @media (max-width: 600px) {
+    .slider-item {
+      flex: 0 0 100%;
+    }
+  }
+</style>
 
-  <!-- TARJETA 1 -->
-  <div class="carousel-item" style="display: block;">
-    <h3 style="margin: 5px 0; font-size: 18px; color: #333;">⏱️ 1. Időt spórolsz: Azonnali készpénzfizetés</h3>
-    <p style="color: #d9534f; font-weight: bold; margin: 15px 0; font-size: 16px; line-height: 1.5;">
-      A magánszemélyeknek való értékesítés átlagosan 4-6 hetet vesz igénybe. Ez idő alatt folyamatosan telefonokat kell fogadnod, idegenekkel kell egyeztetned, akik aztán vagy eljönnek a megbeszélt időpontra, vagy nem. Nálunk: Elhozod az autót, mi felmérjük az állapotát, és ha megegyezünk, azonnal, készpénzben vagy azonnali banki utalással kifizetjük a vételárat. Akár 1 óra alatt túl lehetsz az egészen!
-    </p>
+<!-- Contenedor Principal del Slider -->
+<div class="slider-container">
+  <div class="slider-track" id="sliderTrack">
+
+    <!-- TARJETA 1 -->
+    <div class="slider-item">
+      <h3 style="margin: 5px 0; font-size: 16px; color: #333;">⏱️ 1. Időt spórolsz: Azonnali készpénzfizetés</h3>
+      <p style="color: #d9534f; font-weight: bold; margin: 10px 0; font-size: 15px; line-height: 1.4;">
+        A magánszemélyeknek való értékesítés átlagosan 4-6 hetet vesz igénybe. Ez idő alatt folyamatosan telefonokat kell fogadnod, idegenekkel kell egyeztetned, akik aztán vagy eljönnek a megbeszélt időpontra, vagy nem. Nálunk: Elhozod az autót, mi felmérjük az állapotát, és ha megegyezünk, azonnal, készpénzben vagy azonnali banki utalással kifizetjük a vételárat. Akár 1 óra alatt túl lehetsz az egészen!
+      </p>
+    </div>
+
+    <!-- TARJETA 2 -->
+    <div class="slider-item">
+      <h3 style="margin: 5px 0; font-size: 16px; color: #333;">📑 2. Nincs adminisztrációs rémálom</h3>
+      <p style="color: #d9534f; font-weight: bold; margin: 10px 0; font-size: 15px; line-height: 1.4;">
+        Az autóeladás rengeteg papírmunkával jár. Egy hibásan kitöltött adásvételi szerződés, vagy a hiányos lejelentés az okmányirodában komoly büntetéseket vagy adózási problémákat vonhat maga után. Nálunk: A teljes hivatalos ügyintézést, a szerződésírást és a papírmunkát mi intézzük helyetted. Neked csak aláírnod kell, a többi a mi dolgunk.
+      </p>
+    </div>
+
+    <!-- TARJETA 3 -->
+    <div class="slider-item">
+      <h3 style="margin: 5px 0; font-size: 16px; color: #333;">🛠️ 3. Állapottól függetlenül vásárolunk</h3>
+      <p style="color: #d9534f; font-weight: bold; margin: 10px 0; font-size: 15px; line-height: 1.4;">
+        A magánvevők tökéletes, karcolásmentes autót keresnek olcsón. Ha a kocsidnak esztétikai hibája van, sokat futott, esetleg motorhibás vagy törött, magánszemélynek szinte lehetetlen eladni. Nálunk: Mi pontosan tudjuk, mekkora érték rejlik egy használt autóban. Bármilyen márkájú, korú vagy állapotú járművet szívesen felvásárolunk a reális piaci áron.
+      </p>
+    </div>
+
+    <!-- TARJETA 4 -->
+    <div class="slider-item">
+      <h3 style="margin: 5px 0; font-size: 16px; color: #333;">🛡️ 4. Nulla garanciális vita a jövőben</h3>
+      <p style="color: #d9534f; font-weight: bold; margin: 10px 0; font-size: 15px; line-height: 1.4;">
+        A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért. Ha a vevőnél két hét múlva elromlik valami, visszajöhet, és jogi úton követelheti a javítási költséget. Nálunk: Mi professzionális autófelvásárlók vagyunk. Úgy vesszük meg az autót, ahogy van. Az adásvételi aláírása után minden kockázat a miénk, téged később nem fog senki zaklatni telefonon.
+      </p>
+    </div>
+
   </div>
-
-  <!-- TARJETA 2 -->
-  <div class="carousel-item" style="display: none;">
-    <h3 style="margin: 5px 0; font-size: 18px; color: #333;">📑 2. Nincs adminisztrációs rémálom</h3>
-    <p style="color: #d9534f; font-weight: bold; margin: 15px 0; font-size: 16px; line-height: 1.5;">
-      Az autóeladás rengeteg papírmunkával jár. Egy hibásan kitöltött adásvételi szerződés, vagy a hiányos lejelentés az okmányirodában komoly büntetéseket vagy adózási problémákat vonhat maga után. Nálunk: A teljes hivatalos ügyintézést, a szerződésírást és a papírmunkát mi intézzük helyetted. Neked csak aláírnod kell, a többi a mi dolgunk.
-    </p>
-  </div>
-
-  <!-- TARJETA 3 -->
-  <div class="carousel-item" style="display: none;">
-    <h3 style="margin: 5px 0; font-size: 18px; color: #333;">🛠️ 3. Állapottól függetlenül vásárolunk</h3>
-    <p style="color: #d9534f; font-weight: bold; margin: 15px 0; font-size: 16px; line-height: 1.5;">
-      A magánvevők tökéletes, karcolásmentes autót keresnek olcsón. Ha a kocsidnak esztétikai hibája van, sokat futott, esetleg motorhibás vagy törött, magánszemélynek szinte lehetetlen eladni. Nálunk: Mi pontosan tudjuk, mekkora érték rejlik egy használt autóban. Bármilyen márkájú, korú vagy állapotú járművet szívesen felvásárolunk a reális piaci áron.
-    </p>
-  </div>
-
-  <!-- TARJETA 4 -->
-  <div class="carousel-item" style="display: none;">
-    <h3 style="margin: 5px 0; font-size: 18px; color: #333;">🛡️ 4. Nulla garanciális vita a jövőben</h3>
-    <p style="color: #d9534f; font-weight: bold; margin: 15px 0; font-size: 16px; line-height: 1.5;">
-      A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért. Ha a vevőnél két hét múlva elromlik valami, visszajöhet, és jogi úton követelheti a javítási költséget. Nálunk: Mi professzionális autófelvásárlók vagyunk. Úgy vesszük meg az autót, ahogy van. Az adásvételi aláírása után minden kockázat a miénk, téged később nem fog senki zaklatni telefonon.
-    </p>
-  </div>
-
 </div>
 
-<!-- Script que hace que los textos pasen solos -->
+<!-- Script para mover el bloque lateralmente -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    const items = document.querySelectorAll('.carousel-item');
-    let currentIndex = 0;
+    const track = document.getElementById('sliderTrack');
+    const items = document.querySelectorAll('.slider-item');
+    let index = 0;
 
     setInterval(() => {
-      // Oculta la tarjeta actual
-      items[currentIndex].style.display = 'none';
-      
-      // Pasa a la siguiente tarjeta (y vuelve a la primera si llega al final)
-      currentIndex = (currentIndex + 1) % items.length;
-      
-      // Muestra la nueva tarjeta
-      items[currentIndex].style.display = 'block';
-    }, 5000); // 5000 milisegundos = 5 segundos por tarjeta
+      // Determina cuántas tarjetas se avanzan según el tamaño de pantalla
+      const isMobile = window.innerWidth <= 600;
+      const maxIndex = isMobile ? items.length - 1 : items.length - 2;
+
+      index++;
+      if (index > maxIndex) {
+        index = 0; // Vuelve al inicio al terminar
+      }
+
+      // Calcula el desplazamiento lateral
+      if (isMobile) {
+        track style transform = `translateX(-${index * 100}%)`;
+      } else {
+        // Mueve el bloque basándose en el ancho de las tarjetas de dos en dos
+        track style transform = `translateX(-${index * 50}%)`;
+      }
+    }, 4000); // Cambia de posición cada 4 segundos
   });
 </script>
-
 
  
 
