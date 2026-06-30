@@ -395,39 +395,39 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
-<!-- Estilos dinámicos para Computadoras y Celulares -->
+<!-- Estilos dinámicos optimizados -->
 <style>
   .slider-container {
-    max-width: 900px;
+    max-width: 950px; /* Un poco más ancho para albergar mayor separación */
     margin: 20px auto;
     overflow: hidden;
     background: #f0f2f5;
     border-radius: 8px;
-    padding: 25px;
+    padding: 30px 20px; /* Más espacio arriba y abajo */
     font-family: sans-serif;
     box-sizing: border-box;
   }
   .slider-track {
     display: flex;
-    transition: transform 0.6s ease-in-out;
-    gap: 35px; /* Separación en computadoras */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Movimiento más elegante */
+    gap: 45px; /* MÁS SEPARACIÓN en computadoras */
   }
   .slider-item {
-    flex: 0 0 calc(50% - 17.5px); /* Dos tarjetas en PC */
+    flex: 0 0 calc(50% - 22.5px); /* Ajustado para la separación de 45px */
     box-sizing: border-box;
     background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .slider-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
   }
   
-  /* VENTANA FLOTANTE (MODAL) RESPONSIVA */
+  /* VENTANA FLOTANTE (MODAL) */
   .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -439,7 +439,7 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    padding: 15px; /* Margen de seguridad en celulares */
+    padding: 15px;
     box-sizing: border-box;
   }
   .modal-overlay.active {
@@ -456,8 +456,8 @@
     position: relative;
     font-family: sans-serif;
     box-sizing: border-box;
-    max-height: 85vh; /* Evita que se salga de la pantalla del celular */
-    overflow-y: auto; /* Permite hacer scroll dentro si el texto es largo */
+    max-height: 85vh;
+    overflow-y: auto;
     animation: zoomIn 0.3s ease;
   }
   .modal-close {
@@ -476,30 +476,32 @@
     to { transform: scale(1); opacity: 1; }
   }
 
-  /* 📱 AJUSTES EXCLUSIVOS PARA CELULARES (MÓVILES) */
+  /* 📱 AJUSTES EXCLUSIVOS PARA CELULARES (MÓVILES EN EL CENTRO) */
   @media (max-width: 768px) {
     .slider-container {
-      padding: 15px; /* Menos relleno para aprovechar espacio */
+      padding: 20px 0; /* Eliminamos padding lateral para que las tarjetas se deslicen hasta el borde */
     }
     .slider-track {
-      gap: 15px; /* Separación más pequeña y estética en celulares */
+      gap: 25px; /* Separación amplia y limpia en celulares */
+      padding-left: 10%; /* Deja un margen inicial para centrar la primera tarjeta */
+      padding-right: 10%;
     }
     .slider-item {
-      flex: 0 0 100%; /* Muestra UNA SOLA tarjeta a la vez */
-      padding: 15px;
+      flex: 0 0 80%; /* Al medir 80%, la tarjeta queda centrada y se ven las de los lados */
+      padding: 20px;
     }
     .slider-item h3 {
-      font-size: 15px !important; /* Títulos un poco más pequeños */
+      font-size: 15px !important;
     }
     .slider-item p {
-      font-size: 13px !important; /* Párrafos adaptados para pantallas chicas */
+      font-size: 13px !important;
     }
     .modal-content {
-      padding: 20px; /* Ventana flotante más compacta */
+      padding: 20px;
     }
     .modal-content h2 {
       font-size: 18px !important;
-      padding-right: 20px; /* Espacio para que no choque con la X */
+      padding-right: 20px;
     }
     .modal-content p {
       font-size: 15px !important;
@@ -551,7 +553,7 @@
         A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért...
       </p>
       <div class="full-text" style="display:none;">
-        A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért. Ha a vevőnél két hét múlva elromlik valami, visszajöhet, és jogi úton követelheti a javítási költséget. Nálunk: Mi professzionális autófelvásárlók vagyunk. Úgy vesszük meg az autót, ahogy van. Az adásvételi aláírása után minden kockázat a miénk, téged később nem fog senki zaklatni telefonon.
+        A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért. Ha a vevőnél két hét múlva elromlik valami, visszajöhet, és jogi úton követelheti a javítási költséget. Nálunk: Mi professzionális autófelvásárlók vagyunk. Ú端 vágjuk meg az autót, ahogy van. Az adásvételi aláírása után minden kockázat a miénk, téged később nem fog senki zaklatni telefonon.
       </div>
     </div>
 
@@ -567,7 +569,7 @@
   </div>
 </div>
 
-<!-- Lógica del Script con Soporte Inteligente de Medidas -->
+<!-- Script de Desplazamiento Centrado Inteligente -->
 <script>
   const track = document.getElementById('sliderTrack');
   const items = document.querySelectorAll('.slider-item');
@@ -578,18 +580,17 @@
   function startSlider() {
     sliderInterval = setInterval(() => {
       const isMobile = window.innerWidth <= 768;
-      // En celulares el máximo es 3 pasos (va de 1 en 1). En PC es 2 pasos (va de 2 en 2).
       const maxIndex = isMobile ? items.length - 1 : 2;
 
       index++;
       if (index > maxIndex) { index = 0; }
 
       if (isMobile) {
-        // En celular desplaza el 100% de la tarjeta más los 15px del hueco (gap)
-        track.style.transform = `translateX(calc(-${index * 100}% - ${index * 15}px))`;
+        // En celular se desplaza calculando el 80% del ancho de la tarjeta más los 25px de espacio (gap)
+        track.style.transform = `translateX(calc(-${index * 80}% - ${index * 25}px))`;
       } else {
-        // En PC desplaza el 50% de la pantalla más la mitad del hueco (gap)
-        track.style.transform = `translateX(calc(-${index * 50}% - ${index * 17.5}px))`;
+        // En PC se desplaza el 50% de la pantalla más la mitad del espacio (gap)
+        track.style.transform = `translateX(calc(-${index * 50}% - ${index * 22.5}px))`;
       }
     }, 4000);
   }
@@ -614,7 +615,6 @@
     startSlider();
   }
 
-  // Reinicia la posición si el usuario voltea el celular o cambia el tamaño de pantalla
   window.addEventListener('resize', () => {
     stopSlider();
     index = 0;
