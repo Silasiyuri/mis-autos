@@ -395,42 +395,43 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
- <!-- Estilos para el Slider y la Ventana Flotante (Modal) -->
+<!-- Estilos dinámicos para Computadoras y Celulares -->
 <style>
   .slider-container {
-    max-width: 900px; /* Un poco más ancho para dar espacio */
+    max-width: 900px;
     margin: 20px auto;
     overflow: hidden;
     background: #f0f2f5;
     border-radius: 8px;
-    padding: 25px; /* Más relleno general */
+    padding: 25px;
     font-family: sans-serif;
+    box-sizing: border-box;
   }
   .slider-track {
     display: flex;
     transition: transform 0.6s ease-in-out;
-    gap: 35px; /* MÁS SEPARACIÓN entre tarjetas */
+    gap: 35px; /* Separación en computadoras */
   }
   .slider-item {
-    flex: 0 0 calc(50% - 17.5px); /* Ajustado para la nueva separación */
+    flex: 0 0 calc(50% - 17.5px); /* Dos tarjetas en PC */
     box-sizing: border-box;
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.06);
-    cursor: pointer; /* Muestra mano al pasar el mouse */
+    cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .slider-item:hover {
-    transform: translateY(-3px); /* Pequeño efecto visual al pasar el mouse */
+    transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   }
   
-  /* ESTILOS DE LA VENTANA FLOTANTE (MODAL) */
+  /* VENTANA FLOTANTE (MODAL) RESPONSIVA */
   .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -438,6 +439,8 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    padding: 15px; /* Margen de seguridad en celulares */
+    box-sizing: border-box;
   }
   .modal-overlay.active {
     opacity: 1;
@@ -445,39 +448,66 @@
   }
   .modal-content {
     background: #ffffff;
-    padding: 35px;
+    padding: 30px;
     border-radius: 12px;
-    max-width: 650px;
-    width: 90%;
+    max-width: 600px;
+    width: 100%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     position: relative;
     font-family: sans-serif;
+    box-sizing: border-box;
+    max-height: 85vh; /* Evita que se salga de la pantalla del celular */
+    overflow-y: auto; /* Permite hacer scroll dentro si el texto es largo */
     animation: zoomIn 0.3s ease;
   }
   .modal-close {
     position: absolute;
-    top: 15px; right: 20px;
-    font-size: 28px;
+    top: 12px; right: 15px;
+    font-size: 32px;
     color: #888;
     cursor: pointer;
     border: none;
     background: none;
+    line-height: 1;
   }
-  .modal-close:hover { color: #333; }
 
   @keyframes zoomIn {
-    from { transform: scale(0.9); opacity: 0; }
+    from { transform: scale(0.95); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
   }
 
-  /* Adaptación para celulares */
-  @media (max-width: 600px) {
-    .slider-item { flex: 0 0 100%; }
-    .slider-track { gap: 20px; }
+  /* 📱 AJUSTES EXCLUSIVOS PARA CELULARES (MÓVILES) */
+  @media (max-width: 768px) {
+    .slider-container {
+      padding: 15px; /* Menos relleno para aprovechar espacio */
+    }
+    .slider-track {
+      gap: 15px; /* Separación más pequeña y estética en celulares */
+    }
+    .slider-item {
+      flex: 0 0 100%; /* Muestra UNA SOLA tarjeta a la vez */
+      padding: 15px;
+    }
+    .slider-item h3 {
+      font-size: 15px !important; /* Títulos un poco más pequeños */
+    }
+    .slider-item p {
+      font-size: 13px !important; /* Párrafos adaptados para pantallas chicas */
+    }
+    .modal-content {
+      padding: 20px; /* Ventana flotante más compacta */
+    }
+    .modal-content h2 {
+      font-size: 18px !important;
+      padding-right: 20px; /* Espacio para que no choque con la X */
+    }
+    .modal-content p {
+      font-size: 15px !important;
+    }
   }
 </style>
 
-<!-- Contenedor Principal del Slider -->
+<!-- Contenedor Principal -->
 <div class="slider-container">
   <div class="slider-track" id="sliderTrack">
 
@@ -487,7 +517,6 @@
       <p style="color: #d9534f; font-weight: bold; margin: 10px 0; font-size: 15px; line-height: 1.4;">
         A magánszemélyeknek való értékesítés átlagosan 4-6 hetet vesz igénybe. Ez idő alatt folyamatosan telefonokat kell fogadnod, idegenekkel kell egyeztetned...
       </p>
-      <!-- Texto oculto completo que se usará en la ventana grande -->
       <div class="full-text" style="display:none;">
         A magánszemélyeknek való értékesítés átlagosan 4-6 hetet vesz igénybe. Ez idő alatt folyamatosan telefonokat kell fogadnod, idegenekkel kell egyeztetned, akik aztán vagy eljönnek a megbeszélt időpontra, vagy nem. Nálunk: Elhozod az autót, mi felmérjük az állapotát, és ha megegyezünk, azonnal, készpénzben vagy azonnali banki utalással kifizetjük a vételárat. Akár 1 óra alatt túl lehetsz az egészen!
       </div>
@@ -529,7 +558,7 @@
   </div>
 </div>
 
-<!-- Estructura de la Ventana Flotante (Oculta al inicio) -->
+<!-- Ventana Flotante Grande -->
 <div class="modal-overlay" id="textModal" onclick="closeModal()">
   <div class="modal-content" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -538,7 +567,7 @@
   </div>
 </div>
 
-<!-- Lógica del Script -->
+<!-- Lógica del Script con Soporte Inteligente de Medidas -->
 <script>
   const track = document.getElementById('sliderTrack');
   const items = document.querySelectorAll('.slider-item');
@@ -546,33 +575,31 @@
   let index = 0;
   let sliderInterval;
 
-  // Función para iniciar el movimiento automático
   function startSlider() {
     sliderInterval = setInterval(() => {
-      const isMobile = window.innerWidth <= 600;
+      const isMobile = window.innerWidth <= 768;
+      // En celulares el máximo es 3 pasos (va de 1 en 1). En PC es 2 pasos (va de 2 en 2).
       const maxIndex = isMobile ? items.length - 1 : 2;
 
       index++;
       if (index > maxIndex) { index = 0; }
 
       if (isMobile) {
-        track.style.transform = `translateX(-${index * 100}%)`;
+        // En celular desplaza el 100% de la tarjeta más los 15px del hueco (gap)
+        track.style.transform = `translateX(calc(-${index * 100}% - ${index * 15}px))`;
       } else {
-        // Calcula desplazamiento exacto sumando el ancho (50%) y la separación (35px)
+        // En PC desplaza el 50% de la pantalla más la mitad del hueco (gap)
         track.style.transform = `translateX(calc(-${index * 50}% - ${index * 17.5}px))`;
       }
     }, 4000);
   }
 
-  // Función para detener el movimiento automático
   function stopSlider() {
     clearInterval(sliderInterval);
   }
 
-  // Abrir la ventana grande al hacer clic
   function openModal(element) {
-    stopSlider(); // Frena el carrusel inmediatamente
-    
+    stopSlider();
     const title = element.querySelector('h3').innerText;
     const body = element.querySelector('.full-text').innerText;
     
@@ -582,16 +609,21 @@
     modal.classList.add('active');
   }
 
-  // Cerrar la ventana grande
   function closeModal() {
     modal.classList.remove('active');
-    startSlider(); // Reanuda el carrusel
+    startSlider();
   }
 
-  // Inicializa el slider al cargar la página
+  // Reinicia la posición si el usuario voltea el celular o cambia el tamaño de pantalla
+  window.addEventListener('resize', () => {
+    stopSlider();
+    index = 0;
+    track.style.transform = 'translateX(0)';
+    startSlider();
+  });
+
   document.addEventListener("DOMContentLoaded", startSlider);
 </script>
-
 
 <!-- JavaScript Inteligente para Múltiples Tarjetas -->
 <script>
