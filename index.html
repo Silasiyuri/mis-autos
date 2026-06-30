@@ -395,7 +395,7 @@
         <h2 class="section-title">Kiemelt ajánlataink</h2>
         <div class="car-grid">
             
-  <!-- Estilos para la animación de deslizamiento -->
+ <!-- Estilos para la animación de deslizamiento -->
 <style>
   .slider-container {
     max-width: 850px;
@@ -419,7 +419,7 @@
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
-  /* Adaptación para celulares: se muestra solo una tarjeta para que no se amontone el texto */
+  /* Adaptación para celulares: se muestra solo una tarjeta */
   @media (max-width: 600px) {
     .slider-item {
       flex: 0 0 100%;
@@ -459,14 +459,14 @@
     <div class="slider-item">
       <h3 style="margin: 5px 0; font-size: 16px; color: #333;">🛡️ 4. Nulla garanciális vita a jövőben</h3>
       <p style="color: #d9534f; font-weight: bold; margin: 10px 0; font-size: 15px; line-height: 1.4;">
-        A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért. Ha a vevőnél két hét múlva elromlik valami, visszajöhet, és jogi úton követelheti a javítási költséget. Nálunk: Mi professzionális autófelvásárlók vagyunk. Úgy vesszük meg az autót, ahogy van. Az adásvételi aláírása után minden kockázat a miénk, téged később nem fog senki zaklatni telefonon.
+        A törvények szerint a magánszemélyként eladott autók után is vállalni kell bizonyos szavatosságot a rejtett hibákért. Ha a vevőnél két hét múlva elromlik valami, visszajöhet, ogi úton követelheti a javítási költséget. Nálunk: Mi professzionális autófelvásárlók vagyunk. Úgy vesszük meg az autót, ahogy van. Az adásvételi aláírása után minden kockázat a miénk, téged később nem fog senki zaklatni telefonon.
       </p>
     </div>
 
   </div>
 </div>
 
-<!-- Script para mover el bloque lateralmente -->
+<!-- Script corregido para mover el bloque lateralmente -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const track = document.getElementById('sliderTrack');
@@ -474,27 +474,25 @@
     let index = 0;
 
     setInterval(() => {
-      // Determina cuántas tarjetas se avanzan según el tamaño de pantalla
       const isMobile = window.innerWidth <= 600;
-      const maxIndex = isMobile ? items.length - 1 : items.length - 2;
+      // En PC hay 4 tarjetas pero avanzamos de 2 en 2, el índice máximo es 2 (para ver tarjetas 3 y 4)
+      const maxIndex = isMobile ? items.length - 1 : 2;
 
       index++;
       if (index > maxIndex) {
-        index = 0; // Vuelve al inicio al terminar
+        index = 0; // Regresa al principio
       }
 
-      // Calcula el desplazamiento lateral
       if (isMobile) {
-        track style transform = `translateX(-${index * 100}%)`;
+        track.style.transform = `translateX(-${index * 100}%)`;
       } else {
-        // Mueve el bloque basándose en el ancho de las tarjetas de dos en dos
-        track style transform = `translateX(-${index * 50}%)`;
+        // En PC, cada paso se desplaza el equivalente al espacio que ocupan las tarjetas
+        track.style.transform = `translateX(calc(-${index * 50}% - ${index * 10}px))`;
       }
-    }, 4000); // Cambia de posición cada 4 segundos
+    }, 4000); // Se mueve cada 2 segundos
   });
 </script>
 
- 
 
 <!-- JavaScript Inteligente para Múltiples Tarjetas -->
 <script>
