@@ -12,7 +12,28 @@
   <link rel="icon" href="/mis-autos/images/Photoroom_20260626_235125.png" type="image/png">
 <link rel="apple-touch-icon" href="/mis-autos/images/Photoroom_20260626_235125.png">
 
+<style>
+  /* Forzamos el color oscuro a todas las secciones intermedias del sitio */
+  main section, 
+  div[class*="container"], 
+  div[class*="card"] {
+    background-color: #0d161d !important;
+  }
+  
+  /* Forzamos a que las tarjetas internas tengan un fondo un poco más claro */
+  div[class*="card"] > div, 
+  .card, 
+  [class*="item"] {
+    background-color: #1b2733 !important;
+    border: 1px solid #2d3f52 !important;
+    box-shadow: none !important;
+  }
 
+  /* Forzamos a que las letras cambien a color blanco para que se lean */
+  h2, h3, p, span, strong {
+    color: #ffffff !important;
+  }
+</style>
  
   <style>
 
